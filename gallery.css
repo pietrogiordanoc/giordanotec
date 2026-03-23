@@ -29,7 +29,7 @@
 
 /* Container for gallery content */
 .gp-container {
-    max-width: 900px;
+    max-width: 1215px;
     margin: 0 auto;
     padding: 0 24px;
 }
@@ -43,7 +43,7 @@
 }
 
 .editorial-banner-inner {
-    max-width: 900px;
+    max-width: 1215px;
     margin: 0 auto;
     padding: 28px 24px;
     display: flex;
@@ -51,6 +51,13 @@
     justify-content: space-between;
     position: relative;
     min-height: 110px;
+}
+
+@media (max-width: 1280px) {
+    .gp-container,
+    .editorial-banner-inner {
+        max-width: 94vw;
+    }
 }
 
 .editorial-text h2 {
