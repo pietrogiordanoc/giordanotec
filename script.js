@@ -45,6 +45,7 @@ function startAutoSlide() {
 const translations = {
     es: {
         nav_home: 'INICIO',
+        nav_showcase: 'SHOWCASE',
         nav_gallery: 'GALERÍA',
         nav_video: 'GALERÍA DE VIDEOS',
         nav_contact: 'CONTACTO',
@@ -188,6 +189,7 @@ const translations = {
     },
     en: {
         nav_home: 'HOME',
+        nav_showcase: 'SHOWCASE',
         nav_gallery: 'GALLERY',
         nav_video: 'VIDEO GALLERY',
         nav_contact: 'CONTACT',
@@ -331,6 +333,7 @@ const translations = {
     },
     it: {
         nav_home: 'HOME',
+        nav_showcase: 'SHOWCASE',
         nav_gallery: 'GALLERIA',
         nav_video: 'GALLERIA VIDEO',
         nav_contact: 'CONTATTO',
@@ -495,7 +498,7 @@ function initSlider() {
 
 // Language Switching
 function initLanguage() {
-    const savedLang = localStorage.getItem('language') || 'es';
+    const savedLang = localStorage.getItem('language') || 'en';
     changeLanguage(savedLang);
 
     document.querySelectorAll('.lang-btn').forEach(btn => {
