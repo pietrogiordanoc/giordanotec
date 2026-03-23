@@ -1,0 +1,164 @@
+/* ============================================================
+   logo-project.css  — The Logo Project satellite page styles
+   ============================================================ */
+
+/* Override editorial banner colour to dark/elegant */
+.lp-banner {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+}
+
+.lp-banner .editorial-text h2 strong {
+    color: #e0c97a; /* gold accent */
+}
+
+/* ============================================================
+   Zig-zag row layout
+   ============================================================ */
+.lp-row {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    align-items: stretch;
+    padding: 0;
+    margin-bottom: 48px;
+}
+
+/* Reverse: swap order of text/image */
+.lp-reverse .lp-row {
+    grid-template-columns: 1fr 1.2fr;
+    direction: rtl;
+}
+.lp-reverse .lp-row > * {
+    direction: ltr;
+}
+
+/* Image cell */
+.lp-img {
+    overflow: hidden;
+}
+
+.lp-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.lp-img img:hover {
+    transform: scale(1.01);
+}
+
+/* Text cell */
+.lp-text {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.lp-text h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0 0 16px 0;
+    line-height: 1.25;
+}
+
+.lp-text p {
+    font-size: 0.97rem;
+    color: #555;
+    line-height: 1.75;
+    margin-bottom: 12px;
+    font-weight: 300;
+}
+
+.lp-text p em {
+    color: #0f3460;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* Step counter badge */
+.lp-step {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #0f3460;
+    padding: 4px 10px;
+    margin-bottom: 12px;
+}
+
+/* ============================================================
+   Final full-width double image row
+   ============================================================ */
+.lp-full-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-bottom: 24px;
+}
+
+.lp-full-img {
+    overflow: hidden;
+}
+
+.lp-full-img img {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Caption with inline step marker */
+.lp-caption-center {
+    text-align: center;
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.75;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.lp-step-inline {
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+    background: #0f3460;
+    padding: 3px 8px;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 768px) {
+    .lp-row {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .lp-reverse .lp-row {
+        grid-template-columns: 1fr;
+        direction: ltr;
+    }
+    .lp-full-row {
+        grid-template-columns: 1fr;
+    }
+    .lp-full-img img {
+        height: 240px;
+    }
+    .lp-text h2 {
+        font-size: 1.25rem;
+    }
+}

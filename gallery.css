@@ -1,0 +1,314 @@
+/* ============================================
+   Gallery Satellite Page — gallery.css
+   ============================================ */
+
+.gallery-page {
+    background: #fff;
+}
+
+/* Override the global section opacity-0 animation — not needed on this editorial page */
+.gallery-page section {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}
+
+/* Push content below fixed navbar */
+.gallery-main {
+    padding-top: 110px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    padding: 16px 0 8px;
+    font-size: 0.78rem;
+    color: #999;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+}
+
+/* Container for gallery content */
+.gp-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ── Editorial Banner ── */
+.editorial-banner {
+    width: 100%;
+    background: linear-gradient(135deg, #1565c0 0%, #1e88e5 40%, #42a5f5 70%, #1a237e 100%);
+    overflow: hidden;
+    margin-bottom: 36px;
+}
+
+.editorial-banner-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 28px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    min-height: 110px;
+}
+
+.editorial-text h2 {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 300;
+    line-height: 1.3;
+    margin-bottom: 10px;
+}
+
+.editorial-text h2 strong {
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+.editorial-text ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.editorial-text ul li {
+    color: rgba(255,255,255,0.85);
+    font-size: 0.82rem;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    line-height: 1.8;
+}
+
+.editorial-visual {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.wave-shape {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08));
+    pointer-events: none;
+}
+
+/* ── Project Intro ── */
+.project-intro {
+    margin-bottom: 32px;
+}
+
+.from-concept {
+    font-size: 0.82rem;
+    color: #888;
+    margin-bottom: 4px;
+    font-weight: 300;
+}
+
+.from-concept span {
+    color: #1565c0;
+    font-weight: 600;
+}
+
+.project-intro h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+}
+
+/* ── Section Titles ── */
+.gp-section {
+    margin-bottom: 40px;
+}
+
+.gp-section-title {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #1a1a1a;
+    margin-bottom: 18px;
+}
+
+.gp-section-title span {
+    font-style: italic;
+}
+
+.gp-lead {
+    font-size: 0.88rem;
+    color: #555;
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 600px;
+    margin-bottom: 22px;
+}
+
+.gp-caption {
+    font-size: 0.82rem;
+    color: #666;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-top: 16px;
+}
+
+/* ── Two Column Layout ── */
+.gp-two-col {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 32px;
+    align-items: stretch;
+    margin-bottom: 48px;
+}
+
+.gp-two-col.reverse {
+    grid-template-columns: 1fr 1.2fr;
+    direction: rtl;
+}
+
+.gp-two-col.reverse > * {
+    direction: ltr;
+}
+
+.gp-col-img,
+.gp-col-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.gp-col-img img,
+.gp-col-content img {
+    width: 100%;
+    display: block;
+    margin-bottom: 12px;
+}
+
+/* In Design & Composition, the right column (flyer) stretches full height */
+.gp-section .gp-two-col .gp-col-content img:only-child,
+.gp-section .gp-two-col .gp-col-img img:only-child {
+    height: 100%;
+    object-fit: cover;
+    margin-bottom: 0;
+}
+
+.gp-col-content p {
+    font-size: 0.85rem;
+    color: #555;
+    font-weight: 300;
+    line-height: 1.75;
+}
+
+/* ── Banner Rows ── */
+.gp-banner-row {
+    margin-bottom: 14px;
+}
+
+.gp-banner-row img {
+    width: 100%;
+    display: block;
+}
+
+/* ── Final Grid ── */
+.gp-final-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+}
+
+.gp-final-grid img {
+    width: 100%;
+    display: block;
+}
+
+/* ── Divider ── */
+.gp-divider {
+    border: none;
+    border-top: 1px solid #ebebeb;
+    margin: 36px 0;
+}
+
+/* ── CTA Section ── */
+.gp-cta {
+    padding: 30px 0 50px;
+    text-align: left;
+}
+
+.gp-cta h2 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #1a1a1a;
+    line-height: 1.4;
+    margin-bottom: 14px;
+}
+
+.gp-cta p {
+    font-size: 0.88rem;
+    color: #555;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+
+.gp-cta p a {
+    color: #1565c0;
+    font-style: italic;
+    text-decoration: underline;
+}
+
+.gp-cta-sub {
+    color: #888;
+    font-size: 0.8rem !important;
+    margin-bottom: 24px !important;
+}
+
+.gp-cta .btn {
+    font-size: 0.82rem;
+    padding: 10px 28px;
+    letter-spacing: 1px;
+}
+
+/* ── Active nav link ── */
+.navbar .nav-menu a.active {
+    font-weight: 700;
+    border-bottom: 2px solid white;
+    padding-bottom: 3px;
+}
+
+/* ── Footer copy ── */
+.footer-copy {
+    text-align: center;
+    font-size: 0.78rem;
+    color: #aaa;
+    margin-top: 14px;
+    font-weight: 300;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+    .gp-two-col,
+    .gp-final-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gp-two-col.reverse {
+        direction: ltr;
+    }
+
+    .editorial-text h2 {
+        font-size: 1.1rem;
+    }
+
+    .editorial-text h2 strong {
+        font-size: 1.3rem;
+    }
+
+    .project-intro h1 {
+        font-size: 1.3rem;
+    }
+}

@@ -1,0 +1,417 @@
+/* ============================================================
+   dr-jeff-cantor.css — Dr. Jeff Cantor Project styles
+   Complex multi-platform ecosystem project page
+   ============================================================ */
+
+/* Editorial Banner — dynamic blue gradient */
+.djc-banner {
+    background: linear-gradient(135deg, #0066d9 0%, #0052b3 25%, #003d8c 50%, #002666 75%, #001a4d 100%) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.djc-banner .editorial-banner-inner {
+    position: relative;
+    z-index: 2;
+}
+
+.djc-banner .editorial-text h2 strong {
+    color: #64b5ff;
+}
+
+/* Dynamic wave shapes */
+.djc-banner-visual {
+    position: absolute !important;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.djc-wave-1 {
+    position: absolute;
+    right: -60px;
+    top: -20px;
+    width: 400px;
+    height: 180px;
+    background: rgba(127, 179, 255, 0.15);
+    border-radius: 50%;
+    filter: blur(2px);
+}
+
+.djc-wave-2 {
+    position: absolute;
+    right: -40px;
+    top: 20px;
+    width: 380px;
+    height: 160px;
+    background: rgba(100, 181, 255, 0.12);
+    border-radius: 50%;
+    filter: blur(1px);
+}
+
+.djc-wave-3 {
+    position: absolute;
+    right: 20px;
+    top: 50px;
+    width: 320px;
+    height: 140px;
+    background: rgba(64, 140, 255, 0.1);
+    border-radius: 50%;
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/* Content Blocks & Sections */
+/* ─────────────────────────────────────────────────────────── */
+
+/* Intro text block */
+.djc-intro-block {
+    margin-bottom: 48px;
+}
+
+.djc-intro-block .gp-col-content h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0f0f0f;
+    margin-bottom: 20px;
+    line-height: 1.25;
+}
+
+.djc-intro-block .gp-col-content p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 16px;
+}
+
+.djc-intro-block .gp-col-content p em {
+    color: #0f3460;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* Platform sections */
+.djc-platform-one,
+.djc-platform-two {
+    margin-bottom: 48px;
+}
+
+.djc-platform-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #0f0f0f;
+    margin-bottom: 32px;
+}
+
+.djc-platform-one .gp-two-col,
+.djc-platform-two .gp-two-col {
+    gap: 40px;
+}
+
+.djc-platform-one .gp-col-content,
+.djc-platform-two .gp-col-content {
+    padding: 0;
+}
+
+.djc-platform-one .gp-col-content p,
+.djc-platform-two .gp-col-content p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.djc-platform-one .gp-col-content p strong,
+.djc-platform-two .gp-col-content p strong {
+    color: #0f0f0f;
+}
+
+.djc-tasks {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0 0;
+}
+
+.djc-tasks li {
+    font-size: 0.9rem;
+    color: #555;
+    padding: 6px 0 6px 24px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.djc-tasks li:before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #0f3460;
+    font-weight: 700;
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/* Editorial & Book Design Section */
+/* ─────────────────────────────────────────────────────────── */
+
+.djc-books-gallery {
+    margin-bottom: 48px;
+}
+
+.djc-books-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 28px;
+}
+
+.djc-book-item {
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    transition: transform 0.4s ease;
+}
+
+.djc-book-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.djc-book-item:hover img {
+    transform: scale(1.02);
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/* Ecosystem Section */
+/* ─────────────────────────────────────────────────────────── -->
+
+.djc-ecosystem {
+    margin-bottom: 48px;
+}
+
+.djc-section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #0f0f0f;
+    margin-bottom: 16px;
+}
+
+.djc-ecosystem-intro {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 32px;
+    max-width: 700px;
+}
+
+.djc-ecosystem-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+.djc-eco-card {
+    padding: 28px;
+    background: #f8f8f8;
+    border-left: 3px solid #0f3460;
+}
+
+.djc-eco-icon {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+}
+
+.djc-eco-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f0f0f;
+    margin-bottom: 10px;
+}
+
+.djc-eco-card p {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/* Complexity Section */
+/* ─────────────────────────────────────────────────────────── */
+
+.djc-complexity {
+    margin-bottom: 48px;
+}
+
+.djc-complexity-content {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.djc-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.djc-stat-item {
+    text-align: center;
+}
+
+.djc-stat-number {
+    display: block;
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #0f3460;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.djc-stat-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #555;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+}
+
+.djc-complexity-text {
+    padding-left: 0;
+}
+
+.djc-complexity-text p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.djc-complexity-text p em {
+    color: #0f3460;
+    font-style: normal;
+    font-weight: 600;
+}
+
+.djc-complexity-text p strong {
+    color: #0f0f0f;
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/* Result Section */
+/* ─────────────────────────────────────────────────────────── */
+
+.djc-result {
+    margin-bottom: 48px;
+}
+
+.djc-result-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.djc-result-content p {
+    font-size: 0.95rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.djc-result-content p strong {
+    color: #0f0f0f;
+}
+
+.djc-result-content p em {
+    color: #0f3460;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/* Capability Section */
+/* ─────────────────────────────────────────────────────────── */
+
+.djc-capability {
+    margin-bottom: 48px;
+}
+
+.djc-intro-statement {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 36px;
+    max-width: 700px;
+}
+
+.djc-capabilities-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+.djc-cap-item {
+    padding-bottom: 0;
+}
+
+.djc-cap-item h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0f0f0f;
+    margin-bottom: 10px;
+}
+
+.djc-cap-item p {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.7;
+}
+
+.djc-cap-item p em {
+    color: #0f3460;
+    font-style: normal;
+    font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────────────────── */
+/* Responsive */
+/* ─────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+    .djc-books-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .djc-complexity-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .djc-ecosystem-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .djc-capabilities-list {
+        grid-template-columns: 1fr;
+    }
+
+    .djc-platform-one .gp-two-col,
+    .djc-platform-two .gp-two-col {
+        grid-template-columns: 1fr;
+    }
+
+    .djc-platform-one .gp-two-col.reverse,
+    .djc-platform-two .gp-two-col.reverse {
+        direction: ltr;
+    }
+
+    .djc-text-block h2 {
+        font-size: 1.4rem;
+    }
+
+    .djc-platform-title,
+    .djc-section-title {
+        font-size: 1.3rem;
+    }
+}

@@ -1,0 +1,24 @@
+/* ===================================
+   PRIMELINE PROJECT STYLES
+   =================================== */
+
+:root {
+    --pl-primary: #C41E3A;      /* Red brand */
+    --pl-gold: #C9A06D;         /* Gold accent */
+    --pl-dark: #1A1A1A;         /* Dark */
+    --pl-light: #F5F5F5;        /* Light */
+}
+
+/* Override gallery colors for primeline branding */
+.gp-section-title span {
+    color: var(--pl-gold);
+}
+
+/* CTA adjustments for primeline */
+.gp-cta a {
+    color: var(--pl-primary);
+}
+
+.gp-cta a:hover {
+    color: var(--pl-gold);
+}

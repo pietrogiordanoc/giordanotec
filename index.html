@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GiordanoTec - Professional Graphic Design, Multimedia, Web Development & Social Media Services. Consulting & Creative Solutions.">
+    <meta name="keywords" content="graphic design, multimedia, web development, social media, consulting, video production, branding">
+    <meta name="author" content="Pietro Giordano - GiordanoTec">
+    <title>GiordanoTec | Professional Creative Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn active" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-main-row">
+                <a href="#home" class="logo">
+                    <img src="images/logo.png" alt="GiordanoTec Logo">
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="#home" data-translate="nav_home">HOME</a></li>
+                    <li><a href="gallery.html" data-translate="nav_gallery">GALLERY</a></li>
+                    <li><a href="#video-gallery" data-translate="nav_video">VIDEO GALLERY</a></li>
+                    <li><a href="#contact" data-translate="nav_contact">CONTACT</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <img src="images/banner01.jpg" alt="Banner 1">
+            </div>
+            <div class="hero-slide">
+                <img src="images/banner02.jpg" alt="Banner 2">
+            </div>
+        </div>
+        
+        <!-- Slider Controls -->
+        <button class="slider-nav prev" onclick="changeSlide(-1)">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="slider-nav next" onclick="changeSlide(1)">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+        
+        <!-- Slider Dots -->
+        <div class="slider-dots">
+            <span class="dot active" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+        </div>
+        
+        <div class="hero-overlay"></div>
+        <div class="container">
+            <div class="hero-content">
+                <p class="hero-tagline" data-translate="services_tagline">Consulting & Service | Graphic Design | Multimedia | Web | Social Media</p>
+                <h1 class="hero-title" data-translate="hero_title">We specialize in crafting <strong>visually stunning projects</strong> that effectively communicate your vision, whether you're an individual or a business. Let us help you bring your ideas to life through compelling graphic design</h1>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-translate="services_title">Our Services</h2>
+                <p data-translate="services_subtitle">Comprehensive creative solutions tailored to your needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3 data-translate="service_consulting_title">Consulting & Service</h3>
+                    <p data-translate="service_consulting_desc">Strategic digital consulting to elevate your business and maximize your online presence.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3 data-translate="service_design_title">Graphic Design</h3>
+                    <p data-translate="service_design_desc">Professional visual design that effectively communicates your brand identity and vision.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3 data-translate="service_multimedia_title">Multimedia</h3>
+                    <p data-translate="service_multimedia_desc">High-quality video production and multimedia content that captivates your audience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 data-translate="service_web_title">Web Development</h3>
+                    <p data-translate="service_web_desc">Modern, responsive websites optimized for performance and user experience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <h3 data-translate="service_social_title">Social Media</h3>
+                    <p data-translate="service_social_desc">Strategic social media management to grow your brand and engage your community.</p>
+                </div>
+                <div class="service-card featured">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 data-translate="service_package_title">Complete Package</h3>
+                    <p data-translate="service_package_desc">Full-service creative solutions from concept to final delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Project Teaser -->
+    <section class="featured-teaser">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-translate="projects_title">Featured Projects</h2>
+                <p data-translate="projects_subtitle">A look behind the work</p>
+            </div>
+            <div class="teaser-grid">
+                <div class="teaser-card">
+                    <div class="teaser-img">
+                        <img src="images/banner01.jpg" alt="Burger Flyer Project">
+                    </div>
+                    <div class="teaser-body">
+                        <span class="teaser-label" data-translate="featured_label">Featured Project</span>
+                        <h2 data-translate="featured_title">The Burger Flyer</h2>
+                        <p data-translate="featured_subtitle">From concept photography to final print-ready design — a complete editorial workflow.</p>
+                        <a href="gallery.html" class="btn btn-primary" data-translate="featured_cta">View Case Study</a>
+                    </div>
+                </div>
+                <div class="teaser-card">
+                    <div class="teaser-img">
+                        <img src="images/logoconst.jpg" alt="Logo Project">
+                    </div>
+                    <div class="teaser-body">
+                        <span class="teaser-label" data-translate="logo_label">Brand Identity</span>
+                        <h2 data-translate="logo_title">The Logo Project</h2>
+                        <p data-translate="logo_subtitle">From client brief to final mark — a full brand identity built with strategy and craft.</p>
+                        <a href="logo-project.html" class="btn btn-primary" data-translate="logo_cta">View Case Study</a>
+                    </div>
+                </div>
+                <div class="teaser-card">
+                    <div class="teaser-img">
+                        <img src="images/banner03.jpg" alt="Dr. Jeff Cantor Project">
+                    </div>
+                    <div class="teaser-body">
+                        <span class="teaser-label" data-translate="djc_label">Multi-Platform Ecosystem</span>
+                        <h2 data-translate="djc_title">Dr. Jeff Cantor</h2>
+                        <p data-translate="djc_subtitle">Building two complete digital ecosystems from elite tactical expertise — platforms, training materials, and integrated business models.</p>
+                        <a href="dr-jeff-cantor.html" class="btn btn-primary" data-translate="djc_cta">View Case Study</a>
+                    </div>
+                </div>
+                    <div class="teaser-card">
+                        <div class="teaser-img">
+                            <img src="images/primeline01.jpg" alt="Prime Line Project">
+                        </div>
+                        <div class="teaser-body">
+                            <span class="teaser-label" data-translate="primeline_label">Complete Branding Ecosystem</span>
+                            <h2 data-translate="primeline_title">Prime Line</h2>
+                            <p data-translate="primeline_subtitle">From comprehensive catalog design to multi-location branding strategy — complete visual ecosystem for a specialty food distributor.</p>
+                            <a href="primeline-project.html" class="btn btn-primary" data-translate="primeline_cta">View Case Study</a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-translate="testimonials_title">Client Testimonials</h2>
+                <p data-translate="testimonials_subtitle">What our clients say about us</p>
+            </div>
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Pietro Giordano and his company, Giordanotec has executed numerous jobs for my companies over the last several years. I never cease to be amazed by the superb quality of the work product that Pietro produces. He is very responsible, performance driven, results oriented and has excellent communication skills."</p>
+                    <div class="testimonial-author">
+                        <h4>Jeff Cantor</h4>
+                        <span>Florida, USA</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Really enjoyed working with Pietro. True professional with a lot of creativity and know how. We used for FinTech videos, better than expected result."</p>
+                    <div class="testimonial-author">
+                        <h4>Michael 714</h4>
+                        <span>FinTech Project</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Pietro is my go to guy! He's the best! He is a true professional! It's obvious he has a lot of experience. He delivers on his promises, you can count on him."</p>
+                    <div class="testimonial-author">
+                        <h4>Chris Hendrix</h4>
+                        <span>InDesign & Graphic Design</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Pietro was fantastic to work with. He is very skilled, hard working, incredibly patient, and above all creative. He came up with wonderful ideas."</p>
+                    <div class="testimonial-author">
+                        <h4>Rachel Gray</h4>
+                        <span>Post Card Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="10">0</div>
+                    <div class="stat-label" data-translate="stat_years">Years Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="200">0</div>
+                    <div class="stat-label" data-translate="stat_projects">Projects Completed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="150">0</div>
+                    <div class="stat-label" data-translate="stat_clients">Happy Clients</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="3">0</div>
+                    <div class="stat-label" data-translate="stat_languages">Languages</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-translate="contact_title">Get In Touch</h2>
+                <p data-translate="contact_subtitle">We specialize in crafting visually stunning projects that effectively communicate your vision</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3 data-translate="contact_info_title">Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:info.giordanotec@gmail.com">info.giordanotec@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <a href="https://wa.me/34675537994">+34 675 537 994</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-link"></i>
+                        <div>
+                            <h4>Linktree</h4>
+                            <a href="https://linktr.ee/giordanotec" target="_blank">linktr.ee/giordanotec</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <a href="https://www.linkedin.com/in/pietro-giordano-carfagnini/" target="_blank">Pietro Giordano</a>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://linktr.ee/giordanotec" target="_blank"><i class="fas fa-link"></i></a>
+                        <a href="https://www.linkedin.com/in/pietro-giordano-carfagnini/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://wa.me/34675537994" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="mailto:info.giordanotec@gmail.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                    <input type="hidden" name="form-name" value="contact">
+                    <p style="display: none;">
+                        <label>Don't fill this out: <input name="bot-field" /></label>
+                    </p>
+                    <div class="form-group">
+                        <input type="text" name="name" required>
+                        <label data-translate="form_name">Your Name</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" required>
+                        <label data-translate="form_email">Your Email</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject">
+                        <label data-translate="form_subject">Subject</label>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" rows="5" required></textarea>
+                        <label data-translate="form_message">Your Message</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" data-translate="form_submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Banners -->
+    <section class="footer-banners">
+        <div class="container">
+            <div class="footer-banners-content">
+                <a href="https://linktr.ee/giordanotec" target="_blank" class="footer-banner-link">LINKTREE</a>
+                <a href="#contact" class="footer-banner-link">CONTACT</a>
+                <a href="#testimonials" class="footer-banner-link">FEEDBACK</a>
+            </div>
+            <div class="footer-email">
+                <a href="mailto:info.giordanotec@gmail.com">info.giordanotec@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="images/logo.png" alt="GiordanoTec Logo">
+                    <p data-translate="footer_tagline">Creative Solutions for Your Business</p>
+                </div>
+                <div class="footer-links">
+                    <h4 data-translate="footer_services">Services</h4>
+                    <ul>
+                        <li><a href="#services">Consulting</a></li>
+                        <li><a href="#services">Graphic Design</a></li>
+                        <li><a href="#services">Multimedia</a></li>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Social Media</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4 data-translate="footer_company">Company</h4>
+                    <ul>
+                        <li><a href="#gallery">Portfolio</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span class="auto-year"></span> Giordanotec. <span data-translate="footer_rights">All rights reserved.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/34675537994" class="whatsapp-float" target="_blank" aria-label="Contact via WhatsApp">
+        <img src="images/whatsappicon.png" alt="WhatsApp">
+    </a>
+
+    <!-- Gallery Modal -->
+    <div id="galleryModal" class="modal">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImg">
+        <div class="modal-caption"></div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
