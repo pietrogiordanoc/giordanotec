@@ -479,6 +479,7 @@ const translations = {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', function() {
+    initSharedHeader();
     initSlider();
     initLanguage();
     initNavigation();
@@ -489,6 +490,50 @@ document.addEventListener('DOMContentLoaded', function() {
     initBackToTop();
     initSmoothScroll();
 });
+
+function initSharedHeader() {
+    const headerMount = document.getElementById('site-header');
+    if (!headerMount) return;
+
+    const homePage = isHomePage();
+    const activeSection = homePage ? 'home' : 'showcase';
+    const homeHref = homePage ? '#home' : 'index.html';
+    const showcaseHref = homePage ? '#projects' : 'index.html#projects';
+    const contactHref = homePage ? '#contact' : 'index.html#contact';
+
+    headerMount.innerHTML = `
+        <div class="language-switcher">
+            <button class="lang-btn" data-lang="es">ES</button>
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="it">IT</button>
+        </div>
+
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-main-row">
+                    <a href="${homeHref}" class="logo">
+                        <img src="images/logo.png" alt="GiordanoTec Logo">
+                    </a>
+                    <ul class="nav-menu">
+                        <li><a href="${homeHref}" data-translate="nav_home" class="${activeSection === 'home' ? 'active' : ''}">HOME</a></li>
+                        <li><a href="${showcaseHref}" data-translate="nav_showcase" class="${activeSection === 'showcase' ? 'active' : ''}">SHOWCASE</a></li>
+                        <li><a href="${contactHref}" data-translate="nav_contact">CONTACT</a></li>
+                    </ul>
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    `;
+}
+
+function isHomePage() {
+    const path = window.location.pathname.toLowerCase();
+    return path === '/' || path.endsWith('/index.html') || path === '/index';
+}
 
 // Initialize Slider
 function initSlider() {

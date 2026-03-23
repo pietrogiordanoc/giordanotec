@@ -177,6 +177,14 @@ ul {
     width: 100%;
 }
 
+.nav-menu a.active::after {
+    width: 100%;
+}
+
+.nav-menu a.active {
+    font-weight: 600;
+}
+
 .hamburger {
     display: none;
     flex-direction: column;
