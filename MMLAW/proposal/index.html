@@ -1,0 +1,2845 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMH Law - Digital Transformation Proposal</title>
+    <meta name="description" content="Technical audit and modernization proposal for Murray, Morin & Herman, P.A.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        document.documentElement.classList.add('js');
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'oxford-blue': '#002147',
+                        'oxford-blue-light': '#003366',
+                        'charcoal': '#36454F',
+                        'mate-gold': '#C9861E',
+                        'mate-gold-light': '#DAA520'
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Nunito Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 17px;
+        }
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .js .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .js .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Problem 4 Carousel */
+        .p4-carousel-wrap {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .p4-carousel-shell {
+            border-top: 3px solid #002147;
+            border-bottom: 3px solid #002147;
+            background: #ffffff;
+            box-shadow: 0 8px 24px rgba(0, 33, 71, 0.08);
+        }
+
+        .p4-carousel-viewport {
+            overflow: hidden;
+        }
+
+        .p4-carousel-track {
+            display: flex;
+            gap: 12px;
+            transition: transform 0.45s ease;
+            will-change: transform;
+            padding: 8px 0;
+        }
+
+        .p4-card {
+            flex: 0 0 calc((100% - 48px) / 5);
+            min-width: 120px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .p4-card--featured {
+            border: 2px solid #C9861E;
+            box-shadow: 0 0 0 3px rgba(201, 134, 30, 0.14), 0 14px 30px rgba(0, 33, 71, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .p4-card--featured .p4-card-body {
+            background: linear-gradient(180deg, rgba(201, 134, 30, 0.08) 0%, rgba(201, 134, 30, 0.02) 100%);
+        }
+
+        .p4-card--featured img {
+            box-shadow: inset 0 0 0 2px rgba(201, 134, 30, 0.3);
+        }
+
+        .p4-card img {
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            height: auto;
+            object-fit: cover;
+            display: block;
+        }
+
+        .p4-card-body {
+            padding: 8px;
+            text-align: center;
+        }
+
+        .p4-arrow {
+            border: 1px solid #cbd5e1;
+            color: #002147;
+            background: #ffffff;
+            width: 44px;
+            height: 44px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            line-height: 1;
+            transition: all 0.2s ease;
+        }
+
+        .p4-arrow:hover {
+            border-color: #C9861E;
+            color: #C9861E;
+            box-shadow: 0 6px 16px rgba(201, 134, 30, 0.2);
+        }
+
+        @media (max-width: 1024px) {
+            .p4-carousel-wrap {
+                width: 90%;
+            }
+
+            .p4-card {
+                flex: 0 0 calc((100% - 36px) / 4);
+                min-width: 120px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .p4-carousel-wrap {
+                width: 94%;
+            }
+
+            .p4-card {
+                flex: 0 0 calc((100% - 16px) / 2);
+                min-width: 120px;
+            }
+        }
+        
+        /* Hero Title Hover Effect */
+        .hero-title:hover {
+            transform: translateY(-8px);
+            text-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Golden Line Shimmer Effect */
+        .golden-line-shimmer::before {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: -100%;
+            width: 30px;
+            height: 10px;
+            background: radial-gradient(ellipse at center, 
+                rgba(255, 255, 255, 1) 0%, 
+                rgba(255, 255, 255, 0.9) 20%,
+                rgba(184, 134, 11, 0.6) 50%,
+                transparent 100%);
+            filter: blur(3px);
+            box-shadow: 
+                0 0 15px rgba(255, 255, 255, 0.9),
+                0 0 25px rgba(184, 134, 11, 0.6),
+                0 0 35px rgba(184, 134, 11, 0.4);
+            opacity: 0;
+        }
+        
+        @keyframes shimmer-sweep {
+            0% {
+                left: -100%;
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                left: 100%;
+                opacity: 0;
+            }
+        }
+        
+        .golden-line-shimmer.animate::before {
+            animation: shimmer-sweep 1.5s ease-in-out;
+        }
+        
+        /* Language Selector */
+        .lang-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+        
+        .lang-btn.active {
+            border-bottom: 1px solid #C9861E;
+        }
+
+        /* Search Simulator Styles */
+        .search-tab {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+        
+        .search-tab.active {
+            border-bottom: 2px solid #002147;
+            border-left: 1px solid #e5e7eb;
+            border-right: 1px solid #e5e7eb;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .result-item {
+            transition: opacity 0.3s ease;
+        }
+
+        /* Portal Modal */
+        .portal-modal-backdrop {
+            background: rgba(2, 21, 41, 0.78);
+            backdrop-filter: blur(4px);
+        }
+
+        .portal-modal-panel {
+            animation: portal-pop 0.24s ease-out;
+        }
+
+        @keyframes portal-pop {
+            from {
+                transform: translateY(10px) scale(0.985);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: rgba(0, 33, 71, 0.1);
+            z-index: 40;
+        }
+
+        .scroll-progress::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(180deg, #C9861E 0%, #002147 100%);
+            transition: height 0.2s ease-out;
+        }
+
+        /* Back to Top Button - Removed */
+
+        /* Timeline Flotante */
+        .floating-timeline {
+            position: fixed;
+            left: 40px;
+            bottom: 40px;
+            z-index: 40;
+            display: none;
+        }
+
+        .floating-timeline.show {
+            display: flex;
+        }
+
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .timeline-dot {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.9);
+            color: #002147;
+            box-shadow: 0 4px 12px rgba(0, 33, 71, 0.15);
+            position: relative;
+        }
+
+        .timeline-dot:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(201, 134, 30, 0.3);
+            border-color: #C9861E;
+        }
+
+        .timeline-dot.active {
+            background: #C9861E;
+            color: white;
+            border-color: #002147;
+            transform: scale(1.15);
+            box-shadow: 0 8px 24px rgba(201, 134, 30, 0.4);
+        }
+
+        .timeline-line {
+            width: 2px;
+            height: 12px;
+            background: linear-gradient(180deg, #C9861E 0%, #002147 100%);
+            opacity: 0.4;
+        }
+
+        .timeline-dot:first-child ~ .timeline-line:first-of-type {
+            display: none;
+        }
+
+        @media (max-width: 1024px) {
+            .floating-timeline {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-charcoal">
+
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Floating Timeline -->
+    <div class="floating-timeline" id="floatingTimeline">
+        <div class="timeline-container">
+            <div class="timeline-dot active" data-section="problem-1">1</div>
+            <div class="timeline-line"></div>
+            <div class="timeline-dot" data-section="problem-2">2</div>
+            <div class="timeline-line"></div>
+            <div class="timeline-dot" data-section="problem-3">3</div>
+            <div class="timeline-line"></div>
+            <div class="timeline-dot" data-section="problem-4">4</div>
+            <div class="timeline-line"></div>
+            <div class="timeline-dot" data-section="problem-5">5</div>
+        </div>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="min-h-screen flex items-center justify-center relative overflow-hidden" style="background: #041E42;">
+        <!-- Bright Blue Accent Stripe -->
+        <div class="absolute top-0 left-0 right-0 h-1" style="background: #B22234;"></div>
+        <!-- Elegant Golden Lines (White House inspired) -->
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Top Right Accent -->
+            <div class="absolute top-0 right-0 w-1/2 h-1/2 border-t-2 border-r-2 border-mate-gold opacity-20" style="border-width: 1px;"></div>
+            <!-- Bottom Left Accent -->
+            <div class="absolute bottom-0 left-0 w-1/2 h-1/2 border-b-2 border-l-2 border-mate-gold opacity-20" style="border-width: 1px;"></div>
+            <!-- Center Diamond -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-mate-gold opacity-15 rotate-45" style="border-width: 1px;"></div>
+        </div>
+        
+        <!-- Language Selector - Top Center -->
+        <div class="absolute top-8 left-1/2 transform -translate-x-1/2 z-20">
+            <div class="flex items-center gap-3 text-sm">
+                <button class="lang-btn active text-mate-gold font-light uppercase tracking-widest transition-all" data-lang="en" style="font-size: 11px;">EN</button>
+                <span class="text-mate-gold" style="font-size: 10px;">|</span>
+                <button class="lang-btn text-gray-400 font-light uppercase tracking-widest transition-all hover:text-mate-gold" data-lang="es" style="font-size: 11px;">ES</button>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-6 text-center relative z-10 max-w-5xl">
+            <div class="fade-in">
+                <!-- Logo -->
+                <div class="mb-12">
+                    <div class="inline-block bg-white rounded-sm shadow-lg" style="padding: 24px;">
+                        <img src="../IMAGES/mmlaw logo.jpg" alt="MMH Law" class="h-20 md:h-24 w-auto" style="display: block;">
+                    </div>
+                </div>
+                
+                <!-- Minimal Badge -->
+                <div class="inline-block mb-12">
+                    <div class="border-t border-b border-mate-gold py-3 px-12" style="border-width: 1px;">
+                        <p class="text-mate-gold text-xs font-semibold tracking-widest uppercase" data-i18n="hero.badge">Confidential Proposal</p>
+                    </div>
+                </div>
+                
+                <!-- Main Title - Spacious & Elegant -->
+                <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl font-bold mb-8 leading-tight text-white hero-title" style="letter-spacing: -0.02em; line-height: 1.1; transition: all 0.4s ease; cursor: default;">
+                    Murray, Morin<br>& Herman, P.A.
+                </h1>
+                
+                <!-- Subtitle with breathing room -->
+                <div class="mb-16">
+                    <div class="inline-block">
+                        <p class="text-gray-400 text-sm md:text-base font-light tracking-wide uppercase mb-3" data-i18n="hero.subtitle">Revisión de Infraestructura Digital</p>
+                        <div class="h-px bg-gradient-to-r from-transparent via-mate-gold to-transparent golden-line-shimmer" style="position: relative; overflow: hidden;"></div>
+                    </div>
+                </div>
+                
+                <!-- Clean message -->
+                <div class="max-w-2xl mx-auto mb-16">
+                    <p class="text-gray-300 text-base md:text-lg leading-relaxed font-light" data-i18n="hero.description">
+                        Una evaluación respetuosa de la presencia digital de su firma,<br class="hidden md:block">
+                        con recomendaciones estratégicas para su elevación.
+                    </p>
+                </div>
+                
+                <!-- Minimal CTA -->
+                <div class="inline-block">
+                    <p class="text-mate-gold text-xs tracking-widest uppercase mb-2" data-i18n="hero.cta">Comenzar Revisión</p>
+                    <div class="w-px h-12 bg-gradient-to-b from-mate-gold to-transparent mx-auto"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTRODUCTION -->
+    <section class="pt-32 pb-10 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="fade-in text-center">
+                <!-- Minimal separator -->
+                <div class="w-1 h-16 bg-gradient-to-b from-transparent via-mate-gold to-transparent mx-auto mb-12"></div>
+                
+                <!-- Company Introduction -->
+                <div class="mb-16 pb-12 border-b border-gray-200">
+                    <p class="text-sm text-gray-600 uppercase tracking-wide mb-4" data-i18n="intro.company">Preparado por</p>
+                    <h3 class="text-2xl font-light text-gray-600 mb-4">
+                        <a href="https://giordanotec.com" target="_blank" class="hover:text-mate-gold transition-colors">
+                            Giordanotec.com
+                        </a>
+                    </h3>
+                    <p class="text-base md:text-lg text-gray-600 font-light max-w-2xl mx-auto leading-relaxed" data-i18n="intro.companyDesc">
+                        Arquitectura digital para firmas de servicios profesionales de élite
+                    </p>
+                </div>
+                
+                <h2 class="font-serif text-3xl md:text-5xl font-bold text-oxford-blue mb-8" style="letter-spacing: -0.02em;" data-i18n="intro.heading">
+                    Nuestra Evaluación
+                </h2>
+                
+                <div class="max-w-3xl mx-auto space-y-6 text-gray-600 leading-relaxed font-light">
+                    <p data-i18n="intro.para1">
+                        La experiencia de su firma es innegable: 25 años defendiendo clientes en litigios complejos de aviación y construcción, 
+                        reconocimiento AV Preeminente de Martindale-Hubbell, confiado por corporaciones y transportistas de seguros importantes a nivel nacional.
+                    </p>
+                    <p data-i18n="intro.para2">
+                        Ha representado exitosamente a clientes en disputas de múltiples millones de dólares involucrando accidentes aéreos, defectos de construcción, 
+                        y litigios comerciales. Sus abogados han argumentado ante cortes federales y ganado casos que otras firmas no tocarían.
+                    </p>
+                    <p data-i18n="intro.para3">
+                        <strong class="text-oxford-blue">Sin embargo, existe una desconexión.</strong>
+                    </p>
+                    <p data-i18n="intro.para4">
+                        Su presencia digital—la primera impresión que la mayoría de los clientes potenciales tendrán—aún no refleja este nivel de excelencia. 
+                        Cuando un abogado general de Fortune 500 o un ejecutivo de seguros busca consejo en defensa de aviación, su sitio web crea duda en lugar de confianza.
+                    </p>
+                    <p data-i18n="intro.para5">
+                        Hemos identificado cinco brechas técnicas críticas donde su presencia en línea no alcanza su reputación profesional. 
+                        Estas no son preferencias estéticas menores—son deficiencias medibles que le cuestan casos cada mes.
+                    </p>
+                    <p class="text-oxford-blue font-medium text-2xl mt-8" data-i18n="intro.para6">
+                        Esto no es crítica. Es oportunidad.
+                    </p>
+                    <p data-i18n="intro.para7">
+                        Sus competidores no están mejor calificados—simplemente tienen sitios web mejores. Podemos cerrar esa brecha en 45 días. 
+                        A continuación se encuentra nuestro análisis de exactamente qué está roto, por qué importa, y qué obtendrá cuando esté arreglado.
+                    </p>
+                </div>
+
+                <div class="mt-12 fade-in">
+                    <div class="max-w-5xl mx-auto rounded-2xl overflow-hidden border border-gray-200 shadow-[0_20px_60px_rgba(0,33,71,0.12)] bg-white">
+                        <video
+                            class="w-full h-auto block bg-oxford-blue"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                            controls
+                            preload="metadata"
+                        >
+                            <source src="../video/01.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                
+                <!-- Minimal divider -->
+                <div class="mt-8 mb-0">
+                    <div class="h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMA #1 -->
+    <section id="problem-1" class="py-20 bg-gray-50">
+        <!-- Minimal Section Header -->
+        <div class="py-16 mb-12 relative" style="background: #041E42;">
+            <div class="absolute top-0 left-0 right-0 h-0.5" style="background: #B22234;"></div>
+            <div class="container mx-auto px-6 text-center fade-in">
+                <div class="mb-4">
+                    <div class="inline-block border-t border-b border-mate-gold py-2 px-8" style="border-width: 1px;">
+                        <p class="text-mate-gold text-xs font-semibold tracking-widest uppercase" data-i18n="problem1.badge">Problema 1 de 5</p>
+                    </div>
+                </div>
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white" style="letter-spacing: -0.02em; line-height: 1.2;" data-i18n="problem1.title">
+                    Visibilidad en Motores de Búsqueda
+                </h2>
+                <div class="mt-8 inline-block" style="background: #B22234; border: 2px solid #C9861E; padding: 16px 32px; border-radius: 4px;">
+                    <div class="flex items-center gap-6">
+                        <div class="text-center">
+                            <p class="text-white text-xs uppercase tracking-widest mb-1 opacity-80" data-i18n="problem1.severity">Nivel de Severidad</p>
+                            <p class="text-white font-bold text-lg tracking-wide" data-i18n="problem1.severityLevel">🔴 CRÍTICO</p>
+                        </div>
+                        <div class="w-px h-12" style="background: #C9861E;"></div>
+                        <div class="text-center">
+                            <p class="text-white text-xs uppercase tracking-widest mb-1 opacity-80" data-i18n="problem1.importance">Nivel de Importancia</p>
+                            <p class="text-mate-gold font-bold text-lg" data-i18n="problem1.importanceLevel">95%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <!-- PROBLEM (Left) -->
+                <div class="fade-in">
+                    <h3 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-4" data-i18n="problem1.heading">
+                        The Problem
+                    </h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed" data-i18n="problem1.desc1">
+                        We discovered that your website's Google title displays as a single dash <code class="bg-red-50 text-red-600 px-2 py-1 rounded">"=="</code> 
+                        instead of your firm name and practice areas.
+                    </p>
+                    <p class="text-gray-600 mb-4" data-i18n="problem1.desc2">
+                        <strong>What this means in plain English:</strong> When someone searches for "aviation attorney Miami" or "construction defense Tampa," 
+                        Google doesn't know what your firm does. Your competitors with properly configured titles appear first, while your firm remains invisible—even though 
+                        you may be more qualified.
+                    </p>
+                    <p class="text-gray-600 mb-6" data-i18n="problem1.desc3">
+                        This isn't your fault. It's a technical configuration error that happens when websites are built without SEO expertise. 
+                        But it is costing you client inquiries every single day.
+                    </p>
+
+                    <!-- GOOGLE SEARCH SIMULATOR -->
+                    <div class="my-8">
+                        <p class="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide" data-i18n="problem1.liveExample">Live Example:</p>
+                        
+                        <!-- Search Query Tabs -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <button class="search-tab search-tab-problem active px-4 py-2 text-sm rounded-t border-b-2 border-oxford-blue bg-white font-medium text-oxford-blue" data-query="aviation">
+                                "aviation attorney Miami"
+                            </button>
+                            <button class="search-tab search-tab-problem px-4 py-2 text-sm rounded-t bg-gray-100 text-gray-600 font-medium hover:bg-gray-200" data-query="construction">
+                                "construction defense Tampa"
+                            </button>
+                            <button class="search-tab search-tab-problem px-4 py-2 text-sm rounded-t bg-gray-100 text-gray-600 font-medium hover:bg-gray-200" data-query="insurance">
+                                "insurance litigation Florida"
+                            </button>
+                            <button class="search-tab search-tab-problem px-4 py-2 text-sm rounded-t bg-gray-100 text-gray-600 font-medium hover:bg-gray-200" data-query="appellate">
+                                "appellate attorney Tampa"
+                            </button>
+                        </div>
+
+                        <!-- Google Mock Results -->
+                        <div class="border border-gray-200 rounded-lg shadow-sm bg-white p-6">
+                            <!-- Google Search Bar Mock -->
+                            <div class="mb-6 pb-4 border-b border-gray-200">
+                                <div class="flex items-center gap-3 bg-gray-50 rounded-full px-4 py-3 border border-gray-300">
+                                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                    <span class="result-query result-query-problem text-gray-700 flex-1">aviation attorney Miami</span>
+                                </div>
+                                <p class="text-xs text-gray-500 mt-3">About 2,450,000 results (0.51 seconds)</p>
+                            </div>
+
+                            <!-- Competitor Results (Show MMH is missing) -->
+                            <div class="space-y-5">
+                                <!-- Result 1 - Competitor -->
+                                <div class="result-item opacity-40">
+                                    <div class="flex items-start gap-2">
+                                        <div class="flex-1">
+                                            <div class="flex items-center gap-2 mb-1">
+                                                <div class="w-6 h-6 bg-gray-200 rounded-full"></div>
+                                                <span class="text-xs text-gray-600">www.competitorlaw.com</span>
+                                            </div>
+                                            <h3 class="text-lg text-blue-600 hover:underline cursor-pointer mb-1">
+                                                Aviation Attorney Miami - Complex Litigation Experts
+                                            </h3>
+                                            <p class="text-sm text-gray-600">
+                                                Expert aviation lawyers in Miami handling aircraft accidents, FAA compliance, and commercial aviation disputes. 20+ years experience...
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Result 2 - Competitor -->
+                                <div class="result-item opacity-40">
+                                    <div class="flex items-start gap-2">
+                                        <div class="flex-1">
+                                            <div class="flex items-center gap-2 mb-1">
+                                                <div class="w-6 h-6 bg-gray-200 rounded-full"></div>
+                                                <span class="text-xs text-gray-600">www.miamiaviationlaw.com</span>
+                                            </div>
+                                            <h3 class="text-lg text-blue-600 hover:underline cursor-pointer mb-1">
+                                                Miami Aviation Lawyers | Aircraft Accident Defense
+                                            </h3>
+                                            <p class="text-sm text-gray-600">
+                                                Specialized aviation defense attorneys serving Miami-Dade and South Florida. Former FAA counsel. Call for free consultation...
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Result 3 - YOUR SITE (CURRENT PROBLEM) -->
+                                <div class="result-item relative">
+                                    <div class="absolute -left-3 top-0 bottom-0 w-1 bg-red-500 rounded"></div>
+                                    <div class="flex items-start gap-2 bg-red-50 -mx-3 px-3 py-2 rounded">
+                                        <div class="flex-1">
+                                            <div class="flex items-center gap-2 mb-1">
+                                                <div class="w-6 h-6 bg-oxford-blue rounded-full"></div>
+                                                <span class="text-xs text-gray-600">www.mmhlaw.com</span>
+                                                <span class="text-xs bg-red-100 text-red-700 px-2 py-0.5 rounded font-semibold">← YOUR SITE</span>
+                                            </div>
+                                            <h3 class="text-lg text-blue-600 mb-1 flex items-center gap-2">
+                                                <span class="bg-red-100 text-red-700 px-2 py-1 rounded font-mono text-base">-</span>
+                                                <span class="text-red-600 text-sm italic">(No recognizable title)</span>
+                                            </h3>
+                                            <p class="text-sm text-gray-400 italic">
+                                                Google can't display a proper description because the title is missing...
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- More Competitor Results -->
+                                <div class="result-item opacity-40">
+                                    <div class="flex items-start gap-2">
+                                        <div class="flex-1">
+                                            <div class="flex items-center gap-2 mb-1">
+                                                <div class="w-6 h-6 bg-gray-200 rounded-full"></div>
+                                                <span class="text-xs text-gray-600">www.floridaaviation.com</span>
+                                            </div>
+                                            <h3 class="text-lg text-blue-600 hover:underline cursor-pointer mb-1">
+                                                Florida Aviation Defense Attorneys | Statewide Coverage
+                                            </h3>
+                                            <p class="text-sm text-gray-600">
+                                                Board certified aviation lawyers defending airlines, manufacturers, and operators across Florida...
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 pt-4 border-t border-red-200 bg-red-50 -mx-6 -mb-6 px-6 py-4 rounded-b-lg">
+                                <p class="text-sm text-red-800" data-i18n="problem1.problemSummary">
+                                    <strong>The Problem:</strong> Your firm is buried below competitors despite 25 years of experience—because Google can't identify what you do.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-red-50 border-l-3 border-red-500 p-3 mb-4">
+                        <p class="font-semibold text-red-800 mb-2" data-i18n="problem1.estimatedImpact">Estimated Impact:</p>
+                        <p class="text-red-700" data-i18n="problem1.impact1">Potential loss of 5-10 qualified leads per month</p>
+                        <p class="text-sm text-red-600 mt-2" data-i18n="problem1.impact2">Even one lost case could be worth $100,000-$500,000 in fees</p>
+                    </div>
+                    <div class="bg-red-50 border-l-3 border-red-500 p-3">
+                        <p class="font-semibold text-red-800" data-i18n="problem1.estimatedLoss">Estimated Loss:</p>
+                        <p class="text-2xl font-bold text-red-600" data-i18n="problem1.lossAmount">$500,000+/year</p>
+                        <p class="text-sm text-red-700" data-i18n="problem1.lossDesc">in uncaptured high-value cases</p>
+                    </div>
+                </div>
+
+                <!-- SOLUTION (Right) -->
+                <div class="fade-in">
+                    <div class="inline-block bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-semibold mb-4" data-i18n="problem1.solution">
+                        ✅ SOLUTION #1
+                    </div>
+                    <h3 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-4" data-i18n="problem1.solutionHeading">
+                        What You'll Get
+                    </h3>
+                    <p class="text-xl text-oxford-blue mb-6 font-semibold" data-i18n="problem1.solDesc1">
+                        Your firm will appear on the first page of Google when clients search for your specialties.
+                    </p>
+                    <p class="text-gray-600 mb-6" data-i18n="problem1.solDesc2">
+                        Instead of being invisible, potential clients searching for "aviation attorney Miami," "construction defense Tampa," 
+                        or "insurance litigation Florida" will find MMH Law immediately—with a professional title and description that 
+                        accurately reflects your 25 years of expertise.
+                    </p>
+                    <div class="bg-green-50 border-l-3 border-green-500 p-3 rounded mb-4">
+                        <p class="font-semibold text-green-800 mb-2" data-i18n="problem1.bottomLine">Bottom Line:</p>
+                        <p class="text-green-700" data-i18n="problem1.bottomLineDesc">More qualified leads finding you organically, without paying for ads.</p>
+                    </div>
+
+                    <div class="mt-8">
+                        <p class="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wide" data-i18n="problem1.liveExample">Live Example:</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <button class="search-tab search-tab-projected active px-4 py-2 text-sm rounded-t border-b-2 border-oxford-blue bg-white font-medium text-oxford-blue" data-query="aviation">
+                                "aviation attorney Miami"
+                            </button>
+                            <button class="search-tab search-tab-projected px-4 py-2 text-sm rounded-t bg-gray-100 text-gray-600 font-medium hover:bg-gray-200" data-query="construction">
+                                "construction defense Tampa"
+                            </button>
+                            <button class="search-tab search-tab-projected px-4 py-2 text-sm rounded-t bg-gray-100 text-gray-600 font-medium hover:bg-gray-200" data-query="insurance">
+                                "insurance litigation Florida"
+                            </button>
+                            <button class="search-tab search-tab-projected px-4 py-2 text-sm rounded-t bg-gray-100 text-gray-600 font-medium hover:bg-gray-200" data-query="appellate">
+                                "appellate attorney Tampa"
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- SEO FIXED SIMULATION -->
+                    <div class="mt-8 border border-green-200 rounded-lg shadow-sm bg-white overflow-hidden">
+                        <div class="px-5 py-3 bg-green-50 border-b border-green-200">
+                            <p class="text-xs font-semibold text-green-800 uppercase tracking-wide" data-i18n="problem1.seoFixed">After SEO Correction (Projected Appearance)</p>
+                        </div>
+
+                        <div class="p-5">
+                            <div class="flex items-center gap-3 bg-gray-50 rounded-full px-4 py-3 border border-gray-300 mb-5">
+                                <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                                <span class="text-gray-700 flex-1 result-query-solution">aviation attorney Miami</span>
+                            </div>
+
+                            <div class="rounded-lg border border-green-200 bg-green-50 p-4">
+                                <div class="flex items-center gap-2 mb-1">
+                                    <div class="w-6 h-6 bg-oxford-blue rounded-full"></div>
+                                    <span class="text-xs text-gray-600 solution-url">www.mmhlaw.com/appellate</span>
+                                    <span class="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded font-semibold" data-i18n="problem1.optimized">Optimized</span>
+                                </div>
+                                <h4 class="text-lg text-blue-700 font-medium mb-1 solution-title" data-i18n="problem1.seoTitle">
+                                    Miami Appellate Attorneys | Aviation, Insurance & Complex Defense
+                                </h4>
+                                <p class="text-sm text-gray-700 leading-relaxed solution-description" data-i18n="problem1.seoDesc">
+                                    Murray Morin & Herman, P.A. represents high-stakes clients in appellate litigation across Florida and federal courts, including aviation, insurance bad faith, and product liability appeals.
+                                </p>
+                            </div>
+
+                            <p class="text-sm text-gray-600 mt-4 leading-relaxed" data-i18n="problem1.seoExplain1">
+                                This is the practical result of technical SEO done correctly: structured titles, indexed metadata, and clear relevance signals that help search engines understand exactly who you are and what you do.
+                            </p>
+                            <p class="text-sm text-gray-600 mt-3 leading-relaxed" data-i18n="problem1.seoExplain2">
+                                We are strong at this work. While rankings are always influenced by independent browser and search engine systems (like Chrome/Google behavior), we control the factors that matter most and consistently drive visible, high-intent positioning. That is the strategic lever that helps firms break out and win attention online.
+                            </p>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-5">
+                                <div class="rounded border border-green-200 bg-green-50 p-3">
+                                    <p class="text-xs uppercase tracking-wide text-green-700 font-semibold" data-i18n="problem1.ctrLift">Projected CTR Lift</p>
+                                    <p class="text-xl font-bold text-green-800 mt-1 solution-ctr" data-i18n="problem1.ctrValue">+38% to +62%</p>
+                                </div>
+                                <div class="rounded border border-green-200 bg-green-50 p-3">
+                                    <p class="text-xs uppercase tracking-wide text-green-700 font-semibold" data-i18n="problem1.indexCoverage">Projected Index Coverage</p>
+                                    <p class="text-xl font-bold text-green-800 mt-1 solution-index" data-i18n="problem1.indexValue">95%+</p>
+                                </div>
+                                <div class="rounded border border-green-200 bg-green-50 p-3">
+                                    <p class="text-xs uppercase tracking-wide text-green-700 font-semibold" data-i18n="problem1.visibility">High-Intent Visibility</p>
+                                    <p class="text-xl font-bold text-green-800 mt-1 solution-visibility" data-i18n="problem1.visibilityValue">Top 3-10</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 rounded border border-green-200 bg-green-50 px-4 py-3">
+                                <p class="text-sm text-green-800 solution-outcome">
+                                    Projected outcome: stronger first-page relevance for aviation-intent searches and higher conversion-quality inbound leads.
+                                </p>
+                            </div>
+
+                            <p class="text-xs text-gray-500 mt-4 italic border-t border-gray-200 pt-3" data-i18n="problem1.disclaimer">
+                                Projected simulation based on technical SEO correction scope, crawl/indexation cycles, and current competitive SERP baselines. Final ranking velocity depends on independent search engine updates and market competition.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMA #2 -->
+    <section id="problem-2" class="py-20 bg-white">
+        <!-- Minimal Section Header -->
+        <div class="py-16 mb-12 relative" style="background: #041E42;">
+            <div class="absolute top-0 left-0 right-0 h-0.5" style="background: #B22234;"></div>
+            <div class="container mx-auto px-6 text-center fade-in">
+                <div class="mb-4">
+                    <div class="inline-block border-t border-b border-mate-gold py-2 px-8" style="border-width: 1px;">
+                        <p class="text-mate-gold text-xs font-semibold tracking-widest uppercase" data-i18n="problem2.badge">Problema 2 de 5</p>
+                    </div>
+                </div>
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white" style="letter-spacing: -0.02em; line-height: 1.2;" data-i18n="problem2.title">
+                    Seguridad & Señales de Confianza
+                </h2>
+                <div class="mt-8 inline-block" style="background: #B22234; border: 2px solid #C9861E; padding: 16px 32px; border-radius: 4px;">
+                    <div class="flex items-center gap-6">
+                        <div class="text-center">
+                            <p class="text-white text-xs uppercase tracking-widest mb-1 opacity-80" data-i18n="problem2.severity">Nivel de Severidad</p>
+                            <p class="text-white font-bold text-lg tracking-wide" data-i18n="problem2.severityLevel">🔴 CRÍTICO</p>
+                        </div>
+                        <div class="w-px h-12" style="background: #C9861E;"></div>
+                        <div class="text-center">
+                            <p class="text-white text-xs uppercase tracking-widest mb-1 opacity-80" data-i18n="problem2.importance">Nivel de Importancia</p>
+                            <p class="text-mate-gold font-bold text-lg" data-i18n="problem2.importanceLevel">90%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="space-y-10">
+                <!-- FILA 1: PROBLEMA DISTRIBUIDO -->
+                <div class="fade-in bg-white border border-gray-200 rounded-xl p-6 md:p-8 shadow-sm">
+                    <div class="mb-6">
+                        <h3 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-3">
+                            El Problema
+                        </h3>
+                        <p class="text-gray-700 leading-relaxed">
+                            Algunos enlaces de navegación redirigen por error al servidor de pruebas externo <code class="bg-red-50 text-red-600 px-2 py-1 rounded text-sm">staug.pagmiami.com</code>,
+                            lo que activa alertas de seguridad en el navegador justo en el momento de mayor sensibilidad de confianza.
+                        </p>
+                    </div>
+
+                    <div class="grid lg:grid-cols-2 gap-6 items-start">
+                        <div class="space-y-4">
+                            <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                                <p class="text-sm font-bold text-red-900 uppercase tracking-wide mb-2" data-i18n="problem2.negativeHalo">Efecto Halo Negativo</p>
+                                <p class="text-gray-700 text-sm leading-relaxed" data-i18n="problem2.negativeHaloDesc">
+                                    En legal, forma es función: al ver "No seguro", el prospecto no interpreta un error técnico; interpreta falta de control profesional.
+                                </p>
+                            </div>
+                            <div class="grid sm:grid-cols-3 gap-3">
+                                <div class="bg-white border border-red-200 rounded p-3">
+                                    <p class="font-semibold text-red-900 text-sm mb-1" data-i18n="problem2.doubt">Duda</p>
+                                    <p class="text-xs text-gray-700" data-i18n="problem2.doubtDesc">Si el sitio no se protege, ¿cómo protegerán casos de alto valor?</p>
+                                </div>
+                                <div class="bg-white border border-red-200 rounded p-3">
+                                    <p class="font-semibold text-red-900 text-sm mb-1" data-i18n="problem2.bounce">Rebote</p>
+                                    <p class="text-xs text-gray-700" data-i18n="problem2.bounceDesc">La advertencia provoca salida inmediata y fuga al competidor.</p>
+                                </div>
+                                <div class="bg-white border border-red-200 rounded p-3">
+                                    <p class="font-semibold text-red-900 text-sm mb-1" data-i18n="problem2.bias">Sesgo</p>
+                                    <p class="text-xs text-gray-700" data-i18n="problem2.biasDesc">La primera impresión negativa es difícil de revertir.</p>
+                                </div>
+                            </div>
+                            <div class="bg-red-50 border-l-3 border-red-500 p-3 rounded-r">
+                                <p class="font-semibold text-red-800" data-i18n="problem2.clientExp">Experiencia del cliente:</p>
+                                <p class="text-red-700" data-i18n="problem2.clientExpFlow">Click → Warning → Exit</p>
+                                <p class="text-sm text-red-600 mt-1" data-i18n="problem2.repDamage">Daño reputacional inmediato</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-white border border-red-300 rounded-lg p-4">
+                                <p class="text-sm font-bold text-gray-800 uppercase tracking-wide mb-3" data-i18n="problem2.riskAuthority">Riesgo vs Autoridad</p>
+                                <div class="grid grid-cols-3 gap-2 text-xs">
+                                    <p class="font-semibold text-gray-700" data-i18n="problem2.touchpoint">Touchpoint</p>
+                                    <p class="font-semibold text-red-800" data-i18n="problem2.currentState">Estado actual</p>
+                                    <p class="font-semibold text-green-800" data-i18n="problem2.withCorrection">Con corrección</p>
+
+                                    <p class="border-t pt-2 text-gray-700" data-i18n="problem2.firstClick">Primer click</p>
+                                    <p class="border-t pt-2 text-red-700" data-i18n="problem2.firstClickCurrent">"This connection is not private"</p>
+                                    <p class="border-t pt-2 text-green-700" data-i18n="problem2.firstClickFixed">Carga limpia e inmediata</p>
+
+                                    <p class="border-t pt-2 text-gray-700" data-i18n="problem2.visualSignal">Señal visual</p>
+                                    <p class="border-t pt-2 text-red-700" data-i18n="problem2.visualSignalCurrent">Etiqueta roja "Not Secure"</p>
+                                    <p class="border-t pt-2 text-green-700" data-i18n="problem2.visualSignalFixed">Candado + conexión segura</p>
+
+                                    <p class="border-t pt-2 text-gray-700" data-i18n="problem2.finalAction">Acción final</p>
+                                    <p class="border-t pt-2 text-red-700" data-i18n="problem2.finalActionCurrent">Salida inmediata</p>
+                                    <p class="border-t pt-2 text-green-700" data-i18n="problem2.finalActionFixed">Consulta / contacto</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-white border border-red-300 rounded-lg p-4">
+                                <p class="font-bold text-gray-900 mb-2" data-i18n="problem2.investmentCost">Costo de inversión perdida</p>
+                                <p class="text-sm text-gray-700 leading-relaxed" data-i18n="problem2.investmentDesc">
+                                    Cada lead que llega a una advertencia de seguridad es pérdida directa de la inversión en SEO/networking y transferencia de ese lead al siguiente competidor del listado.
+                                </p>
+                            </div>
+
+                            <div class="bg-white border border-red-300 rounded-lg p-4">
+                                <p class="font-bold text-gray-900 mb-2" data-i18n="problem2.compliance">Exposición y cumplimiento</p>
+                                <p class="text-sm text-gray-700 leading-relaxed" data-i18n="problem2.complianceDesc">
+                                    El desvío a <code class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">staug.pagmiami.com</code> no es solo visual; es una debilidad estructural que impacta percepción de compliance en clientes exigentes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FILA 2: SOLUCION -->
+                <div class="fade-in bg-green-50 border border-green-200 rounded-xl p-6 md:p-8 shadow-sm">
+                    <div class="inline-block bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        ✅ SOLUCION #2
+                    </div>
+                    <h3 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-4" data-i18n="problem2.belowSolution">
+                        Abajo: La Solucion
+                    </h3>
+                    <p class="text-xl text-oxford-blue mb-6 font-semibold" data-i18n="problem2.belowSolutionDesc">
+                        Cada enlace funcionara correctamente. Sin advertencias de seguridad.
+                    </p>
+                    <div class="grid md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-white border border-green-200 rounded p-4">
+                            <p class="text-xs uppercase tracking-wide text-green-700 font-semibold mb-1" data-i18n="problem2.navCard">Navegacion</p>
+                            <p class="text-sm text-gray-700" data-i18n="problem2.navCardDesc">Todos los links internos apuntan al destino correcto, sin redirecciones externas.</p>
+                        </div>
+                        <div class="bg-white border border-green-200 rounded p-4">
+                            <p class="text-xs uppercase tracking-wide text-green-700 font-semibold mb-1" data-i18n="problem2.trustCard">Confianza visual</p>
+                            <p class="text-sm text-gray-700" data-i18n="problem2.trustCardDesc">Candado seguro estable en browser y experiencia limpia en el primer contacto.</p>
+                        </div>
+                        <div class="bg-white border border-green-200 rounded p-4">
+                            <p class="text-xs uppercase tracking-wide text-green-700 font-semibold mb-1" data-i18n="problem2.conversionCard">Conversion</p>
+                            <p class="text-sm text-gray-700" data-i18n="problem2.conversionCardDesc">Se reduce fuga de prospectos y mejora la probabilidad de consulta.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white border-l-3 border-green-500 p-4 rounded-r">
+                        <p class="font-semibold text-green-800 mb-1" data-i18n="problem2.bottomLine">Bottom Line:</p>
+                        <p class="text-green-700" data-i18n="problem2.bottomLineDesc">El sitio protege la reputacion de la firma en lugar de comprometerla.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMA #3 -->
+    <section id="problem-3" class="py-20 bg-gray-50">
+        <!-- Minimal Section Header -->
+        <div class="py-16 relative" style="background: #041E42;">
+            <div class="absolute top-0 left-0 right-0 h-0.5" style="background: #B22234;"></div>
+            <div class="container mx-auto px-6 text-center fade-in">
+                <div class="mb-4">
+                    <div class="inline-block border-t border-b border-mate-gold py-2 px-8" style="border-width: 1px;">
+                        <p class="text-mate-gold text-xs font-semibold tracking-widest uppercase" data-i18n="problem3.badge">Problema 3 de 5</p>
+                    </div>
+                </div>
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white" style="letter-spacing: -0.02em; line-height: 1.2;" data-i18n="problem3.title">
+                    Diseño Visual & Primeras Impresiones
+                </h2>
+                <div class="mt-8 inline-block" style="background: #B22234; border: 2px solid #C9861E; padding: 16px 32px; border-radius: 4px;">
+                    <div class="flex items-center gap-6">
+                        <div class="text-center">
+                            <p class="text-white text-xs uppercase tracking-widest mb-1 opacity-80" data-i18n="problem3.severity">Nivel de Severidad</p>
+                            <p class="text-white font-bold text-lg tracking-wide" data-i18n="problem3.severityLevel">🔴 IMPORTANTE</p>
+                        </div>
+                        <div class="w-px h-12" style="background: #C9861E;"></div>
+                        <div class="text-center">
+                            <p class="text-white text-xs uppercase tracking-widest mb-1 opacity-80" data-i18n="problem3.importance">Nivel de Importancia</p>
+                            <p class="text-mate-gold font-bold text-lg" data-i18n="problem3.importanceLevel">75%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Practice Areas Ribbon -->
+        <div class="fade-in">
+            <div class="py-10 relative" style="background: #021529;">
+                <div class="absolute top-0 left-0 right-0 h-1" style="background: #C9861E;"></div>
+                <div class="absolute bottom-0 left-0 right-0 h-1" style="background: #C9861E;"></div>
+                <div class="w-full px-6">
+                    <!-- Practice Areas Badges - Grid Layout -->
+                    <div class="flex justify-evenly items-start gap-2">
+                        <!-- Appellate -->
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="appellate.html" class="practice-badge group transition-all duration-300 hover:scale-110">
+                                <img src="../IMAGES/logos/appelate.png" alt="Appellate" class="w-20 h-20 object-contain">
+                            </a>
+                            <p class="text-white tracking-widest uppercase font-light text-center max-w-[100px] leading-tight" style="font-size: 0.6rem;" data-i18n="practice.appellate">Appellate</p>
+                        </div>
+                        
+                        <!-- Aviation -->
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="appellate.html" class="practice-badge group transition-all duration-300 hover:scale-110">
+                                <img src="../IMAGES/logos/aviation.png" alt="Aviation" class="w-20 h-20 object-contain">
+                            </a>
+                            <p class="text-white tracking-widest uppercase font-light text-center max-w-[100px] leading-tight" style="font-size: 0.6rem;" data-i18n="practice.aviation">Aviation</p>
+                        </div>
+                        
+                        <!-- Commercial Auto & Trucking -->
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="appellate.html" class="practice-badge group transition-all duration-300 hover:scale-110">
+                                <img src="../IMAGES/logos/autotruck.png" alt="Commercial Auto & Trucking Defense" class="w-20 h-20 object-contain">
+                            </a>
+                            <p class="text-white tracking-widest uppercase font-light text-center max-w-[100px] leading-tight" style="font-size: 0.6rem;" data-i18n="practice.auto">Commercial Auto & Trucking Defense</p>
+                        </div>
+                        
+                        <!-- Construction -->
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="appellate.html" class="practice-badge group transition-all duration-300 hover:scale-110">
+                                <img src="../IMAGES/logos/construction.png" alt="Construction" class="w-20 h-20 object-contain">
+                            </a>
+                            <p class="text-white tracking-widest uppercase font-light text-center max-w-[100px] leading-tight" style="font-size: 0.6rem;" data-i18n="practice.construction">Construction</p>
+                        </div>
+                        
+                        <!-- Corporate Litigation -->
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="appellate.html" class="practice-badge group transition-all duration-300 hover:scale-110">
+                                <img src="../IMAGES/logos/corporative.png" alt="Corporate Litigation" class="w-20 h-20 object-contain">
+                            </a>
+                            <p class="text-white tracking-widest uppercase font-light text-center max-w-[100px] leading-tight" style="font-size: 0.6rem;" data-i18n="practice.corporate">Corporate Litigation</p>
+                        </div>
+                        
+                        <!-- Fire Loss & Casualty Defense -->
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="appellate.html" class="practice-badge group transition-all duration-300 hover:scale-110">
+                                <img src="../IMAGES/logos/fire.png" alt="Fire Loss & Casualty Defense" class="w-20 h-20 object-contain">
+                            </a>
+                            <p class="text-white tracking-widest uppercase font-light text-center max-w-[100px] leading-tight" style="font-size: 0.6rem;" data-i18n="practice.fire">Fire Loss & Casualty Defense</p>
+                        </div>
+                        
+                        <!-- Government Entity Defense -->
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="appellate.html" class="practice-badge group transition-all duration-300 hover:scale-110">
+                                <img src="../IMAGES/logos/govern.png" alt="Government Entity Defense" class="w-20 h-20 object-contain">
+                            </a>
+                            <p class="text-white tracking-widest uppercase font-light text-center max-w-[100px] leading-tight" style="font-size: 0.6rem;" data-i18n="practice.government">Government Entity Defense</p>
+                        </div>
+                        
+                        <!-- Insurance & Reinsurance Defense -->
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="appellate.html" class="practice-badge group transition-all duration-300 hover:scale-110">
+                                <img src="../IMAGES/logos/insurance.png" alt="Insurance & Reinsurance Defense" class="w-20 h-20 object-contain">
+                            </a>
+                            <p class="text-white tracking-widest uppercase font-light text-center max-w-[100px] leading-tight" style="font-size: 0.6rem;" data-i18n="practice.insurance">Insurance & Reinsurance Defense</p>
+                        </div>
+                        
+                        <!-- Insurance Coverage -->
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="appellate.html" class="practice-badge group transition-all duration-300 hover:scale-110">
+                                <img src="../IMAGES/logos/coverage.png" alt="Insurance Coverage" class="w-20 h-20 object-contain">
+                            </a>
+                            <p class="text-white tracking-widest uppercase font-light text-center max-w-[100px] leading-tight" style="font-size: 0.6rem;" data-i18n="practice.coverage">Insurance Coverage</p>
+                        </div>
+                        
+                        <!-- Personal Injury & Wrongful Death Defense -->
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="appellate.html" class="practice-badge group transition-all duration-300 hover:scale-110">
+                                <img src="../IMAGES/logos/personal injury.png" alt="Personal Injury & Wrongful Death Defense" class="w-20 h-20 object-contain">
+                            </a>
+                            <p class="text-white tracking-widest uppercase font-light text-center max-w-[100px] leading-tight" style="font-size: 0.6rem;" data-i18n="practice.injury">Personal Injury & Wrongful Death Defense</p>
+                        </div>
+                        
+                        <!-- Premises Liability & Negligent Security Defense -->
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="appellate.html" class="practice-badge group transition-all duration-300 hover:scale-110">
+                                <img src="../IMAGES/logos/negligent.png" alt="Premises Liability & Negligent Security Defense" class="w-20 h-20 object-contain">
+                            </a>
+                            <p class="text-white tracking-widest uppercase font-light text-center max-w-[100px] leading-tight" style="font-size: 0.6rem;" data-i18n="practice.premises">Premises Liability & Negligent Security Defense</p>
+                        </div>
+                        
+                        <!-- Products Liability -->
+                        <div class="flex flex-col items-center gap-3">
+                            <a href="appellate.html" class="practice-badge group transition-all duration-300 hover:scale-110">
+                                <img src="../IMAGES/logos/products-liability.png" alt="Products Liability" class="w-20 h-20 object-contain">
+                            </a>
+                            <p class="text-white tracking-widest uppercase font-light text-center max-w-[100px] leading-tight" style="font-size: 0.6rem;" data-i18n="practice.products">Products Liability</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-6 max-w-6xl mt-20">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <!-- PROBLEM (Left) -->
+                <div class="fade-in">
+                    <h3 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-4" data-i18n="problem3.heading">
+                        The Problem
+                    </h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed" data-i18n="problem3.desc1">
+                        Your website employs design patterns and information architecture from the early 2010s—rigid sidebars, standard system fonts, flat visual hierarchy, and generic template layouts that fail to establish cognitive authority.
+                    </p>
+                    <p class="text-gray-600 mb-4" data-i18n="problem3.desc2">
+                        <strong>Why this matters from a UX/UI perspective:</strong> Your practice areas—aviation law, complex construction litigation, corporate defense—represent the highest tier of legal specialization. However, your current digital interface creates a critical disconnect between the sophistication of your legal services and their visual representation. The site's design system doesn't leverage contemporary principles of visual psychology, gestalt theory, or strategic information design.
+                    </p>
+                    <p class="text-gray-600 mb-4" data-i18n="problem3.desc3">
+                        We specialize in understanding how visual communication operates at the intersection of cognitive psychology and corporate branding. The current design lacks the strategic use of whitespace, typographic hierarchy, and compositional balance that high-net-worth clients and C-suite decision-makers subconsciously expect from premier legal counsel. Your visual identity should communicate authority through subtle design cues—micro-interactions, purposeful color psychology, and deliberate spatial relationships.
+                    </p>
+                    <p class="text-gray-600 mb-6" data-i18n="problem3.desc4">
+                        When Fortune 500 general counsels or aviation executives compare your digital presence to competitors with modern, strategically designed interfaces, they make immediate judgments about organizational capability. This perception gap—however unfair—directly impacts conversion rates and client confidence. Contemporary interface design isn't decoration; it's strategic business communication that operates below conscious awareness.
+                    </p>
+                    <div class="bg-orange-50 border-l-3 border-orange-500 p-3">
+                        <p class="font-semibold text-orange-800 mb-2" data-i18n="problem3.cognitive">Cognitive Reality of First Impressions:</p>
+                        <p class="text-orange-700 mb-3" data-i18n="problem3.cognitiveDesc">Research shows users form visual judgments in 50 milliseconds. In 2026, design sophistication = perceived competence. Your visual interface is your first attorney-client interaction.</p>
+                        <p class="text-sm text-orange-600 italic" data-i18n="problem3.cognitiveNote">Visual credibility precedes content credibility in digital environments.</p>
+                    </div>
+                </div>
+
+                <!-- SOLUTION (Right) -->
+                <div class="fade-in">
+                    <div class="inline-block bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-semibold mb-4" data-i18n="problem3.solution">
+                        ✅ SOLUTION #3
+                    </div>
+                    <h3 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-4" data-i18n="problem3.solutionHeading">
+                        What You'll Get
+                    </h3>
+                    <p class="text-xl text-oxford-blue mb-6 font-semibold" data-i18n="problem3.solTitle">
+                        A corporate-grade UX/UI system that reflects the caliber of your legal practice.
+                    </p>
+                    <p class="text-gray-600 mb-4" data-i18n="problem3.solDesc">
+                        We'll implement a comprehensive design system built on enterprise-level UX principles: refined typographic scales, intentional color psychology aligned with legal authority, sophisticated micro-animations that guide user attention, and responsive breakpoints optimized for C-suite device usage patterns.
+                    </p>
+                    <p class="text-gray-600 mb-4" data-i18n="problem3.uxElements">
+                        <strong>Strategic UX/UI elements we'll deploy:</strong>
+                    </p>
+                    <ul class="text-gray-600 mb-6 space-y-2 ml-4">
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-2">•</span>
+                            <span><strong>Visual Hierarchy Architecture:</strong> Strategic use of scale, weight, and contrast to guide decision-maker attention</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-2">•</span>
+                            <span><strong>Purposeful Whitespace:</strong> Breathing room that communicates confidence and premium positioning</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-2">•</span>
+                            <span><strong>Gestalt Design Principles:</strong> Visual grouping and patterns that reduce cognitive load</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-2">•</span>
+                            <span><strong>Corporate Color Psychology:</strong> Navy and gold tones that trigger trust and authority responses</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-green-600 mr-2">•</span>
+                            <span><strong>Adaptive Grid Systems:</strong> Enterprise-level responsive design for executive device ecosystems</span>
+                        </li>
+                    </ul>
+                    <p class="text-gray-600 mb-6">
+                        The result: a digital interface that makes corporate counsel and high-stakes clients immediately recognize "these are the attorneys handling our most critical matters." No generic templates. A visual system architected for firms representing billion-dollar interests.
+                    </p>
+                    <div class="bg-green-50 border-l-3 border-green-500 p-3 rounded">
+                        <p class="font-semibold text-green-800 mb-2">Strategic Advantage:</p>
+                        <p class="text-green-700">When corporate decision-makers compare you to competitors, your interface will communicate what your track record proves—you're not just professional, you're the obvious choice for complex, high-value litigation.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMA #4: CALIDAD DE IMAGEN -->
+    <section id="problem-4" class="py-20 bg-white">
+        <!-- Minimal Section Header -->
+        <div class="py-16 mb-12 relative" style="background: #041E42;">
+            <div class="absolute top-0 left-0 right-0 h-0.5" style="background: #B22234;"></div>
+            <div class="container mx-auto px-6 text-center fade-in">
+                <div class="mb-4">
+                    <div class="inline-block border-t border-b border-mate-gold py-2 px-8" style="border-width: 1px;">
+                        <p class="text-mate-gold text-xs font-semibold tracking-widest uppercase" data-i18n="problem4.badge">Problema 4 de 5</p>
+                    </div>
+                </div>
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white" style="letter-spacing: -0.02em; line-height: 1.2;" data-i18n="problem4.title">
+                    Fotografía & Calidad Visual
+                </h2>
+                <div class="mt-8 inline-block" style="background: #B22234; border: 2px solid #C9861E; padding: 16px 32px; border-radius: 4px;">
+                    <div class="flex items-center gap-6">
+                        <div class="text-center">
+                            <p class="text-white text-xs uppercase tracking-widest mb-1 opacity-80" data-i18n="problem4.severity">Nivel de Severidad</p>
+                            <p class="text-white font-bold text-lg tracking-wide" data-i18n="problem4.severityLevel">🔴 IMPORTANTE</p>
+                        </div>
+                        <div class="w-px h-12" style="background: #C9861E;"></div>
+                        <div class="text-center">
+                            <p class="text-white text-xs uppercase tracking-widest mb-1 opacity-80" data-i18n="problem4.importance">Nivel de Importancia</p>
+                            <p class="text-mate-gold font-bold text-lg" data-i18n="problem4.importanceLevel">70%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attorney Carousel -->
+        <div class="p4-carousel-wrap mb-12 fade-in">
+            <div class="p4-carousel-shell rounded-lg p-5 md:p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="font-serif text-2xl md:text-3xl font-bold text-oxford-blue">Carrusel de Equipo Legal</h3>
+                    <div class="flex items-center gap-3">
+                        <button type="button" class="p4-arrow" id="p4Prev" aria-label="Anterior">&#8249;</button>
+                        <button type="button" class="p4-arrow" id="p4Next" aria-label="Siguiente">&#8250;</button>
+                    </div>
+                </div>
+
+                <div class="p4-carousel-viewport" id="p4Viewport">
+                    <div class="p4-carousel-track" id="p4Track">
+                        <a href="attorney-example.html" class="p4-card">
+                            <img src="../IMAGES/attorney/csm-sm.jpg" alt="Christopher S. Morrin">
+                            <div class="p4-card-body">
+                                <p class="font-semibold text-oxford-blue">Christopher S. Morrin</p>
+                                <p class="text-sm text-gray-500">Managing Shareholder</p>
+                            </div>
+                        </a>
+                        <a href="attorney-example.html" class="p4-card">
+                            <img src="../IMAGES/attorney/dph-sm.jpg" alt="David Herman">
+                            <div class="p4-card-body">
+                                <p class="font-semibold text-oxford-blue">David Herman</p>
+                                <p class="text-sm text-gray-500">Of Counsel</p>
+                            </div>
+                        </a>
+                        <a href="attorney-example.html" class="p4-card p4-card--featured">
+                            <img src="../IMAGES/attorney/jmt2.jpg" alt="John M. Murray">
+                            <div class="p4-card-body">
+                                <p class="font-semibold text-oxford-blue">John M. Murray</p>
+                                <p class="text-sm text-gray-500">Of Counsel</p>
+                            </div>
+                        </a>
+                        <a href="attorney-example.html" class="p4-card">
+                            <img src="../IMAGES/attorney/RollinSmith-3.jpg" alt="Rollin M. Smith">
+                            <div class="p4-card-body">
+                                <p class="font-semibold text-oxford-blue">Rollin M. Smith</p>
+                                <p class="text-sm text-gray-500">Attorney</p>
+                            </div>
+                        </a>
+                        <a href="attorney-example.html" class="p4-card">
+                            <img src="../IMAGES/attorney/NathanWheat-3.jpg" alt="Nathan M. Wheat">
+                            <div class="p4-card-body">
+                                <p class="font-semibold text-oxford-blue">Nathan M. Wheat</p>
+                                <p class="text-sm text-gray-500">Attorney</p>
+                            </div>
+                        </a>
+                        <a href="attorney-example.html" class="p4-card">
+                            <img src="../IMAGES/attorney/kr-3.jpg" alt="Kimberly Ann Reynolds">
+                            <div class="p4-card-body">
+                                <p class="font-semibold text-oxford-blue">Kimberly Ann Reynolds</p>
+                                <p class="text-sm text-gray-500">Attorney</p>
+                            </div>
+                        </a>
+                        <a href="attorney-example.html" class="p4-card">
+                            <img src="../IMAGES/attorney/JenniferClark-3.jpg" alt="Jennifer M. Clark">
+                            <div class="p4-card-body">
+                                <p class="font-semibold text-oxford-blue">Jennifer M. Clark</p>
+                                <p class="text-sm text-gray-500">Attorney</p>
+                            </div>
+                        </a>
+                        <a href="attorney-example.html" class="p4-card">
+                            <img src="../IMAGES/attorney/PamelaClark-3.jpg" alt="Pamela N. Clark">
+                            <div class="p4-card-body">
+                                <p class="font-semibold text-oxford-blue">Pamela N. Clark</p>
+                                <p class="text-sm text-gray-500">Attorney</p>
+                            </div>
+                        </a>
+                        <a href="attorney-example.html" class="p4-card">
+                            <img src="../IMAGES/attorney/EduardoGarcia-3.jpg" alt="Eduardo Garcia">
+                            <div class="p4-card-body">
+                                <p class="font-semibold text-oxford-blue">Eduardo Garcia</p>
+                                <p class="text-sm text-gray-500">Attorney</p>
+                            </div>
+                        </a>
+                        <a href="attorney-example.html" class="p4-card">
+                            <img src="../IMAGES/attorney/gascue-3.jpg" alt="Guillermo A. Gascue">
+                            <div class="p4-card-body">
+                                <p class="font-semibold text-oxford-blue">Guillermo A. Gascue</p>
+                                <p class="text-sm text-gray-500">Attorney</p>
+                            </div>
+                        </a>
+                        <a href="attorney-example.html" class="p4-card">
+                            <img src="../IMAGES/attorney/atl-3.jpg" alt="Andrew T. Lynn">
+                            <div class="p4-card-body">
+                                <p class="font-semibold text-oxford-blue">Andrew T. Lynn</p>
+                                <p class="text-sm text-gray-500">Attorney</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <!-- PROBLEM (Left) -->
+                <div class="fade-in">
+                    <h3 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-4" data-i18n="problem4.heading">
+                        The Problem
+                    </h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed" data-i18n="problem4.desc1">
+                        The photos on your website appear blurry and pixelated when viewed on modern devices like iPhones, MacBooks, and 4K monitors.
+                    </p>
+                    <p class="text-gray-600 mb-4" data-i18n="problem4.desc2">
+                        <strong>Here's what's happening:</strong> Your images were optimized for older screens. Today's devices have much higher resolution ("Retina" displays), 
+                        so those same images now look fuzzy. It's like viewing an old VHS tape on a new 4K TV.
+                    </p>
+                    <p class="text-gray-600 mb-6" data-i18n="problem4.desc3">
+                        Additionally, the stock photos used—while professional years ago—now feel generic. Every industry uses them. 
+                        Your practice areas (aviation, construction) deserve imagery that feels specific, authoritative, and premium.
+                    </p>
+                </div>
+
+                <!-- SOLUTION (Right) -->
+                <div class="fade-in">
+                    <div class="inline-block bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        ✅ SOLUTION #4
+                    </div>
+                    <h3 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-4">
+                        What You'll Get
+                    </h3>
+                    <p class="text-xl text-oxford-blue mb-6 font-semibold">
+                        Crystal-clear, professional images that look perfect on every device.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Whether clients view your site on an iPhone, iPad, laptop, or 4K monitor, every image will be sharp and professional. 
+                        The blurriness disappears. Photos specific to aviation and construction law (not generic stock anyone can use).
+                    </p>
+                    <div class="bg-green-50 border-l-3 border-green-500 p-3 rounded">
+                        <p class="font-semibold text-green-800 mb-2" data-i18n="problem4.bottomLine">Bottom Line:</p>
+                        <p class="text-green-700" data-i18n="problem4.bottomLineDesc">Your website will look as premium as your hourly rate.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMA #5: UI/UX Y EXPERIENCIA -->
+    <section id="problem-5" class="py-20 bg-gray-50">
+        <!-- Minimal Section Header -->
+        <div class="py-16 mb-12 relative" style="background: #041E42;">
+            <div class="absolute top-0 left-0 right-0 h-0.5" style="background: #B22234;"></div>
+            <div class="container mx-auto px-6 text-center fade-in">
+                <div class="mb-4">
+                    <div class="inline-block border-t border-b border-mate-gold py-2 px-8" style="border-width: 1px;">
+                        <p class="text-mate-gold text-xs font-semibold tracking-widest uppercase" data-i18n="problem5.badge">Problema 5 de 5</p>
+                    </div>
+                </div>
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white" style="letter-spacing: -0.02em; line-height: 1.2;" data-i18n="problem5.title">
+                    Tecnología del Sitio Web & Rendimiento
+                </h2>
+                <div class="mt-8 inline-block" style="background: #B22234; border: 2px solid #C9861E; padding: 16px 32px; border-radius: 4px;">
+                    <div class="flex items-center gap-6">
+                        <div class="text-center">
+                            <p class="text-white text-xs uppercase tracking-widest mb-1 opacity-80" data-i18n="problem5.severity">Nivel de Severidad</p>
+                            <p class="text-white font-bold text-lg tracking-wide" data-i18n="problem5.severityLevel">🔴 MODERADO</p>
+                        </div>
+                        <div class="w-px h-12" style="background: #C9861E;"></div>
+                        <div class="text-center">
+                            <p class="text-white text-xs uppercase tracking-widest mb-1 opacity-80" data-i18n="problem5.importance">Nivel de Importancia</p>
+                            <p class="text-mate-gold font-bold text-lg" data-i18n="problem5.importanceLevel">60%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <!-- PROBLEM (Left) -->
+                <div class="fade-in">
+                    <h3 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-4" data-i18n="problem5.heading">
+                        The Problem
+                    </h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed" data-i18n="problem5.desc1">
+                        Your website runs on WordPress—a platform that was revolutionary 15 years ago but has become slow and maintenance-heavy in 2026.
+                    </p>
+                    <p class="text-gray-600 mb-4" data-i18n="problem5.desc2">
+                        <strong>What this means practically:</strong> Your site loads in 3-4 seconds. Google penalizes sites that take longer than 2 seconds, 
+                        which hurts your search rankings. Visitors on mobile (where most traffic comes from) experience even slower loads.
+                    </p>
+                    <p class="text-gray-600 mb-6" data-i18n="problem5.desc3">
+                        Additionally, WordPress requires constant updates and plugin maintenance. Every update carries risk of something breaking. 
+                        Law firms are also frequent targets for WordPress hacks, requiring vigilant security monitoring.
+                    </p>
+                    <p class="text-gray-600 mb-4" data-i18n="problem5.desc4">
+                        <strong>The modern alternative:</strong> Platforms like React/Next.js (used by major corporations) are faster, more secure, 
+                        and require almost zero ongoing maintenance. Your site would load in under 1 second, and you'd never worry about plugin conflicts again.
+                    </p>
+                    <div class="bg-red-50 border-l-3 border-red-500 p-3">
+                        <p class="font-semibold text-red-800" data-i18n="problem5.loadTime">Current Load Time:</p>
+                        <p class="text-2xl font-bold text-red-600" data-i18n="problem5.loadTimeValue">3.8 seconds</p>
+                        <p class="text-sm text-red-700" data-i18n="problem5.loadTimeNote">Google penalizes sites >2s</p>
+                    </div>
+                </div>
+
+                <!-- SOLUTION (Right) -->
+                <div class="fade-in">
+                    <div class="inline-block bg-green-100 text-green-600 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+                        ✅ SOLUTION #5
+                    </div>
+                    <h3 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-4">
+                        What You'll Get
+                    </h3>
+                    <p class="text-xl text-oxford-blue mb-6 font-semibold">
+                        A website that loads instantly and never needs "maintenance updates."
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        Your site will load in under 1 second—even on phones. Pages transition smoothly without flickering. 
+                        You'll never get "your plugin needs updating" emails again. No more worrying about hacks or breaking changes.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        It just works. Fast. Secure. Forever.
+                    </p>
+                    <div class="bg-green-50 border-l-3 border-green-500 p-3 rounded">
+                        <p class="font-semibold text-green-800 mb-2" data-i18n="problem5.bottomLine">Bottom Line:</p>
+                        <p class="text-green-700" data-i18n="problem5.bottomLineDesc">Set it and forget it. Spend zero time on website maintenance for the next decade.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INVESTMENT SECTION -->
+    <section class="py-20 bg-oxford-blue text-white">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold mb-4" data-i18n="investment.heading">
+                    Inversión Estratégica
+                </h2>
+                <p class="text-xl text-gray-300" data-i18n="investment.subheading">
+                    Tres opciones diseñadas para diferentes prioridades
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- ESSENTIAL -->
+                <div class="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-8 fade-in hover:border-mate-gold transition-all">
+                    <h3 class="font-serif text-2xl font-bold text-white mb-2" data-i18n="investment.essential.title">Esencial</h3>
+                    <p class="text-gray-400 text-sm mb-6" data-i18n="investment.essential.subtitle">Correcciones rápidas & optimización</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold text-mate-gold" data-i18n="investment.essential.price">$8,500</span>
+                    </div>
+                    <ul class="space-y-3 text-sm mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.essential.feature1">SEO metadata optimization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.essential.feature2">SSL & security fixes</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.essential.feature3">Premium stock photos (licensed)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.essential.feature4">WordPress performance tuning</span>
+                        </li>
+                    </ul>
+                    <p class="text-xs text-gray-400" data-i18n="investment.essential.timeline">Timeline: 2 weeks</p>
+                </div>
+
+                <!-- PROFESSIONAL (RECOMMENDED) -->
+                <div class="bg-mate-gold/10 backdrop-blur border-2 border-mate-gold rounded-lg p-8 fade-in relative transform md:scale-105 shadow-2xl">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-mate-gold text-oxford-blue px-4 py-1 rounded-full text-sm font-bold" data-i18n="investment.recommended">
+                        RECOMENDADO
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-mate-gold mb-2" data-i18n="investment.professional.title">Profesional</h3>
+                    <p class="text-gray-300 text-sm mb-6" data-i18n="investment.professional.subtitle">Transformación digital completa</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold text-white" data-i18n="investment.professional.price">$15,000</span>
+                    </div>
+                    <ul class="space-y-3 text-sm mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.professional.feature1"><strong>Everything in Essential</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.professional.feature2">Custom UI/UX design (Figma)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.professional.feature3">Modern platform (Webflow/Framer)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.professional.feature4">Custom icon system (SVG)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.professional.feature5">Complete SEO migration</span>
+                        </li>
+                    </ul>
+                    <p class="text-xs text-gray-300" data-i18n="investment.professional.timeline">Timeline: 45 days</p>
+                </div>
+
+                <!-- ELITE -->
+                <div class="bg-white/5 backdrop-blur border border-white/10 rounded-lg p-8 fade-in hover:border-mate-gold transition-all">
+                    <h3 class="font-serif text-2xl font-bold text-white mb-2" data-i18n="investment.elite.title">Élite</h3>
+                    <p class="text-gray-400 text-sm mb-6" data-i18n="investment.elite.subtitle">Solución de nivel empresarial</p>
+                    <div class="mb-6">
+                        <span class="text-5xl font-bold text-mate-gold" data-i18n="investment.elite.price">$25,000</span>
+                    </div>
+                    <ul class="space-y-3 text-sm mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.elite.feature1"><strong>Everything in Professional</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.elite.feature2">Headless React/Next.js architecture</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.elite.feature3">Professional photography session</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.elite.feature4">Brand style guide & assets</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-mate-gold mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span data-i18n="investment.elite.feature5">6 months post-launch support</span>
+                        </li>
+                    </ul>
+                    <p class="text-xs text-gray-400" data-i18n="investment.elite.timeline">Timeline: 60 days</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 fade-in">
+                <p class="text-gray-300 mb-4" data-i18n="investment.terms">Términos de pago: <span class="text-mate-gold font-semibold">50% para comenzar / 50% en la entrega</span></p>
+                <p class="text-sm text-gray-400 italic" data-i18n="investment.note">Esta es una inversión de capital única para un activo digital diseñado para durar una década.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPTIONAL ADD-ON: CLIENT OPERATIONS PORTAL -->
+    <section class="py-20 bg-gray-50 border-t border-gray-200">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="fade-in">
+                    <div class="inline-block bg-oxford-blue text-white px-4 py-2 rounded-full text-sm font-semibold mb-4" data-i18n="portal.badge">
+                        Complemento Opcional
+                    </div>
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-4" data-i18n="portal.title">
+                        Plataforma de Acceso Seguro para Clientes
+                    </h2>
+                    <p class="text-gray-700 mb-4 leading-relaxed" data-i18n="portal.desc1">
+                        If desired, we can add a private client operations system to the site: secure user access, case tracking, document vault, invoices, and digital signature workflows in one controlled environment.
+                    </p>
+                    <p class="text-gray-600 mb-6 leading-relaxed" data-i18n="portal.desc2">
+                        High-performing legal platforms in the market commonly offer exactly this model: centralized communication, case updates, secure file exchange, billing visibility, and e-signature. We can implement the same level of operational clarity for MMH with your brand and internal process logic.
+                    </p>
+
+                    <div class="bg-white border border-gray-200 rounded-lg p-5 mb-6">
+                        <h3 class="font-semibold text-oxford-blue mb-3" data-i18n="portal.features.heading">What this add-on can include</h3>
+                        <div class="grid sm:grid-cols-2 gap-3 text-sm text-gray-700">
+                            <div class="flex items-start"><span class="text-mate-gold mr-2">•</span><span data-i18n="portal.feature1">Client portal with role-based access</span></div>
+                            <div class="flex items-start"><span class="text-mate-gold mr-2">•</span><span data-i18n="portal.feature2">Matter progress timeline and milestones</span></div>
+                            <div class="flex items-start"><span class="text-mate-gold mr-2">•</span><span data-i18n="portal.feature3">Invoices, payment links, account statements</span></div>
+                            <div class="flex items-start"><span class="text-mate-gold mr-2">•</span><span data-i18n="portal.feature4">Secure document center and version control</span></div>
+                            <div class="flex items-start"><span class="text-mate-gold mr-2">•</span><span data-i18n="portal.feature5">Digital signature and approval workflows</span></div>
+                            <div class="flex items-start"><span class="text-mate-gold mr-2">•</span><span data-i18n="portal.feature6">Notifications, reminders, and audit trails</span></div>
+                        </div>
+                    </div>
+
+                    <button id="openPortalModal" type="button" class="inline-flex items-center gap-2 bg-oxford-blue hover:bg-oxford-blue-light text-white font-semibold px-6 py-3 rounded-lg transition-all" data-i18n="portal.cta">
+                        View Interactive Simulation
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="fade-in">
+                    <div class="bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+                        <p class="text-xs uppercase tracking-widest text-gray-500 mb-3" data-i18n="portal.outcome.heading">Operational Outcome</p>
+                        <h3 class="font-serif text-2xl font-bold text-oxford-blue mb-4" data-i18n="portal.outcome.title">From Website to Client Command Center</h3>
+                        <div class="space-y-3 text-gray-700">
+                            <div class="flex items-start justify-between border-b border-gray-100 pb-2">
+                                <span data-i18n="portal.outcome.case">Case Status Transparency</span>
+                                <span class="text-green-700 font-semibold" data-i18n="portal.outcome.caseStatus">Live</span>
+                            </div>
+                            <div class="flex items-start justify-between border-b border-gray-100 pb-2">
+                                <span data-i18n="portal.outcome.billing">Billing & Payment Visibility</span>
+                                <span class="text-green-700 font-semibold" data-i18n="portal.outcome.billingStatus">Integrated</span>
+                            </div>
+                            <div class="flex items-start justify-between border-b border-gray-100 pb-2">
+                                <span data-i18n="portal.outcome.document">Document Security & Sharing</span>
+                                <span class="text-green-700 font-semibold" data-i18n="portal.outcome.documentStatus">Encrypted</span>
+                            </div>
+                            <div class="flex items-start justify-between border-b border-gray-100 pb-2">
+                                <span data-i18n="portal.outcome.signature">Digital Signature Workflows</span>
+                                <span class="text-green-700 font-semibold" data-i18n="portal.outcome.signatureStatus">Ready</span>
+                            </div>
+                            <div class="flex items-start justify-between">
+                                <span data-i18n="portal.outcome.communication">Client Communication Load</span>
+                                <span class="text-oxford-blue font-semibold" data-i18n="portal.outcome.communicationStatus">Reduced</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 p-4 bg-red-50 border-l-3 border-red-500 rounded-r">
+                            <p class="text-sm text-red-800">
+                                <strong data-i18n="portal.strategicNote">Strategic note:</strong> <span data-i18n="portal.strategicText">for a firm handling complex, high-value matters, a basic WordPress-only experience creates an avoidable perception gap. This add-on closes that gap with enterprise-grade client operations.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl text-center">
+            <div class="fade-in">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-oxford-blue mb-6" data-i18n="cta.heading">
+                    Your Reputation Deserves<br>an Elite Digital Presence
+                </h2>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed max-w-3xl mx-auto" data-i18n="cta.description">
+                    We are experts in two decisive fronts: positioning your firm so it leaves a clear footprint in search and appears alongside top players, and implementing hardened security architecture so the platform is anti-intrusion, stable, and trusted.
+                    <br><br>
+                    Remaining on a WordPress-first structure for a firm of this caliber has become an amateur bottleneck: slower speed, larger attack surface, and weaker competitive signal. Closing that gap now is a strategic advantage, not a cosmetic upgrade.
+                </p>
+                <a href="mailto:your-email@example.com?subject=MMH%20Law%20Digital%20Transformation%20Meeting" 
+                   class="inline-block bg-oxford-blue hover:bg-oxford-blue-light text-white font-semibold px-10 py-4 rounded-lg text-lg transition-all transform hover:scale-105 shadow-xl hover:shadow-2xl" data-i18n="cta.button">
+                    Schedule a 15-Minute Partner Meeting
+                </a>
+                <p class="text-sm text-gray-500 mt-6" data-i18n="cta.note">
+                    No commitment. Just a conversation about your firm's digital future.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTAL SIMULATION MODAL -->
+    <div id="portalModal" class="hidden fixed inset-0 z-[100] portal-modal-backdrop items-center justify-center p-4">
+        <div class="portal-modal-panel bg-white w-full max-w-5xl rounded-xl shadow-2xl overflow-hidden max-h-[90vh] flex flex-col">
+            <div class="bg-oxford-blue text-white px-6 py-4 flex items-center justify-between">
+                <div>
+                    <p class="text-xs uppercase tracking-widest text-gray-300" data-i18n="modal.subtitle">Simulación</p>
+                    <h3 class="font-serif text-2xl" data-i18n="modal.title">Portal Seguro de Clientes MMH</h3>
+                </div>
+                <button id="closePortalModal" type="button" class="text-gray-200 hover:text-white text-2xl leading-none">&times;</button>
+            </div>
+
+            <div class="overflow-y-auto p-6 bg-gray-50">
+                <div class="grid lg:grid-cols-3 gap-5">
+                    <div class="lg:col-span-2 bg-white border border-gray-200 rounded-lg p-5">
+                        <div class="flex items-center justify-between mb-4">
+                            <h4 class="font-semibold text-oxford-blue" data-i18n="modal.caseDashboard">Case Dashboard</h4>
+                            <span class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded font-semibold" data-i18n="modal.secureSession">Secure Session Active</span>
+                        </div>
+
+                        <div class="grid sm:grid-cols-3 gap-3 mb-4">
+                            <div class="bg-gray-50 rounded p-3 border border-gray-200">
+                                <p class="text-xs text-gray-500 uppercase tracking-wide" data-i18n="modal.activeMatters">Active Matters</p>
+                                <p class="text-2xl font-bold text-oxford-blue mt-1">3</p>
+                            </div>
+                            <div class="bg-gray-50 rounded p-3 border border-gray-200">
+                                <p class="text-xs text-gray-500 uppercase tracking-wide" data-i18n="modal.pendingSignatures">Pending Signatures</p>
+                                <p class="text-2xl font-bold text-oxford-blue mt-1">2</p>
+                            </div>
+                            <div class="bg-gray-50 rounded p-3 border border-gray-200">
+                                <p class="text-xs text-gray-500 uppercase tracking-wide" data-i18n="modal.openInvoices">Open Invoices</p>
+                                <p class="text-2xl font-bold text-oxford-blue mt-1">1</p>
+                            </div>
+                        </div>
+
+                        <div class="border border-gray-200 rounded-lg p-4 mb-4">
+                            <p class="font-semibold text-gray-800 mb-2" data-i18n="modal.matterTitle">Matter: Air Carrier Liability Appeal</p>
+                            <div class="space-y-2 text-sm text-gray-700">
+                                <div class="flex justify-between"><span data-i18n="modal.task1">Notice of Appeal Filed</span><span class="text-green-700" data-i18n="modal.status1">Completed</span></div>
+                                <div class="flex justify-between"><span data-i18n="modal.task2">Appellant Brief Draft</span><span class="text-oxford-blue" data-i18n="modal.status2">In Review</span></div>
+                                <div class="flex justify-between"><span data-i18n="modal.task3">Record Appendix Upload</span><span class="text-amber-700" data-i18n="modal.status3">Pending Client Files</span></div>
+                            </div>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-3 text-sm">
+                            <div class="border border-gray-200 rounded p-3 bg-white">
+                                <p class="font-semibold text-gray-800 mb-1" data-i18n="modal.latestInvoice">Latest Invoice</p>
+                                <p class="text-gray-600">#MMH-2026-041 | $6,850</p>
+                                <button class="mt-2 text-oxford-blue font-semibold" data-i18n="modal.viewPay">View / Pay</button>
+                            </div>
+                            <div class="border border-gray-200 rounded p-3 bg-white">
+                                <p class="font-semibold text-gray-800 mb-1" data-i18n="modal.docSignature">Document Signature</p>
+                                <p class="text-gray-600" data-i18n="modal.docName">Engagement Addendum v2</p>
+                                <button class="mt-2 text-oxford-blue font-semibold" data-i18n="modal.signDigitally">Sign Digitally</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white border border-gray-200 rounded-lg p-5">
+                        <h4 class="font-semibold text-oxford-blue mb-4" data-i18n="modal.securityLayer">Security & Control Layer</h4>
+                        <div class="space-y-2 text-sm text-gray-700 mb-4">
+                            <p class="flex items-center"><span class="w-2 h-2 rounded-full bg-green-600 mr-2"></span><span data-i18n="modal.security1">Role-based access controls</span></p>
+                            <p class="flex items-center"><span class="w-2 h-2 rounded-full bg-green-600 mr-2"></span><span data-i18n="modal.security2">MFA + session hardening</span></p>
+                            <p class="flex items-center"><span class="w-2 h-2 rounded-full bg-green-600 mr-2"></span><span data-i18n="modal.security3">Encrypted file storage</span></p>
+                            <p class="flex items-center"><span class="w-2 h-2 rounded-full bg-green-600 mr-2"></span><span data-i18n="modal.security4">Audit logs and activity trails</span></p>
+                            <p class="flex items-center"><span class="w-2 h-2 rounded-full bg-green-600 mr-2"></span><span data-i18n="modal.security5">Access certification workflow</span></p>
+                        </div>
+                        <div class="bg-green-50 border border-green-200 rounded p-3 text-sm text-green-800" data-i18n="modal.securityNote">
+                            Enterprise trust model aligned for legal confidentiality requirements and high-value litigation workflows.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-charcoal text-white py-12">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400 mb-2" data-i18n="footer.tagline">Arquitectura Digital & Estrategia</p>
+            <p class="font-semibold text-xl mb-4" data-i18n="footer.name">Su Nombre / Su Compañía</p>
+            <p class="text-gray-400 text-sm" data-i18n="footer.contact">tu-email@ejemplo.com | (123) 456-7890</p>
+            <div class="mt-6 text-xs text-gray-500">
+                <p data-i18n="footer.confidential">Esta propuesta es confidencial e intendida únicamente para Murray, Morin & Herman, P.A.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all fade-in elements
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Problem 4 carousel controls
+        (function initProblem4Carousel() {
+            const viewport = document.getElementById('p4Viewport');
+            const track = document.getElementById('p4Track');
+            const prevBtn = document.getElementById('p4Prev');
+            const nextBtn = document.getElementById('p4Next');
+            if (!viewport || !track || !prevBtn || !nextBtn) return;
+
+            const cards = Array.from(track.children);
+            if (!cards.length) return;
+
+            let index = 0;
+            let autoPlayId = null;
+
+            function getVisibleCards() {
+                if (window.innerWidth <= 640) return 2;
+                if (window.innerWidth <= 1024) return 4;
+                return 5;
+            }
+
+            function maxIndex() {
+                return Math.max(0, cards.length - getVisibleCards());
+            }
+
+            function update() {
+                const cardWidth = cards[0].getBoundingClientRect().width;
+                const styles = window.getComputedStyle(track);
+                const gap = parseFloat(styles.columnGap || styles.gap || '16') || 16;
+                track.style.transform = `translateX(-${index * (cardWidth + gap)}px)`;
+            }
+
+            function next() {
+                index = index >= maxIndex() ? 0 : index + 1;
+                update();
+            }
+
+            function prev() {
+                index = index <= 0 ? maxIndex() : index - 1;
+                update();
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoPlayId = window.setInterval(next, 3500);
+            }
+
+            function stopAutoPlay() {
+                if (autoPlayId) {
+                    window.clearInterval(autoPlayId);
+                    autoPlayId = null;
+                }
+            }
+
+            prevBtn.addEventListener('click', () => {
+                prev();
+                startAutoPlay();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                next();
+                startAutoPlay();
+            });
+
+            viewport.addEventListener('mouseenter', stopAutoPlay);
+            viewport.addEventListener('mouseleave', startAutoPlay);
+
+            window.addEventListener('resize', () => {
+                index = Math.min(index, maxIndex());
+                update();
+            });
+
+            update();
+            startAutoPlay();
+        })();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Golden Line Shimmer Effect - Random every ~2 minutes
+        function triggerShimmer() {
+            const goldenLine = document.querySelector('.golden-line-shimmer');
+            if (goldenLine) {
+                goldenLine.classList.add('animate');
+                setTimeout(() => {
+                    goldenLine.classList.remove('animate');
+                }, 1500); // Duration matches animation (1.5s)
+            }
+        }
+        
+        // Start shimmer loop with random intervals around 2 minutes
+        function scheduleNextShimmer() {
+            // Random time between 90-150 seconds (1.5 to 2.5 min)
+            const randomDelay = (90 + Math.random() * 60) * 1000;
+            setTimeout(() => {
+                triggerShimmer();
+                scheduleNextShimmer();
+            }, randomDelay);
+        }
+        
+        // Initial shimmer after 3 seconds (page load)
+        setTimeout(() => {
+            triggerShimmer();
+            scheduleNextShimmer();
+        }, 3000);
+        
+        // Translation Data
+        const translations = {
+            en: {
+                // Hero Section
+                'hero.badge': 'Confidential Proposal',
+                'hero.title': 'Murray, Morin<br>& Herman, P.A.',
+                'hero.subtitle': 'Digital Infrastructure Review',
+                'hero.description': 'A respectful assessment of your firm\'s digital presence,<br class="hidden md:block">with strategic recommendations for elevation.',
+                'hero.cta': 'Begin Review',
+                
+                // Introduction
+                'intro.company': 'Prepared by',
+                'intro.companyDesc': 'Digital architecture for elite professional services firms',
+                'intro.heading': 'Our Assessment',
+                'intro.para1': 'Your firm\'s experience is undeniable: 25 years defending clients in complex aviation and construction litigation, AV Preeminent Martindale-Hubbell recognition, trusted by Fortune 500 corporations and major national insurance carriers.',
+                'intro.para2': 'You have successfully represented clients in multi-million dollar disputes involving aircraft accidents, construction defects, and commercial litigation. Your attorneys have argued before federal courts and won cases that other firms would not touch.',
+                'intro.para3': '<strong class="text-oxford-blue">However, there is a disconnect.</strong>',
+                'intro.para4': 'Your digital presence—the first impression most prospective clients will have—does not yet reflect this level of excellence. When a Fortune 500 general counsel or insurance executive seeks aviation defense counsel, your website creates doubt rather than confidence.',
+                'intro.para5': 'We have identified five critical technical gaps where your online presence falls short of your professional reputation. These are not minor aesthetic preferences—they are measurable deficiencies that cost you cases every month.',
+                'intro.para6': 'This is not criticism. This is opportunity.',
+                'intro.para7': 'Your competitors are not better qualified—they simply have better websites. We can close that gap in 45 days. Below is our analysis of exactly what is broken, why it matters, and what you will get when it is fixed.',
+                
+                // Problem 1 - SEO
+                'problem1.badge': 'Problem 1 of 5',
+                'problem1.title': 'Search Engine Visibility',
+                'problem1.severity': 'Severity Level',
+                'problem1.severityLevel': '🔴 CRITICAL',
+                'problem1.importance': 'Importance Level',
+                'problem1.importanceLevel': '95%',
+                'problem1.heading': 'The Problem',
+                'problem1.desc1': 'We discovered that your website\'s Google title displays as a single dash <code class="bg-red-50 text-red-600 px-2 py-1 rounded">"=="</code> instead of your firm name and practice areas.',
+                'problem1.desc2': '<strong>What this means in plain English:</strong> When someone searches for "aviation attorney Miami" or "construction defense Tampa," Google doesn\'t know what your firm does. Your competitors with properly configured titles appear first, while your firm remains invisible—even though you may be more qualified.',
+                'problem1.desc3': 'This isn\'t your fault. It\'s a technical configuration error that happens when websites are built without SEO expertise. But it is costing you client inquiries every single day.',
+                'problem1.liveExample': 'Live Example:',
+                'problem1.estimatedImpact': 'Estimated Impact:',
+                'problem1.impact1': 'Potential loss of 5-10 qualified leads per month',
+                'problem1.impact2': 'Even one lost case could be worth $100,000-$500,000 in fees',
+                'problem1.estimatedLoss': 'Estimated Loss:',
+                'problem1.lossAmount': '$500,000+/year',
+                'problem1.lossDesc': 'in uncaptured high-value cases',
+                'problem1.solution': '✅ SOLUTION #1',
+                'problem1.solutionHeading': 'What You\'ll Get',
+                'problem1.solDesc1': 'Your firm will appear on the first page of Google when clients search for your specialties.',
+                'problem1.solDesc2': 'Instead of being invisible, potential clients searching for "aviation attorney Miami," "construction defense Tampa," or "insurance litigation Florida" will find MMH Law immediately—with a professional title and description that accurately reflects your 25 years of expertise.',
+                'problem1.bottomLine': 'Bottom Line:',
+                'problem1.bottomLineDesc': 'More qualified leads finding you organically, without paying for ads.',
+                'problem1.problemSummary': '<strong>The Problem:</strong> Your firm is buried below competitors despite 25 years of experience—because Google can\'t identify what you do.',
+                'problem1.seoFixed': 'After SEO Correction (Projected Appearance)',
+                'problem1.optimized': 'Optimized',
+                'problem1.seoTitle': 'Miami Appellate Attorneys | Aviation, Insurance & Complex Defense',
+                'problem1.seoDesc': 'Murray Morin & Herman, P.A. represents high-stakes clients in appellate litigation across Florida and federal courts, including aviation, insurance bad faith, and product liability appeals.',
+                'problem1.seoExplain1': 'This is the practical result of technical SEO done correctly: structured titles, indexed metadata, and clear relevance signals that help search engines understand exactly who you are and what you do.',
+                'problem1.seoExplain2': 'We are strong at this work. While rankings are always influenced by independent browser and search engine systems (like Chrome/Google behavior), we control the factors that matter most and consistently drive visible, high-intent positioning. That is the strategic lever that helps firms break out and win attention online.',
+                'problem1.ctrLift': 'Projected CTR Lift',
+                'problem1.ctrValue': '+38% to +62%',
+                'problem1.indexCoverage': 'Projected Index Coverage',
+                'problem1.indexValue': '95%+',
+                'problem1.visibility': 'High-Intent Visibility',
+                'problem1.visibilityValue': 'Top 3-10',
+                'problem1.disclaimer': 'Projected simulation based on technical SEO correction scope, crawl/indexation cycles, and current competitive SERP baselines. Final ranking velocity depends on independent search engine updates and market competition.',
+                
+                // Problem 2 - Security
+                'problem2.badge': 'Problem 2 of 5',
+                'problem2.title': 'Security & Trust Signals',
+                'problem2.severity': 'Severity Level',
+                'problem2.severityLevel': '🔴 CRITICAL',
+                'problem2.importance': 'Importance Level',
+                'problem2.importanceLevel': '90%',
+                'problem2.heading': 'The Problem',
+                'problem2.bounce': 'Bounce',
+                'problem2.bounceDesc': 'The warning causes immediate exit and flight to competitor.',
+                'problem2.bias': 'Bias',
+                'problem2.biasDesc': 'The negative first impression is difficult to reverse.',
+                'problem2.clientExp': 'Client experience:',
+                'problem2.clientExpFlow': 'Click → Warning → Exit',
+                'problem2.repDamage': 'Immediate reputational damage',
+                'problem2.riskAuthority': 'Risk vs Authority',
+                'problem2.touchpoint': 'Touchpoint',
+                'problem2.currentState': 'Current state',
+                'problem2.withCorrection': 'With correction',
+                'problem2.firstClick': 'First click',
+                'problem2.firstClickCurrent': '"This connection is not private"',
+                'problem2.firstClickFixed': 'Clean & instant load',
+                'problem2.visualSignal': 'Visual signal',
+                'problem2.visualSignalCurrent': 'Red "Not Secure" label',
+                'problem2.visualSignalFixed': 'Lock + secure connection',
+                'problem2.finalAction': 'Final action',
+                'problem2.finalActionCurrent': 'Immediate exit',
+                'problem2.finalActionFixed': 'Consultation / contact',
+                'problem2.investmentCost': 'Lost investment cost',
+                'problem2.investmentDesc': 'Every lead that reaches a security warning is a direct loss of investment in SEO/networking and a transfer of that lead to the next competitor on the list.',
+                'problem2.compliance': 'Exposure and compliance',
+                'problem2.complianceDesc': 'The redirect to <code class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">staug.pagmiami.com</code> is not just visual; it\'s a structural weakness that impacts perception of compliance among demanding clients.',
+                'problem2.belowSolution': 'Below: The Solution',
+                'problem2.belowSolutionDesc': 'Every link will work correctly. No security warnings.',
+                'problem2.navCard': 'Navigation',
+                'problem2.navCardDesc': 'All internal links point to the correct destination, without external redirects.',
+                'problem2.trustCard': 'Visual trust',
+                'problem2.trustCardDesc': 'Stable secure lock in browser and clean experience at first contact.',
+                'problem2.conversionCard': 'Conversion',
+                'problem2.conversionCardDesc': 'Prospect leakage is reduced and the probability of consultation is improved.',
+                'problem2.bottomLine': 'Bottom Line:',
+                'problem2.bottomLineDesc': 'The site protects the firm\'s reputation instead of compromising it.',
+                'problem2.negativeHalo': 'Negative Halo Effect',
+                'problem2.negativeHaloDesc': 'In legal, form is function: seeing "Not Secure," the prospect doesn\'t interpret a technical error; they interpret lack of professional control.',
+                'problem2.doubt': 'Doubt',
+                'problem2.doubtDesc': 'If the site can\'t protect itself, how will they protect high-value cases?',
+                'problem2.solution': '✅ SOLUTION #2',
+                'problem2.solutionHeading': 'What You\'ll Get',
+                
+                // Problem 3 - Visual Design
+                'problem3.badge': 'Problem 3 of 5',
+                'problem3.title': 'Visual Design & First Impressions',
+                'problem3.severity': 'Severity Level',
+                'problem3.severityLevel': '� IMPORTANT',
+                'problem3.importance': 'Importance Level',
+                'problem3.importanceLevel': '75%',
+                'problem3.heading': 'The Problem',
+                'problem3.desc1': 'Your website employs design patterns and information architecture from the early 2010s—rigid sidebars, standard system fonts, flat visual hierarchy, and generic template layouts that fail to establish cognitive authority.',
+                'problem3.desc2': '<strong>Why this matters from a UX/UI perspective:</strong> Your practice areas—aviation law, complex construction litigation, corporate defense—represent the highest tier of legal specialization. However, your current digital interface creates a critical disconnect between the sophistication of your legal services and their visual representation. The site\'s design system doesn\'t leverage contemporary principles of visual psychology, gestalt theory, or strategic information design.',
+                'problem3.desc3': 'We specialize in understanding how visual communication operates at the intersection of cognitive psychology and corporate branding. The current design lacks the strategic use of whitespace, typographic hierarchy, and compositional balance that high-net-worth clients and C-suite decision-makers subconsciously expect from premier legal counsel. Your visual identity should communicate authority through subtle design cues—micro-interactions, purposeful color psychology, and deliberate spatial relationships.',
+                'problem3.desc4': 'When Fortune 500 general counsels or aviation executives compare your digital presence to competitors with modern, strategically designed interfaces, they make immediate judgments about organizational capability. This perception gap—however unfair—directly impacts conversion rates and client confidence. Contemporary interface design isn\'t decoration; it\'s strategic business communication that operates below conscious awareness.',
+                'problem3.cognitive': 'Cognitive Reality of First Impressions:',
+                'problem3.cognitiveDesc': 'Research shows users form visual judgments in 50 milliseconds. In 2026, design sophistication = perceived competence. Your visual interface is your first attorney-client interaction.',
+                'problem3.cognitiveNote': 'Visual credibility precedes content credibility in digital environments.',
+                'problem3.solution': '✅ SOLUTION #3',
+                'problem3.solutionHeading': 'What You\'ll Get',
+                'problem3.solTitle': 'A corporate-grade UX/UI system that reflects the caliber of your legal practice.',
+                'problem3.solDesc': 'We\'ll implement a comprehensive design system built on enterprise-level UX principles: refined typographic scales, intentional color psychology aligned with legal authority, sophisticated micro-animations that guide user attention, and responsive breakpoints optimized for C-suite device usage patterns.',
+                'problem3.uxElements': 'Strategic UX/UI elements we\'ll deploy:',
+                
+                // Problem 4 - Image Quality
+                'problem4.badge': 'Problem 4 of 5',
+                'problem4.title': 'Photography & Visual Quality',
+                'problem4.severity': 'Severity Level',
+                'problem4.severityLevel': '� IMPORTANT',
+                'problem4.importance': 'Importance Level',
+                'problem4.importanceLevel': '70%',
+                'problem4.heading': 'The Problem',
+                'problem4.desc1': 'The photos on your website appear blurry and pixelated when viewed on modern devices like iPhones, MacBooks, and 4K monitors.',
+                'problem4.desc2': '<strong>Here\'s what\'s happening:</strong> Your images were optimized for older screens. Today\'s devices have much higher resolution ("Retina" displays), so those same images now look fuzzy. It\'s like viewing an old VHS tape on a new 4K TV.',
+                'problem4.desc3': 'Additionally, the stock photos used—while professional years ago—now feel generic. Every industry uses them. Your practice areas (aviation, construction) deserve imagery that feels specific, authoritative, and premium.',
+                'problem4.solution': '✅ SOLUTION #4',
+                'problem4.solutionHeading': 'What You\'ll Get',
+                'problem4.bottomLine': 'Bottom Line:',
+                'problem4.bottomLineDesc': 'Your website will look as premium as your hourly rate.',
+                
+                // Problem 5 - Technology
+                'problem5.badge': 'Problem 5 of 5',
+                'problem5.title': 'Website Technology & Performance',
+                'problem5.severity': 'Severity Level',
+                'problem5.severityLevel': '� MODERATE',
+                'problem5.importance': 'Importance Level',
+                'problem5.importanceLevel': '60%',
+                'problem5.heading': 'The Problem',
+                'problem5.desc1': 'Your website runs on WordPress—a platform that was revolutionary 15 years ago but has become slow and maintenance-heavy in 2026.',
+                'problem5.desc2': '<strong>What this means practically:</strong> Your site loads in 3-4 seconds. Google penalizes sites that take longer than 2 seconds, which hurts your search rankings. Visitors on mobile (where most traffic comes from) experience even slower loads.',
+                'problem5.desc3': 'Additionally, WordPress requires constant updates and plugin maintenance. Every update carries risk of something breaking. Law firms are also frequent targets for WordPress hacks, requiring vigilant security monitoring.',
+                'problem5.desc4': '<strong>The modern alternative:</strong> Platforms like React/Next.js (used by major corporations) are faster, more secure, and require almost zero ongoing maintenance. Your site would load in under 1 second, and you\'d never worry about plugin conflicts again.',
+                'problem5.loadTime': 'Current Load Time:',
+                'problem5.loadTimeValue': '3.8 seconds',
+                'problem5.loadTimeNote': 'Google penalizes sites >2s',
+                'problem5.solution': '✅ SOLUTION #5',
+                'problem5.solutionHeading': 'What You\'ll Get',
+                'problem5.bottomLine': 'Bottom Line:',
+                'problem5.bottomLineDesc': 'Set it and forget it. Spend zero time on website maintenance for the next decade.',
+                
+                // Investment Section
+                'investment.heading': 'Strategic Investment',
+                'investment.subheading': 'Three options designed for different priorities',
+                'investment.essential.title': 'Essential',
+                'investment.essential.subtitle': 'Quick fixes & optimization',
+                'investment.essential.price': '$8,500',
+                'investment.essential.feature1': 'SEO metadata optimization',
+                'investment.essential.feature2': 'SSL & security fixes',
+                'investment.essential.feature3': 'Premium stock photos (licensed)',
+                'investment.essential.feature4': 'WordPress performance tuning',
+                'investment.essential.timeline': 'Timeline: 2 weeks',
+                'investment.recommended': 'RECOMMENDED',
+                'investment.professional.title': 'Professional',
+                'investment.professional.subtitle': 'Complete digital transformation',
+                'investment.professional.price': '$15,000',
+                'investment.professional.feature1': '<strong>Everything in Essential</strong>',
+                'investment.professional.feature2': 'Custom UI/UX design (Figma)',
+                'investment.professional.feature3': 'Modern platform (Webflow/Framer)',
+                'investment.professional.feature4': 'Custom icon system (SVG)',
+                'investment.professional.feature5': 'Complete SEO migration',
+                'investment.professional.timeline': 'Timeline: 45 days',
+                'investment.elite.title': 'Elite',
+                'investment.elite.subtitle': 'Enterprise-level solution',
+                'investment.elite.price': '$25,000',
+                'investment.elite.feature1': '<strong>Everything in Professional</strong>',
+                'investment.elite.feature2': 'Headless React/Next.js architecture',
+                'investment.elite.feature3': 'Professional photography session',
+                'investment.elite.feature4': 'Brand style guide & assets',
+                'investment.elite.feature5': '6 months post-launch support',
+                'investment.elite.timeline': 'Timeline: 60 days',
+                'investment.terms': 'Payment Terms: 50% to begin / 50% on delivery',
+                'investment.note': 'This is a one-time capital investment in a digital asset designed to last a decade.',
+                
+                // Client Portal
+                'portal.badge': 'Optional Add-on',
+                'portal.title': 'Secure Client Access Platform',
+                'portal.desc1': 'If desired, we can add a private client operations system to the site: secure user access, case tracking, document vault, invoices, and digital signature workflows in one controlled environment.',
+                'portal.desc2': 'High-performing legal platforms in the market commonly offer exactly this model: centralized communication, case updates, secure file exchange, billing visibility, and e-signature. We can implement the same level of operational clarity for MMH with your brand and internal process logic.',
+                'portal.features.heading': 'What this add-on can include',
+                'portal.feature1': 'Client portal with role-based access',
+                'portal.feature2': 'Matter progress timeline and milestones',
+                'portal.feature3': 'Invoices, payment links, account statements',
+                'portal.feature4': 'Secure document center and version control',
+                'portal.feature5': 'Digital signature and approval workflows',
+                'portal.feature6': 'Notifications, reminders, and audit trails',
+                'portal.cta': 'View Interactive Simulation',
+                'portal.outcome.heading': 'Operational Outcome',
+                'portal.outcome.title': 'From Website to Client Command Center',
+                'portal.outcome.case': 'Case Status Transparency',
+                'portal.outcome.caseStatus': 'Live',
+                'portal.outcome.billing': 'Billing & Payment Visibility',
+                'portal.outcome.billingStatus': 'Integrated',
+                'portal.outcome.document': 'Document Security & Sharing',
+                'portal.outcome.documentStatus': 'Encrypted',
+                'portal.outcome.signature': 'Digital Signature Workflows',
+                'portal.outcome.signatureStatus': 'Ready',
+                'portal.outcome.communication': 'Client Communication Load',
+                'portal.outcome.communicationStatus': 'Reduced',
+                'portal.strategicNote': 'Strategic note:',
+                'portal.strategicText': 'for a firm handling complex, high-value matters, a basic WordPress-only experience creates an avoidable perception gap. This add-on closes that gap with enterprise-grade client operations.',
+                
+                // Portal Modal
+                'modal.subtitle': 'Simulation',
+                'modal.title': 'MMH Secure Client Portal',
+                'modal.caseDashboard': 'Case Dashboard',
+                'modal.secureSession': 'Secure Session Active',
+                'modal.activeMatters': 'Active Matters',
+                'modal.pendingSignatures': 'Pending Signatures',
+                'modal.openInvoices': 'Open Invoices',
+                'modal.matterTitle': 'Matter: Air Carrier Liability Appeal',
+                'modal.task1': 'Notice of Appeal Filed',
+                'modal.status1': 'Completed',
+                'modal.task2': 'Appellant Brief Draft',
+                'modal.status2': 'In Review',
+                'modal.task3': 'Record Appendix Upload',
+                'modal.status3': 'Pending Client Files',
+                'modal.latestInvoice': 'Latest Invoice',
+                'modal.viewPay': 'View / Pay',
+                'modal.docSignature': 'Document Signature',
+                'modal.docName': 'Engagement Addendum v2',
+                'modal.signDigitally': 'Sign Digitally',
+                'modal.securityLayer': 'Security & Control Layer',
+                'modal.security1': 'Role-based access controls',
+                'modal.security2': 'MFA + session hardening',
+                'modal.security3': 'Encrypted file storage',
+                'modal.security4': 'Audit logs and activity trails',
+                'modal.security5': 'Access certification workflow',
+                'modal.securityNote': 'Enterprise trust model aligned for legal confidentiality requirements and high-value litigation workflows.',
+                
+                // Footer
+                'footer.tagline': 'Digital Architecture & Strategy',
+                'footer.name': 'Your Name / Your Company',
+                'footer.contact': 'your-email@example.com | (123) 456-7890',
+                'footer.confidential': 'This proposal is confidential and intended solely for Murray, Morin & Herman, P.A.',
+                
+                // Final CTA
+                'cta.heading': 'Your Reputation Deserves an Elite Digital Presence',
+                'cta.description': 'We are experts in two decisive fronts: positioning your firm so it leaves a clear footprint in search and appears alongside top players, and implementing hardened security architecture so the platform is anti-intrusion, stable, and trusted.<br><br>Remaining on a WordPress-first structure for a firm of this caliber has become an amateur bottleneck: slower speed, larger attack surface, and weaker competitive signal. Closing that gap now is a strategic advantage, not a cosmetic upgrade.',
+                'cta.button': 'Schedule a 15-Minute Partner Meeting',
+                'cta.note': 'No commitment. Just a conversation about your firm\'s digital future.',
+                
+                // Practice Areas
+                'practice.appellate': 'Appellate',
+                'practice.aviation': 'Aviation',
+                'practice.auto': 'Commercial Auto & Trucking Defense',
+                'practice.construction': 'Construction',
+                'practice.corporate': 'Corporate Litigation',
+                'practice.fire': 'Fire Loss & Casualty Defense',
+                'practice.government': 'Government Entity Defense',
+                'practice.insurance': 'Insurance & Reinsurance Defense',
+                'practice.coverage': 'Insurance Coverage',
+                'practice.injury': 'Personal Injury & Wrongful Death Defense',
+                'practice.premises': 'Premises Liability & Negligent Security Defense',
+                'practice.products': 'Products Liability'
+            },
+            es: {
+                // Hero Section
+                'hero.badge': 'Propuesta Confidencial',
+                'hero.title': 'Murray, Morin<br>& Herman, P.A.',
+                'hero.subtitle': 'Revisión de Infraestructura Digital',
+                'hero.description': 'Una evaluación respetuosa de la presencia digital de su firma,<br class="hidden md:block">con recomendaciones estratégicas para su elevación.',
+                'hero.cta': 'Comenzar Revisión',
+                
+                // Introduction
+                'intro.company': 'Preparado por',
+                'intro.companyDesc': 'Arquitectura digital para firmas de servicios profesionales de élite',
+                'intro.heading': 'Nuestra Evaluación',
+                'intro.para1': 'La experiencia de su firma es innegable: 25 años defendiendo clientes en litigios complejos de aviación y construcción, reconocimiento AV Preeminente de Martindale-Hubbell, confiado por corporaciones y transportistas de seguros importantes a nivel nacional.',
+                'intro.para2': 'Ha representado exitosamente a clientes en disputas de múltiples millones de dólares involucrando accidentes aéreos, defectos de construcción, y litigios comerciales. Sus abogados han argumentado ante cortes federales y ganado casos que otras firmas no tocarían.',
+                'intro.para3': '<strong class="text-oxford-blue">Sin embargo, existe una desconexión.</strong>',
+                'intro.para4': 'Su presencia digital—la primera impresión que la mayoría de los clientes potenciales tendrán—aún no refleja este nivel de excelencia. Cuando un abogado general de Fortune 500 o un ejecutivo de seguros busca consejo en defensa de aviación, su sitio web crea duda en lugar de confianza.',
+                'intro.para5': 'Hemos identificado cinco brechas técnicas críticas donde su presencia en línea no alcanza su reputación profesional. Estas no son preferencias estéticas menores—son deficiencias medibles que le cuestan casos cada mes.',
+                'intro.para6': 'Esto no es crítica. Es oportunidad.',
+                'intro.para7': 'Sus competidores no están mejor calificados—simplemente tienen sitios web mejores. Podemos cerrar esa brecha en 45 días. A continuación se encuentra nuestro análisis de exactamente qué está roto, por qué importa, y qué obtendrá cuando esté arreglado.',
+                
+                // Problem 1 - SEO
+                'problem1.badge': 'Problema 1 de 5',
+                'problem1.title': 'Visibilidad en Motores de Búsqueda',
+                'problem1.severity': 'Nivel de Severidad',
+                'problem1.severityLevel': '🔴 CRÍTICO',
+                'problem1.importance': 'Nivel de Importancia',
+                'problem1.importanceLevel': '95%',
+                'problem1.heading': 'El Problema',
+                'problem1.desc1': 'Descubrimos que el título de Google de su sitio web se muestra como un guión simple <code class="bg-red-50 text-red-600 px-2 py-1 rounded">"=="</code> en lugar del nombre de su firma y áreas de práctica.',
+                'problem1.desc2': '<strong>Lo que esto significa en términos simples:</strong> Cuando alguien busca "abogado de aviación Miami" o "defensa de construcción Tampa," Google no sabe qué hace su firma. Sus competidores con títulos configurados correctamente aparecen primero, mientras que su firma permanece invisible, aunque usted puede estar más calificado.',
+                'problem1.desc3': 'Esto no es su culpa. Es un error de configuración técnica que ocurre cuando los sitios web se construyen sin experiencia en SEO. Pero le está costando consultas de clientes todos los días.',
+                'problem1.liveExample': 'Ejemplo en Vivo:',
+                'problem1.estimatedImpact': 'Impacto Estimado:',
+                'problem1.impact1': 'Pérdida potencial de 5-10 clientes calificados por mes',
+                'problem1.impact2': 'Incluso un caso perdido podría valer $100,000-$500,000 en honorarios',
+                'problem1.estimatedLoss': 'Pérdida Estimada:',
+                'problem1.lossAmount': '$500,000+/año',
+                'problem1.lossDesc': 'en casos de alto valor no capturados',
+                'problem1.solution': '✅ SOLUCIÓN #1',
+                'problem1.solutionHeading': 'Lo Que Obtendrá',
+                'problem1.solDesc1': 'Su firma aparecerá en la primera página de Google cuando los clientes busquen sus especialidades.',
+                'problem1.solDesc2': 'En lugar de ser invisible, los clientes potenciales que busquen "abogado de aviación Miami," "defensa de construcción Tampa," o "litigio de seguros Florida" encontrarán MMH Law inmediatamente, con un título y descripción profesional que refleja con precisión sus 25 años de experiencia.',
+                'problem1.bottomLine': 'Resultado Final:',
+                'problem1.bottomLineDesc': 'Más clientes calificados encontrándolo orgánicamente, sin pagar por anuncios.',
+                'problem1.problemSummary': '<strong>El Problema:</strong> Su firma está enterrada debajo de competidores a pesar de 25 años de experiencia—porque Google no puede identificar lo que hace.',
+                'problem1.seoFixed': 'Después de la Corrección SEO (Apariencia Proyectada)',
+                'problem1.optimized': 'Optimizado',
+                'problem1.seoTitle': 'Abogados de Apelaciones Miami | Aviación, Seguros & Defensa Compleja',
+                'problem1.seoDesc': 'Murray Morin & Herman, P.A. representa clientes de alto riesgo en litigios de apelación en Florida y cortes federales, incluyendo aviación, mala fe de seguros y apelaciones de responsabilidad de productos.',
+                'problem1.seoExplain1': 'Este es el resultado práctico del SEO técnico hecho correctamente: títulos estructurados, metadatos indexados y señales de relevancia claras que ayudan a los motores de búsqueda a entender exactamente quién es usted y qué hace.',
+                'problem1.seoExplain2': 'Somos fuertes en este trabajo. Aunque los rankings siempre están influenciados por sistemas independientes de navegadores y motores de búsqueda (como el comportamiento de Chrome/Google), controlamos los factores que más importan y consistentemente impulsamos un posicionamiento visible y de alta intención. Esa es la palanca estratégica que ayuda a las firmas a destacarse y ganar atención en línea.',
+                'problem1.ctrLift': 'Aumento de CTR Proyectado',
+                'problem1.ctrValue': '+38% a +62%',
+                'problem1.indexCoverage': 'Cobertura de Índice Proyectada',
+                'problem1.indexValue': '95%+',
+                'problem1.visibility': 'Visibilidad de Alta Intención',
+                'problem1.visibilityValue': 'Top 3-10',
+                'problem1.disclaimer': 'Simulación proyectada basada en el alcance de corrección técnica de SEO, ciclos de rastreo/indexación y líneas base SERP competitivas actuales. La velocidad final de clasificación depende de actualizaciones independientes del motor de búsqueda y competencia del mercado.',
+                
+                // Problem 2 - Security
+                'problem2.badge': 'Problema 2 de 5',
+                'problem2.title': 'Seguridad & Señales de Confianza',
+                'problem2.severity': 'Nivel de Severidad',
+                'problem2.severityLevel': '🔴 CRÍTICO',
+                'problem2.importance': 'Nivel de Importancia',
+                'problem2.importanceLevel': '90%',
+                'problem2.heading': 'El Problema',
+                'problem2.bounce': 'Rebote',
+                'problem2.bounceDesc': 'La advertencia provoca salida inmediata y fuga al competidor.',
+                'problem2.bias': 'Sesgo',
+                'problem2.biasDesc': 'La primera impresión negativa es difícil de revertir.',
+                'problem2.clientExp': 'Experiencia del cliente:',
+                'problem2.clientExpFlow': 'Click → Advertencia → Salida',
+                'problem2.repDamage': 'Daño reputacional inmediato',
+                'problem2.riskAuthority': 'Riesgo vs Autoridad',
+                'problem2.touchpoint': 'Touchpoint',
+                'problem2.currentState': 'Estado actual',
+                'problem2.withCorrection': 'Con corrección',
+                'problem2.firstClick': 'Primer click',
+                'problem2.firstClickCurrent': '"This connection is not private"',
+                'problem2.firstClickFixed': 'Carga limpia e inmediata',
+                'problem2.visualSignal': 'Señal visual',
+                'problem2.visualSignalCurrent': 'Etiqueta roja "Not Secure"',
+                'problem2.visualSignalFixed': 'Candado + conexión segura',
+                'problem2.finalAction': 'Acción final',
+                'problem2.finalActionCurrent': 'Salida inmediata',
+                'problem2.finalActionFixed': 'Consulta / contacto',
+                'problem2.investmentCost': 'Costo de inversión perdida',
+                'problem2.investmentDesc': 'Cada lead que llega a una advertencia de seguridad es pérdida directa de la inversión en SEO/networking y transferencia de ese lead al siguiente competidor del listado.',
+                'problem2.compliance': 'Exposición y cumplimiento',
+                'problem2.complianceDesc': 'El desvío a <code class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">staug.pagmiami.com</code> no es solo visual; es una debilidad estructural que impacta percepción de compliance en clientes exigentes.',
+                'problem2.belowSolution': 'Abajo: La Solucion',
+                'problem2.belowSolutionDesc': 'Cada enlace funcionara correctamente. Sin advertencias de seguridad.',
+                'problem2.navCard': 'Navegacion',
+                'problem2.navCardDesc': 'Todos los links internos apuntan al destino correcto, sin redirecciones externas.',
+                'problem2.trustCard': 'Confianza visual',
+                'problem2.trustCardDesc': 'Candado seguro estable en browser y experiencia limpia en el primer contacto.',
+                'problem2.conversionCard': 'Conversion',
+                'problem2.conversionCardDesc': 'Se reduce fuga de prospectos y mejora la probabilidad de consulta.',
+                'problem2.bottomLine': 'Bottom Line:',
+                'problem2.bottomLineDesc': 'El sitio protege la reputacion de la firma en lugar de comprometerla.',
+                'problem2.negativeHalo': 'Efecto Halo Negativo',
+                'problem2.negativeHaloDesc': 'En legal, forma es función: al ver "No seguro", el prospecto no interpreta un error técnico; interpreta falta de control profesional.',
+                'problem2.doubt': 'Duda',
+                'problem2.doubtDesc': 'Si el sitio no se protege, ¿cómo protegerán casos de alto valor?',
+                'problem2.solution': '✅ SOLUCIÓN #2',
+                'problem2.solutionHeading': 'Lo Que Obtendrá',
+                
+                // Problem 3 - Visual Design
+                'problem3.badge': 'Problema 3 de 5',
+                'problem3.title': 'Diseño Visual & Primeras Impresiones',
+                'problem3.severity': 'Nivel de Severidad',
+                'problem3.severityLevel': '� IMPORTANTE',
+                'problem3.importance': 'Nivel de Importancia',
+                'problem3.importanceLevel': '75%',
+                'problem3.heading': 'El Problema',
+                'problem3.desc1': 'Su sitio web emplea patrones de diseño y arquitectura de información de principios de la década de 2010: barras laterales rígidas, fuentes de sistema estándar, jerarquía visual plana y diseños de plantilla genéricos que no logran establecer autoridad cognitiva.',
+                'problem3.desc2': '<strong>Por qué esto importa desde una perspectiva UX/UI:</strong> Sus áreas de práctica—derecho de aviación, litigio complejo de construcción, defensa corporativa—representan el nivel más alto de especialización legal. Sin embargo, su interfaz digital actual crea una desconexión crítica entre la sofisticación de sus servicios legales y su representación visual. El sistema de diseño del sitio no aprovecha los principios contemporáneos de psicología visual, teoría de la gestalt o diseño estratégico de información.',
+                'problem3.desc3': 'Nos especializamos en entender cómo opera la comunicación visual en la intersección de la psicología cognitiva y el branding corporativo. El diseño actual carece del uso estratégico de espacios en blanco, jerarquía tipográfica y equilibrio composicional que los clientes de alto patrimonio y los tomadores de decisiones C-suite esperan subconscientemente de un asesor legal de primer nivel. Su identidad visual debe comunicar autoridad a través de señales de diseño sutiles: microinteracciones, psicología del color intencional y relaciones espaciales deliberadas.',
+                'problem3.desc4': 'Cuando los asesores generales de Fortune 500 o ejecutivos de aviación comparan su presencia digital con competidores que tienen interfaces modernas y estratégicamente diseñadas, hacen juicios inmediatos sobre la capacidad organizacional. Esta brecha de percepción, por injusta que sea, impacta directamente las tasas de conversión y la confianza del cliente. El diseño de interfaz contemporáneo no es decoración; es comunicación empresarial estratégica que opera por debajo de la conciencia.',
+                'problem3.cognitive': 'Realidad Cognitiva de las Primeras Impresiones:',
+                'problem3.cognitiveDesc': 'La investigación muestra que los usuarios forman juicios visuales en 50 milisegundos. En 2026, sofisticación de diseño = competencia percibida. Su interfaz visual es su primera interacción abogado-cliente.',
+                'problem3.cognitiveNote': 'La credibilidad visual precede a la credibilidad del contenido en entornos digitales.',
+                'problem3.solution': '✅ SOLUCIÓN #3',
+                'problem3.solutionHeading': 'Lo Que Obtendrá',
+                'problem3.solTitle': 'Un sistema UX/UI de nivel corporativo que refleja el calibre de su práctica legal.',
+                'problem3.solDesc': 'Implementaremos un sistema de diseño integral construido sobre principios UX de nivel empresarial: escalas tipográficas refinadas, psicología del color intencional alineada con la autoridad legal, micro-animaciones sofisticadas que guían la atención del usuario y puntos de quiebre responsivos optimizados para patrones de uso de dispositivos C-suite.',
+                'problem3.uxElements': 'Elementos estratégicos UX/UI que desplegaremos:',
+                
+                // Problem 4 - Image Quality
+                'problem4.badge': 'Problema 4 de 5',
+                'problem4.title': 'Fotografía & Calidad Visual',
+                'problem4.severity': 'Nivel de Severidad',
+                'problem4.severityLevel': '� IMPORTANTE',
+                'problem4.importance': 'Nivel de Importancia',
+                'problem4.importanceLevel': '70%',
+                'problem4.heading': 'El Problema',
+                'problem4.desc1': 'Las fotos en su sitio web se ven borrosas y pixeladas cuando se visualizan en dispositivos modernos como iPhones, MacBooks y monitores 4K.',
+                'problem4.desc2': '<strong>Esto es lo que está sucediendo:</strong> Sus imágenes fueron optimizadas para pantallas antiguas. Los dispositivos de hoy tienen una resolución mucho mayor (pantallas "Retina"), por lo que esas mismas imágenes ahora se ven borrosas. Es como ver una cinta VHS antigua en un televisor 4K nuevo.',
+                'problem4.desc3': 'Además, las fotos de stock utilizadas, aunque eran profesionales hace años, ahora se sienten genéricas. Todas las industrias las usan. Sus áreas de práctica (aviación, construcción) merecen imágenes que se sientan específicas, autoritarias y premium.',
+                'problem4.solution': '✅ SOLUCIÓN #4',
+                'problem4.solutionHeading': 'Lo Que Obtendrá',
+                'problem4.bottomLine': 'Resultado Final:',
+                'problem4.bottomLineDesc': 'Su sitio web se verá tan premium como su tarifa por hora.',
+                
+                // Problem 5 - Technology
+                'problem5.badge': 'Problema 5 de 5',
+                'problem5.title': 'Tecnología del Sitio Web & Rendimiento',
+                'problem5.severity': 'Nivel de Severidad',
+                'problem5.severityLevel': '� MODERADO',
+                'problem5.importance': 'Nivel de Importancia',
+                'problem5.importanceLevel': '60%',
+                'problem5.heading': 'El Problema',
+                'problem5.desc1': 'Su sitio web funciona en WordPress, una plataforma que fue revolucionaria hace 15 años pero que se ha vuelto lenta y requiere mucho mantenimiento en 2026.',
+                'problem5.desc2': '<strong>Lo que esto significa en la práctica:</strong> Su sitio carga en 3-4 segundos. Google penaliza los sitios que tardan más de 2 segundos, lo que perjudica su clasificación en las búsquedas. Los visitantes en dispositivos móviles (de donde proviene la mayoría del tráfico) experimentan cargas aún más lentas.',
+                'problem5.desc3': 'Además, WordPress requiere actualizaciones constantes y mantenimiento de plugins. Cada actualización conlleva el riesgo de que algo se rompa. Los bufetes de abogados también son objetivos frecuentes de hackeos de WordPress, lo que requiere un monitoreo de seguridad vigilante.',
+                'problem5.desc4': '<strong>La alternativa moderna:</strong> Plataformas como React/Next.js (utilizadas por las principales corporaciones) son más rápidas, más seguras y requieren casi cero mantenimiento continuo. Su sitio cargaría en menos de 1 segundo, y nunca más se preocuparía por conflictos de plugins.',
+                'problem5.loadTime': 'Tiempo de Carga Actual:',
+                'problem5.loadTimeValue': '3.8 segundos',
+                'problem5.loadTimeNote': 'Google penaliza sitios >2s',
+                'problem5.solution': '✅ SOLUCIÓN #5',
+                'problem5.solutionHeading': 'Lo Que Obtendrá',
+                'problem5.bottomLine': 'Resultado Final:',
+                'problem5.bottomLineDesc': 'Confígurelo y olvídese. Pase cero tiempo en mantenimiento del sitio web durante la próxima década.',
+                
+                // Investment Section
+                'investment.heading': 'Inversión Estratégica',
+                'investment.subheading': 'Tres opciones diseñadas para diferentes prioridades',
+                'investment.essential.title': 'Esencial',
+                'investment.essential.subtitle': 'Correcciones rápidas & optimización',
+                'investment.essential.price': '$8,500',
+                'investment.essential.feature1': 'Optimización de metadatos SEO',
+                'investment.essential.feature2': 'Correcciones de SSL y seguridad',
+                'investment.essential.feature3': 'Fotos de stock premium (licenciadas)',
+                'investment.essential.feature4': 'Ajuste de rendimiento de WordPress',
+                'investment.essential.timeline': 'Tiempo: 2 semanas',
+                'investment.recommended': 'RECOMENDADO',
+                'investment.professional.title': 'Profesional',
+                'investment.professional.subtitle': 'Transformación digital completa',
+                'investment.professional.price': '$15,000',
+                'investment.professional.feature1': '<strong>Todo lo de Esencial</strong>',
+                'investment.professional.feature2': 'Diseño UI/UX personalizado (Figma)',
+                'investment.professional.feature3': 'Plataforma moderna (Webflow/Framer)',
+                'investment.professional.feature4': 'Sistema de iconos personalizado (SVG)',
+                'investment.professional.feature5': 'Migración SEO completa',
+                'investment.professional.timeline': 'Tiempo: 45 días',
+                'investment.elite.title': 'Élite',
+                'investment.elite.subtitle': 'Solución de nivel empresarial',
+                'investment.elite.price': '$25,000',
+                'investment.elite.feature1': '<strong>Todo lo de Profesional</strong>',
+                'investment.elite.feature2': 'Arquitectura React/Next.js sin cabeza',
+                'investment.elite.feature3': 'Sesión de fotografía profesional',
+                'investment.elite.feature4': 'Guía de estilo de marca y activos',
+                'investment.elite.feature5': '6 meses de soporte post-lanzamiento',
+                'investment.elite.timeline': 'Tiempo: 60 días',
+                'investment.terms': 'Términos de pago: 50% para comenzar / 50% en la entrega',
+                'investment.note': 'Esta es una inversión de capital única para un activo digital diseñado para durar una década.',
+                
+                // Client Portal
+                'portal.badge': 'Complemento Opcional',
+                'portal.title': 'Plataforma de Acceso Seguro para Clientes',
+                'portal.desc1': 'Si lo desea, podemos agregar un sistema de operaciones privado para clientes al sitio: acceso seguro de usuarios, seguimiento de casos, bóveda de documentos, facturas y flujos de trabajo de firma digital en un entorno controlado.',
+                'portal.desc2': 'Las plataformas legales de alto rendimiento en el mercado comúnmente ofrecen exactamente este modelo: comunicación centralizada, actualizaciones de casos, intercambio seguro de archivos, visibilidad de facturación y firma electrónica. Podemos implementar el mismo nivel de claridad operativa para MMH con su marca y lógica de procesos internos.',
+                'portal.features.heading': 'Lo que puede incluir este complemento',
+                'portal.feature1': 'Portal de clientes con acceso basado en roles',
+                'portal.feature2': 'Cronología de progreso del asunto e hitos',
+                'portal.feature3': 'Facturas, enlaces de pago, estados de cuenta',
+                'portal.feature4': 'Centro de documentos seguro y control de versiones',
+                'portal.feature5': 'Flujos de trabajo de firma digital y aprobación',
+                'portal.feature6': 'Notificaciones, recordatorios y registros de auditoría',
+                'portal.cta': 'Ver Simulación Interactiva',
+                'portal.outcome.heading': 'Resultado Operacional',
+                'portal.outcome.title': 'De Sitio Web a Centro de Comando para Clientes',
+                'portal.outcome.case': 'Transparencia del Estado del Caso',
+                'portal.outcome.caseStatus': 'En Vivo',
+                'portal.outcome.billing': 'Visibilidad de Facturación y Pagos',
+                'portal.outcome.billingStatus': 'Integrado',
+                'portal.outcome.document': 'Seguridad y Compartición de Documentos',
+                'portal.outcome.documentStatus': 'Encriptado',
+                'portal.outcome.signature': 'Flujos de Trabajo de Firma Digital',
+                'portal.outcome.signatureStatus': 'Listo',
+                'portal.outcome.communication': 'Carga de Comunicación con Clientes',
+                'portal.outcome.communicationStatus': 'Reducida',
+                'portal.strategicNote': 'Nota estratégica:',
+                'portal.strategicText': 'para una firma que maneja asuntos complejos y de alto valor, una experiencia básica solo de WordPress crea una brecha de percepción evitable. Este complemento cierra esa brecha con operaciones de clientes de nivel empresarial.',
+                
+                // Portal Modal
+                'modal.subtitle': 'Simulación',
+                'modal.title': 'Portal Seguro de Clientes MMH',
+                'modal.caseDashboard': 'Panel de Casos',
+                'modal.secureSession': 'Sesión Segura Activa',
+                'modal.activeMatters': 'Asuntos Activos',
+                'modal.pendingSignatures': 'Firmas Pendientes',
+                'modal.openInvoices': 'Facturas Abiertas',
+                'modal.matterTitle': 'Asunto: Apelación de Responsabilidad de Aerolínea',
+                'modal.task1': 'Aviso de Apelación Presentado',
+                'modal.status1': 'Completado',
+                'modal.task2': 'Borrador de Escrito de Apelante',
+                'modal.status2': 'En Revisión',
+                'modal.task3': 'Carga de Apéndice de Registro',
+                'modal.status3': 'Esperando Archivos del Cliente',
+                'modal.latestInvoice': 'Última Factura',
+                'modal.viewPay': 'Ver / Pagar',
+                'modal.docSignature': 'Firma de Documento',
+                'modal.docName': 'Addendum de Compromiso v2',
+                'modal.signDigitally': 'Firmar Digitalmente',
+                'modal.securityLayer': 'Capa de Seguridad y Control',
+                'modal.security1': 'Controles de acceso basados en roles',
+                'modal.security2': 'MFA + endurecimiento de sesión',
+                'modal.security3': 'Almacenamiento de archivos encriptado',
+                'modal.security4': 'Registros de auditoría y seguimiento de actividad',
+                'modal.security5': 'Flujo de certificación de acceso',
+                'modal.securityNote': 'Modelo de confianza empresarial alineado para requisitos de confidencialidad legal y flujos de trabajo de litigios de alto valor.',
+                
+                // Footer
+                'footer.tagline': 'Arquitectura Digital & Estrategia',
+                'footer.name': 'Su Nombre / Su Compañía',
+                'footer.contact': 'tu-email@ejemplo.com | (123) 456-7890',
+                'footer.confidential': 'Esta propuesta es confidencial e intendida únicamente para Murray, Morin & Herman, P.A.',
+                
+                // Final CTA
+                'cta.heading': 'Su Reputación Merece una Presencia Digital de Élite',
+                'cta.description': 'Somos expertos en dos frentes decisivos: posicionar su firma para que deje una huella clara en las búsquedas y aparezca junto a los mejores actores, e implementar una arquitectura de seguridad reforzada para que la plataforma sea anti-intrusión, estable y confiable.<br><br>Permanecer en una estructura basada en WordPress para una firma de este calibre se ha convertido en un cuello de botella amateur: menor velocidad, mayor superficie de ataque y señal competitiva más débil. Cerrar esa brecha ahora es una ventaja estratégica, no una mejora cosmética.',
+                'cta.button': 'Agendar Reunión de 15 Minutos con un Socio',
+                'cta.note': 'Sin compromiso. Solo una conversación sobre el futuro digital de su firma.',
+                
+                // Practice Areas
+                'practice.appellate': 'Apelaciones',
+                'practice.aviation': 'Aviación',
+                'practice.auto': 'Defensa de Camiones y Auto Comercial',
+                'practice.construction': 'Construcción',
+                'practice.corporate': 'Litigio Corporativo',
+                'practice.fire': 'Defensa de Pérdidas por Incendio y Siniestros',
+                'practice.government': 'Defensa de Entidades Gubernamentales',
+                'practice.insurance': 'Defensa de Seguros y Reaseguros',
+                'practice.coverage': 'Cobertura de Seguros',
+                'practice.injury': 'Defensa de Lesiones Personales y Muerte Injusta',
+                'practice.premises': 'Defensa de Responsabilidad de Locales y Seguridad Negligente',
+                'practice.products': 'Responsabilidad de Productos'
+            }
+        };
+        
+        // Language Switcher Function
+        function switchLanguage(lang) {
+            // Update all translatable elements
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Keep document language aligned with selected content
+            document.documentElement.lang = lang === 'es' ? 'es' : 'en';
+            
+            // Store preference
+            localStorage.setItem('preferred-language', lang);
+        }
+        
+        // Language Selector
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active from all buttons
+                document.querySelectorAll('.lang-btn').forEach(b => {
+                    b.classList.remove('active');
+                    b.classList.remove('text-mate-gold');
+                    b.classList.add('text-gray-400');
+                });
+                
+                // Add active to clicked button
+                this.classList.add('active');
+                this.classList.remove('text-gray-400');
+                this.classList.add('text-mate-gold');
+                
+                // Get selected language and switch
+                const lang = this.getAttribute('data-lang');
+                switchLanguage(lang);
+            });
+        });
+        
+        // Force English as default on every page load
+        switchLanguage('en');
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            if (btn.getAttribute('data-lang') === 'en') {
+                btn.classList.add('active', 'text-mate-gold');
+                btn.classList.remove('text-gray-400');
+            } else {
+                btn.classList.remove('active', 'text-mate-gold');
+                btn.classList.add('text-gray-400');
+            }
+        });
+
+        // Portal modal interactions
+        const portalModal = document.getElementById('portalModal');
+        const openPortalModal = document.getElementById('openPortalModal');
+        const closePortalModal = document.getElementById('closePortalModal');
+
+        if (portalModal && openPortalModal && closePortalModal) {
+            openPortalModal.addEventListener('click', () => {
+                portalModal.classList.remove('hidden');
+                portalModal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            });
+
+            closePortalModal.addEventListener('click', () => {
+                portalModal.classList.add('hidden');
+                portalModal.classList.remove('flex');
+                document.body.style.overflow = '';
+            });
+
+            portalModal.addEventListener('click', (event) => {
+                if (event.target === portalModal) {
+                    portalModal.classList.add('hidden');
+                    portalModal.classList.remove('flex');
+                    document.body.style.overflow = '';
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && !portalModal.classList.contains('hidden')) {
+                    portalModal.classList.add('hidden');
+                    portalModal.classList.remove('flex');
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+    </script>
+
+    <!-- Google Search Simulator Script -->
+    <script>
+        // Search query data
+        const searchData = {
+            aviation: {
+                query: 'aviation attorney Miami',
+                optimizedUrl: 'www.mmhlaw.com/aviation',
+                optimizedTitle: 'Miami Aviation Defense Attorneys | Complex Litigation & Regulatory Counsel',
+                optimizedDescription: 'Murray Morin & Herman, P.A. advises airlines, operators, and insurers in aviation litigation, FAA-related disputes, and high-exposure defense matters throughout Florida.',
+                projectedCtr: '+38% to +62%',
+                projectedIndexCoverage: '95%+',
+                projectedVisibility: 'Top 3-10',
+                projectedOutcome: 'Projected outcome: stronger first-page relevance for aviation-intent searches and higher conversion-quality inbound leads.',
+                results: [
+                    {
+                        url: 'www.competitorlaw.com',
+                        title: 'Aviation Attorney Miami - Complex Litigation Experts',
+                        description: 'Expert aviation lawyers in Miami handling aircraft accidents, FAA compliance, and commercial aviation disputes. 20+ years experience...'
+                    },
+                    {
+                        url: 'www.miamiaviationlaw.com',
+                        title: 'Miami Aviation Lawyers | Aircraft Accident Defense',
+                        description: 'Specialized aviation defense attorneys serving Miami-Dade and South Florida. Former FAA counsel. Call for free consultation...'
+                    }
+                ]
+            },
+            construction: {
+                query: 'construction defense Tampa',
+                optimizedUrl: 'www.mmhlaw.com/construction',
+                optimizedTitle: 'Tampa Construction Defense Lawyers | Contract, Defect & Claims Counsel',
+                optimizedDescription: 'MMH Law represents contractors, developers, and carriers in complex construction disputes, defect litigation, and high-value defense strategy across Florida.',
+                projectedCtr: '+34% to +55%',
+                projectedIndexCoverage: '93%+',
+                projectedVisibility: 'Top 5-12',
+                projectedOutcome: 'Projected outcome: better visibility for construction-defense intent and a steadier flow of high-value corporate inquiries.',
+                results: [
+                    {
+                        url: 'www.tampaconstructionlaw.com',
+                        title: 'Construction Defense Lawyers Tampa | Defect Claims',
+                        description: 'Tampa construction litigation attorneys specializing in defect claims, contract disputes, and insurance defense...'
+                    },
+                    {
+                        url: 'www.floridaconstructiondefense.com',
+                        title: 'Tampa Construction Defense Attorneys | 30 Years Experience',
+                        description: 'Experienced construction defense lawyers in Tampa Bay. Representing contractors, developers, and insurers in complex litigation...'
+                    }
+                ]
+            },
+            insurance: {
+                query: 'insurance litigation Florida',
+                optimizedUrl: 'www.mmhlaw.com/insurance',
+                optimizedTitle: 'Florida Insurance Litigation Counsel | Coverage, Bad Faith & Appeals',
+                optimizedDescription: 'Murray Morin & Herman, P.A. handles insurance coverage disputes, bad-faith litigation, and appellate strategy for high-stakes matters statewide.',
+                projectedCtr: '+36% to +58%',
+                projectedIndexCoverage: '94%+',
+                projectedVisibility: 'Top 4-10',
+                projectedOutcome: 'Projected outcome: stronger insurance-litigation discoverability and more qualified leads from policy and carrier-related searches.',
+                results: [
+                    {
+                        url: 'www.floridainsurancedefense.com',
+                        title: 'Florida Insurance Litigation Attorneys | Coverage & Bad Faith',
+                        description: 'Statewide insurance litigation team handling complex coverage disputes, bad faith claims, and high-exposure defense matters...'
+                    },
+                    {
+                        url: 'www.insuranceappealgroup.com',
+                        title: 'Insurance Coverage Counsel Florida | Trial & Appellate',
+                        description: 'Experienced insurance coverage lawyers representing carriers and corporate policyholders in Florida and federal courts...'
+                    }
+                ]
+            },
+            appellate: {
+                query: 'appellate attorney Tampa',
+                optimizedUrl: 'www.mmhlaw.com/appellate',
+                optimizedTitle: 'Miami Appellate Attorneys | Aviation, Insurance & Complex Defense',
+                optimizedDescription: 'Murray Morin & Herman, P.A. represents high-stakes clients in appellate litigation across Florida and federal courts, including aviation, insurance bad faith, and product liability appeals.',
+                projectedCtr: '+40% to +64%',
+                projectedIndexCoverage: '96%+',
+                projectedVisibility: 'Top 3-8',
+                projectedOutcome: 'Projected outcome: increased appellate-intent authority signals and stronger first-contact opportunities from high-intent prospects.',
+                results: [
+                    {
+                        url: 'www.tampaappellatelaw.com',
+                        title: 'Tampa Appellate Attorneys | Civil Appeals & Complex Motions',
+                        description: 'Appellate counsel in Tampa for high-value civil appeals, writs, and strategic post-trial litigation support...'
+                    },
+                    {
+                        url: 'www.floridaappealsfirm.com',
+                        title: 'Florida Appeals Lawyers | Supreme Court & Federal Circuit',
+                        description: 'Dedicated Florida appellate practice serving business, aviation, and insurance litigation clients across key jurisdictions...'
+                    }
+                ]
+            }
+        };
+
+        function setActiveTabGroup(groupSelector, queryType) {
+            document.querySelectorAll(groupSelector).forEach(tab => {
+                const isActive = tab.getAttribute('data-query') === queryType;
+                tab.classList.toggle('active', isActive);
+                tab.classList.toggle('border-oxford-blue', isActive);
+                tab.classList.toggle('bg-white', isActive);
+                tab.classList.toggle('text-oxford-blue', isActive);
+                tab.classList.toggle('bg-gray-100', !isActive);
+                tab.classList.toggle('text-gray-600', !isActive);
+            });
+        }
+
+        function updateSearchSimulation(queryType) {
+            const data = searchData[queryType];
+            if (!data) return;
+
+            setActiveTabGroup('.search-tab-problem', queryType);
+            setActiveTabGroup('.search-tab-projected', queryType);
+
+            const problemQuery = document.querySelector('.result-query-problem');
+            if (problemQuery) {
+                problemQuery.textContent = data.query;
+            }
+
+            const solutionQuery = document.querySelector('.result-query-solution');
+            if (solutionQuery) {
+                solutionQuery.textContent = data.query;
+            }
+
+            const solutionUrl = document.querySelector('.solution-url');
+            if (solutionUrl) {
+                solutionUrl.textContent = data.optimizedUrl;
+            }
+
+            const solutionTitle = document.querySelector('.solution-title');
+            if (solutionTitle) {
+                solutionTitle.textContent = data.optimizedTitle;
+            }
+
+            const solutionDescription = document.querySelector('.solution-description');
+            if (solutionDescription) {
+                solutionDescription.textContent = data.optimizedDescription;
+            }
+
+            const solutionCtr = document.querySelector('.solution-ctr');
+            if (solutionCtr) {
+                solutionCtr.textContent = data.projectedCtr;
+            }
+
+            const solutionIndex = document.querySelector('.solution-index');
+            if (solutionIndex) {
+                solutionIndex.textContent = data.projectedIndexCoverage;
+            }
+
+            const solutionVisibility = document.querySelector('.solution-visibility');
+            if (solutionVisibility) {
+                solutionVisibility.textContent = data.projectedVisibility;
+            }
+
+            const solutionOutcome = document.querySelector('.solution-outcome');
+            if (solutionOutcome) {
+                solutionOutcome.textContent = data.projectedOutcome;
+            }
+
+            // Update competitor results (keeping MMH current-problem result static at position 3)
+            const resultItems = document.querySelectorAll('.result-item');
+
+            if (resultItems[0] && data.results[0]) {
+                resultItems[0].querySelector('.text-xs.text-gray-600').textContent = data.results[0].url;
+                resultItems[0].querySelector('.text-lg.text-blue-600').textContent = data.results[0].title;
+                resultItems[0].querySelector('.text-sm.text-gray-600').textContent = data.results[0].description;
+            }
+
+            if (resultItems[1] && data.results[1]) {
+                resultItems[1].querySelector('.text-xs.text-gray-600').textContent = data.results[1].url;
+                resultItems[1].querySelector('.text-lg.text-blue-600').textContent = data.results[1].title;
+                resultItems[1].querySelector('.text-sm.text-gray-600').textContent = data.results[1].description;
+            }
+        }
+
+        document.querySelectorAll('.search-tab-problem, .search-tab-projected').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const queryType = this.getAttribute('data-query');
+                updateSearchSimulation(queryType);
+            });
+        });
+
+        updateSearchSimulation('aviation');
+    </script>
+
+    <!-- Scroll Progress Script -->
+    <script>
+        // Scroll Progress Bar
+        const scrollProgress = document.getElementById('scrollProgress');
+
+        window.addEventListener('scroll', () => {
+            // Calculate scroll progress
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = window.scrollY;
+            const scrollPercent = (scrolled / windowHeight) * 100;
+
+            // Update progress bar height
+            if (scrollProgress) {
+                scrollProgress.style.setProperty('--progress', scrollPercent + '%');
+                const progressBar = scrollProgress.querySelector(':after') || scrollProgress;
+                if (progressBar) {
+                    const after = window.getComputedStyle(scrollProgress, '::after');
+                    const progressElement = scrollProgress.querySelector('.scroll-progress-bar');
+                    scrollProgress.style.width = '4px';
+                }
+            }
+
+            // Update progress bar using direct element manipulation
+            const progressFill = scrollProgress.querySelector('.scroll-progress-fill');
+            if (scrollProgress) {
+                scrollProgress.style.background = 'rgba(0, 33, 71, 0.1)';
+            }
+            
+            // Update the pseudo-element via a wrapper
+            const pseudoElementHeight = scrollPercent + '%';
+            scrollProgress.style.setProperty('--scroll-height', pseudoElementHeight);
+        });
+
+        // Enhanced scroll progress using canvas or different method
+        const progressBar = document.createElement('div');
+        progressBar.style.cssText = `
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 0%;
+            background: linear-gradient(180deg, #C9861E 0%, #002147 100%);
+            z-index: 39;
+            transition: height 0.2s ease-out;
+        `;
+
+        // Replace the scroll progress element with this functional one
+        const scrollProgressOriginal = document.querySelector('.scroll-progress');
+        if (scrollProgressOriginal) {
+            scrollProgressOriginal.parentNode.replaceChild(progressBar, scrollProgressOriginal);
+        }
+
+        // Update progress bar on scroll
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = window.scrollY;
+            const scrollPercent = (scrolled / windowHeight) * 100;
+            progressBar.style.height = scrollPercent + '%';
+        });
+
+        // Floating Timeline Logic
+        const floatingTimeline = document.getElementById('floatingTimeline');
+        const timelineDotsMap = {
+            'problem-1': 0,
+            'problem-2': 1,
+            'problem-3': 2,
+            'problem-4': 3,
+            'problem-5': 4
+        };
+
+        // Show timeline after hero section (300px)
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                floatingTimeline.classList.add('show');
+            } else {
+                floatingTimeline.classList.remove('show');
+            }
+
+            // Update active dot based on scroll position
+            updateActiveTimelineSection();
+        });
+
+        // Function to update active timeline dot
+        function updateActiveTimelineSection() {
+            const sections = document.querySelectorAll('[id^="problem-"]');
+            let activeSection = null;
+
+            sections.forEach((section) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= window.innerHeight / 2) {
+                    activeSection = section.id;
+                }
+            });
+
+            // Update all dots
+            document.querySelectorAll('.timeline-dot').forEach((dot) => {
+                dot.classList.remove('active');
+                if (activeSection && dot.getAttribute('data-section') === activeSection) {
+                    dot.classList.add('active');
+                }
+            });
+        }
+
+        // Timeline dot click functionality
+        document.querySelectorAll('.timeline-dot').forEach((dot) => {
+            dot.addEventListener('click', function() {
+                const sectionId = this.getAttribute('data-section');
+                const section = document.getElementById(sectionId);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

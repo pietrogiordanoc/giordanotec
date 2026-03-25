@@ -319,3 +319,105 @@
         font-size: 1.3rem;
     }
 }
+
+/* ── About / Policy pages ── */
+.sat-page .editorial-banner {
+    margin-bottom: 28px;
+}
+
+.sat-page .project-intro {
+    margin-bottom: 28px;
+}
+
+.sat-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 34px;
+    margin-bottom: 34px;
+}
+
+.sat-card {
+    background: #fff;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    padding: 24px;
+}
+
+.sat-card h3 {
+    font-size: 1.15rem;
+    margin-bottom: 12px;
+    color: #0f3460;
+    font-weight: 700;
+}
+
+.sat-card p {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 10px;
+    font-weight: 300;
+}
+
+.sat-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sat-list li {
+    font-size: 0.88rem;
+    color: #444;
+    margin-bottom: 9px;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.65;
+}
+
+.sat-list li::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #1565c0;
+    position: absolute;
+    left: 0;
+    top: 8px;
+}
+
+.sat-highlight {
+    border-left: 3px solid #1565c0;
+    padding: 14px 16px;
+    background: #f7fbff;
+    margin: 16px 0;
+    font-size: 0.88rem;
+    color: #355;
+}
+
+.policy-block {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #ededed;
+}
+
+.policy-block:last-child {
+    border-bottom: none;
+}
+
+.policy-block h3 {
+    font-size: 1.02rem;
+    color: #111;
+    margin-bottom: 10px;
+}
+
+.policy-block p {
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: #4a4a4a;
+    font-weight: 300;
+}
+
+@media (max-width: 900px) {
+    .sat-grid {
+        grid-template-columns: 1fr;
+    }
+}

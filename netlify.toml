@@ -3,11 +3,12 @@
   publish = "."
   command = "echo 'No build command needed for static site'"
 
-# Redirect rules
+# Redirect rules - MMLAW es accesible directamente sin redirección
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  force = false
 
 # Headers for security and performance
 [[headers]]

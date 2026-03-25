@@ -1,0 +1,256 @@
+/* 
+ * MMH Law Proposal - Email Templates
+ * Copy-paste ready emails para diferentes escenarios
+ */
+
+// ============================================
+// EMAIL #1: PRIMER CONTACTO (COLD OUTREACH)
+// ============================================
+
+Subject: Technical audit: 7 critical vulnerabilities detected on mmhlaw.com
+
+Dear [Partner Name],
+
+I conducted an unsolicited technical audit of mmhlaw.com and identified 7 critical vulnerabilities that are costing you high-value cases every month.
+
+I prepared an interactive report for the managing partners:
+
+[LINK TO YOUR LANDING PAGE]
+
+3-minute read. Zero obligation.
+
+The question isn't whether you can afford this transformation—it's how much not acting is costing you daily.
+
+I'm available for a brief meeting at your convenience.
+
+Best regards,
+[Your Name]
+[Your Email]
+[Your Phone]
+
+
+// ============================================
+// EMAIL #2: FOLLOW-UP (48-72 horas después)
+// ============================================
+
+Subject: Re: Technical audit: 7 critical vulnerabilities
+
+[Partner Name],
+
+Just following up on the technical report I sent on [Date].
+
+Did you have a chance to review the findings? 
+
+I'm particularly concerned about the security redirect issue (staug.pagmiami.com) that's triggering browser warnings for your clients.
+
+Would you prefer a 15-minute call to discuss, or should I send a brief PDF summary?
+
+Best,
+[Your Name]
+
+
+// ============================================
+// EMAIL #3: SEGUIMIENTO #2 (1 semana después)
+// ============================================
+
+Subject: Quick question - mmhlaw.com transformation
+
+[Partner Name],
+
+I understand managing partners are incredibly busy, so I'll be direct:
+
+Your site currently:
+❌ Has a "-" as its Google title (invisible to search)
+❌ Redirects clients to unsecure test servers
+❌ Loads in 3.8 seconds (Google penalty threshold: 2s)
+
+This isn't about aesthetics. It's about authority.
+
+If you'd like to discuss, I'm available [Day] or [Day] this week.
+
+Otherwise, I'll assume this isn't a priority right now and won't follow up again.
+
+Best,
+[Your Name]
+
+
+// ============================================
+// EMAIL #4: RESPUESTA SI DICEN "ENVIANOS PROPUESTA FORMAL"
+// ============================================
+
+Subject: Re: MMH Law digital transformation proposal
+
+[Partner Name],
+
+The interactive report I sent IS the formal proposal:
+[LINK]
+
+It includes:
+✓ Technical audit with actual screenshots
+✓ Problem/solution breakdown
+✓ 3 investment tiers ($8.5K - $25K)
+✓ Timeline and deliverables
+
+If you need a traditional PDF instead, I can send one. But the interactive format demonstrates exactly what I'm proposing: modern, fast, professional.
+
+What specific questions can I answer for you?
+
+Best,
+[Your Name]
+
+
+// ============================================
+// EMAIL #5: SI RECHAZAN PRECIO
+// ============================================
+
+Subject: Re: Budget concerns
+
+[Partner Name],
+
+I appreciate the transparency about budget.
+
+To put this in perspective:
+
+Your firm handles aviation defense cases. A single case likely bills $200K-$500K+.
+
+If your broken SEO causes you to lose just ONE case per year, you're down $200K-$500K.
+
+This project costs $15K (Professional tier) - that's 3-7% of one case.
+
+The question isn't "Can we afford this?" 
+
+It's "Can we afford to keep bleeding opportunities?"
+
+I'm flexible on payment terms if that helps (50% now, 50% in 90 days).
+
+Let me know.
+
+Best,
+[Your Name]
+
+
+// ============================================
+// EMAIL #6: GRATITUDE IF ACEPTAN
+// ============================================
+
+Subject: Thank you - Let's transform MMH Law
+
+[Partner Name],
+
+Excellent. I'm excited to work with you.
+
+Next steps:
+1. I'll send the contract today
+2. 50% deposit to start ($[Amount])
+3. Kickoff call scheduled for [Date/Time]
+
+You're making the right decision. Within 45 days, MMH Law will have a digital presence that matches the caliber of your legal work.
+
+Talk soon,
+[Your Name]
+
+
+// ============================================
+// SMS TEMPLATES (si tienes su número)
+// ============================================
+
+// SMS #1 (después de enviar email):
+"Hi [FirstName], sent you a technical audit of mmhlaw.com via email. 3-min read, found some critical issues. LMK if you see it. -[YourName]"
+
+// SMS #2 (follow-up):
+"[FirstName], checking in - did you get a chance to review that report? The security issue is urgent. Happy to discuss over quick call. -[YourName]"
+
+
+// ============================================
+// LINKEDIN MESSAGE (si están en LinkedIn)
+// ============================================
+
+Hi [FirstName],
+
+I came across MMH Law while researching top aviation defense firms in Florida.
+
+Out of curiosity, I ran a technical audit on your site and found some concerning vulnerabilities (Google title showing as "-", security redirects to test servers, etc.)
+
+Would you be open to seeing the findings? No pitch, just thought you should know.
+
+Best,
+[Your Name]
+
+
+// ============================================
+// VOICEMAIL SCRIPT (si llamas por teléfono)
+// ============================================
+
+"Hi [Partner Name], this is [Your Name], web architect. 
+
+I conducted a technical audit of mmhlaw.com and found 7 critical issues affecting your client acquisition, including broken SEO and security warnings.
+
+I sent you an interactive report to [Email]. 
+
+I'll try you again next week, but feel free to call me back at [Phone] if you'd like to discuss sooner.
+
+Thanks."
+
+
+// ============================================
+// MEETING SCRIPT (si logran agendar)
+// ============================================
+
+INTRO (30 seconds):
+"Thanks for taking the time. I'll be direct: I found several critical vulnerabilities on your site that are costing you cases. I'm here to show you what they are and how we fix them."
+
+DISCOVERY (2 minutes):
+- "Walk me through your current process: How do most clients find you?"
+- "What percentage come through the website vs. referrals?"
+- "Have you noticed a decline in web leads in the past year?"
+
+DIAGNOSIS (5 minutes):
+- Screen share the landing page
+- Walk through each problem visually
+- Ask: "Were you aware of [specific issue]?"
+
+SOLUTION (3 minutes):
+- "Here's what I propose..." (show pricing table)
+- "The Professional tier at $15K gives you everything you need."
+- "Timeline is 45 days from deposit to launch."
+
+CLOSE (2 minutes):
+- "Do you need to discuss with other partners, or can we move forward today?"
+- If yes: "Great, I'll send the contract by end of day."
+- If no: "What concerns do you have?" (handle objections)
+
+OBJECTION HANDLING:
+- "That's expensive": "Compared to what? One lost case costs $200K+."
+- "We need to think about it": "What specifically do you need to think about?"
+- "Can you do it for less?": "I can, but we'd have to cut [X, Y, Z]. Is that acceptable?"
+
+
+// ============================================
+// CONTRACT NEXT STEPS
+// ============================================
+
+After they say yes:
+1. Send contract (use DocuSign or HelloSign)
+2. Invoice for 50% deposit (use Wave, QuickBooks, or Stripe)
+3. Schedule kickoff call (Calendly link)
+4. Ask for:
+   - Logo files (vector if possible)
+   - Brand guidelines (if they exist)
+   - All login credentials (hosting, domain, WordPress)
+   - List of must-have pages/content
+
+Boom. You're in business.
+
+
+// ============================================
+// PRICING NEGOTIATION RULES
+// ============================================
+
+1. NEVER discount more than 15%
+2. If they push: Offer payment plan, not discount
+3. Remove features, don't reduce price
+4. "I can do Essential tier ($8.5K) which excludes [X,Y,Z]"
+5. Stand firm on Professional ($15K) - that's your sweet spot
+
+
+Good luck! 🚀

@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John M. Murray - Murray, Morin & Herman, P.A.</title>
+    <meta name="description" content="Partner specializing in aviation law, insurance defense, and complex civil litigation">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        document.documentElement.classList.add('js');
+
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'oxford-blue': '#002147',
+                        'oxford-blue-light': '#003366',
+                        'charcoal': '#36454F',
+                        'mate-gold': '#C9861E',
+                        'mate-gold-light': '#DAA520'
+                    },
+                    fontFamily: {
+                        'serif': ['Playfair Display', 'serif'],
+                        'sans': ['Nunito Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            font-size: 17px;
+        }
+        .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .js .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        .js .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .hero-banner {
+            background: linear-gradient(135deg, #002147 0%, #003366 100%);
+        }
+
+        .satellite-lang-switch {
+            display: inline-flex;
+            align-items: center;
+            gap: 0;
+            background: transparent;
+            border: 0;
+            padding: 0;
+            border-radius: 2px;
+        }
+
+        .satellite-lang-btn {
+            position: relative;
+            border: 0;
+            background: transparent;
+            color: #6b7280;
+            font-size: 13px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 10px 14px;
+            cursor: pointer;
+            transition: color 0.25s ease;
+        }
+
+        .satellite-lang-btn:hover {
+            color: #002147;
+        }
+
+        .satellite-lang-btn.active {
+            color: #C9861E;
+        }
+
+        .satellite-lang-btn.active::after {
+            content: '';
+            position: absolute;
+            left: 6px;
+            right: 6px;
+            bottom: -1px;
+            height: 1px;
+            background: #C9861E;
+        }
+
+        .satellite-lang-divider {
+            width: 1px;
+            height: 18px;
+            background: #cbd5e1;
+            margin: 0 4px;
+        }
+        
+        /* Attorney Cards Carousel */
+        .attorney-card {
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .attorney-card:hover {
+            transform: translateY(-8px);
+            border-color: #C9861E;
+            box-shadow: 0 12px 24px rgba(0, 33, 71, 0.15);
+        }
+        .attorney-card img {
+            transition: all 0.3s ease;
+        }
+        .attorney-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-expand-trigger {
+            position: relative;
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            cursor: zoom-in;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+
+        .photo-expand-trigger img {
+            display: block;
+            width: 100%;
+            transition: transform 0.35s ease, filter 0.35s ease;
+        }
+
+        .photo-expand-trigger:hover img {
+            transform: scale(1.02);
+            filter: saturate(1.02);
+        }
+
+        .photo-expand-trigger::after {
+            content: 'Click to enlarge';
+            position: absolute;
+            right: 14px;
+            bottom: 14px;
+            padding: 6px 10px;
+            border-radius: 9999px;
+            background: rgba(0, 33, 71, 0.72);
+            color: #ffffff;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+        }
+
+        .photo-expand-trigger:hover::after {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .attorney-photo-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 70;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            background: rgba(1, 16, 34, 0.76);
+            backdrop-filter: blur(8px);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.35s ease;
+        }
+
+        .attorney-photo-modal.open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .attorney-photo-frame {
+            position: relative;
+            width: min(72vw, 640px);
+            max-height: 88vh;
+            aspect-ratio: 3 / 4;
+            padding: 4px;
+            border-radius: 0;
+            background: linear-gradient(135deg, rgba(201, 134, 30, 0.96) 0%, rgba(244, 220, 143, 0.98) 45%, rgba(201, 134, 30, 0.96) 100%);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.34), 0 0 0 1px rgba(255, 255, 255, 0.28) inset;
+            transform: translateY(18px) scale(0.94);
+            transition: transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+            overflow: hidden;
+            isolation: isolate;
+        }
+
+        .attorney-photo-modal.open .attorney-photo-frame {
+            transform: translateY(0) scale(1);
+        }
+
+        .attorney-photo-frame::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 1px;
+            border-radius: inherit;
+            background: linear-gradient(
+                90deg,
+                rgba(250, 232, 168, 0.58),
+                rgba(201, 134, 30, 0.9)
+            );
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            filter: drop-shadow(0 0 3px rgba(255, 226, 141, 0.42));
+            pointer-events: none;
+        }
+
+        .attorney-photo-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            padding: 1px;
+            border-radius: inherit;
+            background: linear-gradient(
+                118deg,
+                rgba(255, 255, 255, 0) 42%,
+                rgba(255, 246, 204, 0.16) 47%,
+                rgba(255, 255, 255, 0.97) 50%,
+                rgba(201, 134, 30, 0.92) 53%,
+                rgba(255, 255, 255, 0) 58%
+            );
+            background-size: 240% 240%;
+            background-position: 200% 0;
+            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: frame-line-run 1.05s linear infinite;
+            filter: drop-shadow(0 0 7px rgba(255, 237, 177, 0.62));
+            pointer-events: none;
+        }
+
+        .attorney-photo-expanded {
+            position: relative;
+            z-index: 1;
+            display: block;
+            width: 100%;
+            height: 100%;
+            max-height: none;
+            object-fit: cover;
+            border-radius: 0;
+            background: transparent;
+        }
+
+        .attorney-photo-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            z-index: 2;
+            width: 42px;
+            height: 42px;
+            border: 1px solid rgba(255, 255, 255, 0.32);
+            border-radius: 9999px;
+            background: rgba(0, 33, 71, 0.72);
+            color: #ffffff;
+            font-size: 20px;
+            line-height: 1;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .attorney-photo-close:hover {
+            background: rgba(0, 33, 71, 0.92);
+            transform: scale(1.05);
+        }
+
+        @keyframes frame-shimmer-orbit {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes frame-line-run {
+            0% {
+                background-position: 220% 0;
+            }
+            100% {
+                background-position: -120% 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .photo-expand-trigger::after {
+                display: none;
+            }
+
+            .attorney-photo-modal {
+                padding: 16px;
+            }
+
+            .attorney-photo-frame {
+                width: min(92vw, 520px);
+                padding: 4px;
+            }
+        }
+
+        .footer-logo-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #ffffff;
+            padding: 10px 12px;
+            border-radius: 2px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+        }
+    </style>
+</head>
+<body class="bg-white text-charcoal">
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <a href="index.html" class="flex items-center">
+                    <img src="../IMAGES/mmlaw logo.jpg" alt="MMH Law" class="h-12 w-auto">
+                </a>
+                <div class="flex items-center gap-8">
+                    <div class="satellite-lang-switch" aria-label="Language selector">
+                        <button type="button" class="satellite-lang-btn active" data-lang="en">EN</button>
+                        <span class="satellite-lang-divider" aria-hidden="true"></span>
+                        <button type="button" class="satellite-lang-btn" data-lang="es">ES</button>
+                    </div>
+                    <a href="index.html" class="text-sm font-medium text-gray-600 hover:text-oxford-blue transition-colors uppercase tracking-wide" data-i18n="nav.home">Home</a>
+                    <a href="#" class="text-sm font-medium text-oxford-blue uppercase tracking-wide" data-i18n="nav.attorneys">Attorneys</a>
+                    <a href="#" class="text-sm font-medium text-gray-600 hover:text-oxford-blue transition-colors uppercase tracking-wide" data-i18n="nav.contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-banner py-16 relative">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-mate-gold"></div>
+        <div class="container mx-auto px-6">
+            <div class="fade-in max-w-6xl mx-auto">
+                <div class="text-center mb-6">
+                    <p class="text-mate-gold text-sm font-semibold tracking-widest uppercase mb-3" data-i18n="hero.role">Partner</p>
+                    <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4" style="letter-spacing: -0.02em;">
+                        John M. Murray
+                    </h1>
+                    <div class="h-px bg-gradient-to-r from-transparent via-mate-gold to-transparent max-w-md mx-auto mb-4"></div>
+                    <p class="text-gray-300 text-lg font-light" data-i18n="hero.subtitle">
+                        Aviation Law • Insurance Defense • Complex Civil Litigation
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIO SECTION: Main Attorney Profile -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="grid lg:grid-cols-3 gap-12 fade-in">
+                
+                <!-- Sidebar: Photo + Contact -->
+                <div class="lg:col-span-1">
+                    <div class="bg-gray-50 rounded-lg shadow-sm p-6 sticky top-24">
+                        <!-- Foto grande profesional -->
+                        <div class="mb-6">
+                            <button type="button" class="photo-expand-trigger" id="openAttorneyPhoto" aria-label="Open enlarged attorney portrait">
+                                <img src="../IMAGES/attorney/jmfinal.jpg" alt="John M. Murray" class="w-full rounded-lg shadow-lg">
+                            </button>
+                        </div>
+                        
+                        <div class="border-t border-gray-300 pt-6">
+                            <h3 class="font-serif text-lg font-bold text-oxford-blue mb-4" data-i18n="sidebar.contact">Contact</h3>
+                            <div class="space-y-3 text-sm text-gray-600">
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-mate-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                    </svg>
+                                    <a href="mailto:jmurray@mmhlaw.com" class="hover:text-oxford-blue transition-colors">
+                                        jmurray@mmhlaw.com
+                                    </a>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-mate-gold flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                    </svg>
+                                    <span>(305) 444-0403</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-300 pt-6 mt-6">
+                            <div class="rounded-lg border border-mate-gold border-opacity-40 bg-white p-5 shadow-sm">
+                                <p class="text-xs font-semibold tracking-[0.2em] uppercase text-mate-gold mb-2" data-i18n="quick.badge">Quick Contact</p>
+                                <h3 class="font-serif text-lg font-bold text-oxford-blue mb-3" data-i18n="quick.heading">Send a Message</h3>
+                                <p class="text-sm text-gray-600 mb-4" data-i18n="quick.description">Use this quick form to contact John directly about aviation, insurance defense, or litigation matters.</p>
+                                <form action="mailto:jmurray@mmhlaw.com" method="post" enctype="text/plain" class="space-y-3">
+                                    <div>
+                                        <label for="contact-name" class="block text-xs font-semibold uppercase tracking-wide text-gray-500 mb-1" data-i18n="quick.name">Name</label>
+                                        <input id="contact-name" name="Name" type="text" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-700 focus:border-mate-gold focus:outline-none focus:ring-2 focus:ring-mate-gold focus:ring-opacity-20" placeholder="Your name" data-i18n-placeholder="quick.namePlaceholder">
+                                    </div>
+                                    <div>
+                                        <label for="contact-email" class="block text-xs font-semibold uppercase tracking-wide text-gray-500 mb-1" data-i18n="quick.email">Email</label>
+                                        <input id="contact-email" name="Email" type="email" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-700 focus:border-mate-gold focus:outline-none focus:ring-2 focus:ring-mate-gold focus:ring-opacity-20" placeholder="you@example.com" data-i18n-placeholder="quick.emailPlaceholder">
+                                    </div>
+                                    <div>
+                                        <label for="contact-message" class="block text-xs font-semibold uppercase tracking-wide text-gray-500 mb-1" data-i18n="quick.message">Message</label>
+                                        <textarea id="contact-message" name="Message" rows="4" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-700 resize-none focus:border-mate-gold focus:outline-none focus:ring-2 focus:ring-mate-gold focus:ring-opacity-20" placeholder="Briefly describe your matter" data-i18n-placeholder="quick.messagePlaceholder"></textarea>
+                                    </div>
+                                    <button type="submit" class="w-full rounded-md bg-oxford-blue px-4 py-3 text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-oxford-blue-light" data-i18n="quick.submit">Send Message</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-300 pt-6 mt-6">
+                            <h3 class="font-serif text-lg font-bold text-oxford-blue mb-4" data-i18n="sidebar.education">Education</h3>
+                            <div class="space-y-4 text-sm">
+                                <div>
+                                    <p class="font-semibold text-gray-800">J.D., University of Miami School of Law</p>
+                                    <p class="text-gray-600">Cum Laude</p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-800">B.S., Florida State University</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="border-t border-gray-300 pt-6 mt-6">
+                            <h3 class="font-serif text-lg font-bold text-oxford-blue mb-4" data-i18n="sidebar.barAdmissions">Bar Admissions</h3>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="text-mate-gold mr-2">•</span>
+                                    <span>Florida Supreme Court</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-mate-gold mr-2">•</span>
+                                    <span>U.S. District Court, Southern District of Florida</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-mate-gold mr-2">•</span>
+                                    <span>U.S. District Court, Middle District of Florida</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-mate-gold mr-2">•</span>
+                                    <span>U.S. Court of Appeals, Eleventh Circuit</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Main Content: Biography -->
+                <div class="lg:col-span-2">
+                    <div class="bg-white rounded-lg p-1">
+                        <div class="prose prose-lg max-w-none">
+                            <h2 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-6" style="letter-spacing: -0.01em;" data-i18n="main.heading">
+                                Experience & Practice
+                            </h2>
+                            
+                            <div class="h-1 w-20 bg-mate-gold mb-8"></div>
+                            
+                            <p class="text-gray-700 leading-relaxed mb-6" data-i18n="main.paragraph1">
+                                John M. Murray is a founding partner of Murray Morin & Herman, P.A., with over 25 years of experience in complex civil litigation, aviation law, and insurance defense. He represents major corporations, insurance carriers, and aviation entities in high-stakes litigation throughout Florida and federal courts.
+                            </p>
+                            
+                            <p class="text-gray-700 leading-relaxed mb-8" data-i18n="main.paragraph2">
+                                Mr. Murray's practice focuses on aviation accidents, products liability, construction defects, insurance coverage disputes, and appellate advocacy. He has successfully defended clients in multi-million dollar cases involving catastrophic injuries and has argued before state and federal appellate courts, including the Florida Supreme Court and the Eleventh Circuit Court of Appeals.
+                            </p>
+
+                            <div class="bg-oxford-blue bg-opacity-5 border-l-4 border-oxford-blue p-6 rounded-r mb-8">
+                                <h3 class="font-serif text-xl font-bold text-oxford-blue mb-4" data-i18n="practice.heading">Practice Areas</h3>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-gray-700">
+                                    <div class="bg-white rounded-md border border-gray-200 p-3 text-center">
+                                        <img src="../IMAGES/logos/aviation.png" alt="Aviation Law" class="w-16 h-16 object-contain mx-auto mb-2">
+                                        <p class="text-xs font-semibold uppercase tracking-wide text-oxford-blue" data-i18n="practice.aviation">Aviation Law</p>
+                                    </div>
+                                    <div class="bg-white rounded-md border border-gray-200 p-3 text-center">
+                                        <img src="../IMAGES/logos/products-liability.png" alt="Products Liability" class="w-16 h-16 object-contain mx-auto mb-2">
+                                        <p class="text-xs font-semibold uppercase tracking-wide text-oxford-blue" data-i18n="practice.products">Products Liability</p>
+                                    </div>
+                                    <div class="bg-white rounded-md border border-gray-200 p-3 text-center">
+                                        <img src="../IMAGES/logos/insurance.png" alt="Insurance Defense" class="w-16 h-16 object-contain mx-auto mb-2">
+                                        <p class="text-xs font-semibold uppercase tracking-wide text-oxford-blue" data-i18n="practice.insurance">Insurance Defense</p>
+                                    </div>
+                                    <div class="bg-white rounded-md border border-gray-200 p-3 text-center">
+                                        <img src="../IMAGES/logos/construction.png" alt="Construction Litigation" class="w-16 h-16 object-contain mx-auto mb-2">
+                                        <p class="text-xs font-semibold uppercase tracking-wide text-oxford-blue" data-i18n="practice.construction">Construction Litigation</p>
+                                    </div>
+                                    <div class="bg-white rounded-md border border-gray-200 p-3 text-center">
+                                        <img src="../IMAGES/logos/appelate.png" alt="Appellate Practice" class="w-16 h-16 object-contain mx-auto mb-2">
+                                        <p class="text-xs font-semibold uppercase tracking-wide text-oxford-blue" data-i18n="practice.appellate">Appellate Practice</p>
+                                    </div>
+                                    <div class="bg-white rounded-md border border-gray-200 p-3 text-center">
+                                        <img src="../IMAGES/logos/corporative.png" alt="Commercial Litigation" class="w-16 h-16 object-contain mx-auto mb-2">
+                                        <p class="text-xs font-semibold uppercase tracking-wide text-oxford-blue" data-i18n="practice.commercial">Commercial Litigation</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-mate-gold bg-opacity-5 border-l-4 border-mate-gold p-6 rounded-r mb-8">
+                                <h3 class="font-serif text-xl font-bold text-oxford-blue mb-4" data-i18n="recognition.heading">Professional Recognition</h3>
+                                <ul class="space-y-2 text-gray-700">
+                                    <li class="flex items-start">
+                                        <span class="text-mate-gold mr-2">•</span>
+                                        <span>AV Preeminent® Rated by Martindale-Hubbell</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-mate-gold mr-2">•</span>
+                                        <span>Named to Florida Super Lawyers (multiple years)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-mate-gold mr-2">•</span>
+                                        <span>Member, Product Liability Advisory Council (PLAC)</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-mate-gold mr-2">•</span>
+                                        <span>Fellow, Litigation Counsel of America</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <p class="text-gray-600 italic" data-i18n="main.admissionsNote">
+                                Mr. Murray is admitted to practice in all Florida state courts, the U.S. District Courts for the Southern, Middle, and Northern Districts of Florida, and the U.S. Court of Appeals for the Eleventh Circuit.
+                            </p>
+
+                            <div class="mt-10 bg-gray-50 border border-gray-200 rounded-lg p-6">
+                                <div class="flex items-center justify-between mb-5">
+                                    <h3 class="font-serif text-2xl font-bold text-oxford-blue">Related Attorneys by Subject</h3>
+                                    <span class="text-xs font-semibold uppercase tracking-[0.16em] text-mate-gold">Appellate • Aviation • Insurance</span>
+                                </div>
+
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                    <a href="attorney-example.html" class="bg-white border border-gray-200 rounded-md overflow-hidden hover:border-mate-gold transition-colors">
+                                        <img src="../IMAGES/attorney/csm-sm.jpg" alt="Christopher S. Morrin" class="w-full aspect-[3/4] object-cover">
+                                        <div class="p-3 text-center">
+                                            <p class="font-semibold text-oxford-blue text-sm">Christopher S. Morrin</p>
+                                            <p class="text-xs text-gray-500">Managing Shareholder</p>
+                                        </div>
+                                    </a>
+                                    <a href="attorney-example.html" class="bg-white border border-gray-200 rounded-md overflow-hidden hover:border-mate-gold transition-colors">
+                                        <img src="../IMAGES/attorney/dph-sm.jpg" alt="David Herman" class="w-full aspect-[3/4] object-cover">
+                                        <div class="p-3 text-center">
+                                            <p class="font-semibold text-oxford-blue text-sm">David Herman</p>
+                                            <p class="text-xs text-gray-500">Of Counsel</p>
+                                        </div>
+                                    </a>
+                                    <a href="attorney-example.html" class="bg-white border border-gray-200 rounded-md overflow-hidden hover:border-mate-gold transition-colors">
+                                        <img src="../IMAGES/attorney/EduardoGarcia-3.jpg" alt="Eduardo Garcia" class="w-full aspect-[3/4] object-cover">
+                                        <div class="p-3 text-center">
+                                            <p class="font-semibold text-oxford-blue text-sm">Eduardo Garcia</p>
+                                            <p class="text-xs text-gray-500">Attorney</p>
+                                        </div>
+                                    </a>
+                                    <a href="attorney-example.html" class="bg-white border border-gray-200 rounded-md overflow-hidden hover:border-mate-gold transition-colors">
+                                        <img src="../IMAGES/attorney/atl-3.jpg" alt="Andrew T. Lynn" class="w-full aspect-[3/4] object-cover">
+                                        <div class="p-3 text-center">
+                                            <p class="font-semibold text-oxford-blue text-sm">Andrew T. Lynn</p>
+                                            <p class="text-xs text-gray-500">Attorney</p>
+                                        </div>
+                                    </a>
+                                    <a href="attorney-example.html" class="bg-white border border-gray-200 rounded-md overflow-hidden hover:border-mate-gold transition-colors">
+                                        <img src="../IMAGES/attorney/NathanWheat-3.jpg" alt="Nathan M. Wheat" class="w-full aspect-[3/4] object-cover">
+                                        <div class="p-3 text-center">
+                                            <p class="font-semibold text-oxford-blue text-sm">Nathan M. Wheat</p>
+                                            <p class="text-xs text-gray-500">Attorney</p>
+                                        </div>
+                                    </a>
+                                    <a href="attorney-example.html" class="bg-white border border-gray-200 rounded-md overflow-hidden hover:border-mate-gold transition-colors">
+                                        <img src="../IMAGES/attorney/kr-3.jpg" alt="Kimberly Ann Reynolds" class="w-full aspect-[3/4] object-cover">
+                                        <div class="p-3 text-center">
+                                            <p class="font-semibold text-oxford-blue text-sm">Kimberly Ann Reynolds</p>
+                                            <p class="text-xs text-gray-500">Attorney</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPARISON SECTION: Visual Improvement Example -->
+    <section class="py-20 bg-gray-50 border-t-2 border-oxford-blue">
+        <div class="container mx-auto px-6 max-w-7xl">
+            
+            <!-- Comparison Header -->
+            <div class="text-center mb-16 fade-in">
+                <div class="inline-block bg-oxford-blue text-mate-gold px-6 py-2 rounded-full text-sm font-semibold mb-4 uppercase tracking-wide">
+                    Visual Improvement Example
+                </div>
+                <h2 class="font-serif text-3xl md:text-4xl font-bold text-oxford-blue mb-4">
+                    High-Impact Professional Photography
+                </h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+                    The difference between a generic image and a premium professional portrait is immediate:
+                    visual authority, retina-ready clarity, and executive presence that reflects the caliber of the firm.
+                </p>
+            </div>
+
+            <!-- Comparison Grid -->
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
+                
+                <!-- BEFORE: Current -->
+                <div class="fade-in bg-white rounded-lg shadow-lg overflow-hidden border-2 border-red-200">
+                    <div class="bg-red-50 border-b-2 border-red-200 px-6 py-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-serif text-xl font-bold text-red-800">Current</h3>
+                            <span class="text-xs bg-red-100 text-red-700 px-3 py-1 rounded-full font-semibold uppercase tracking-wide">Problem</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8">
+                        <!-- Current Image (low quality) -->
+                        <div class="mb-6 rounded-lg overflow-hidden bg-gray-100">
+                            <img src="../IMAGES/attorney/jm.jpg" alt="John M. Murray - Current Photo" class="w-full h-auto">
+                        </div>
+                        
+                        <!-- Problem List -->
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="text-red-600 mt-1">✗</span>
+                                <div>
+                                    <p class="font-semibold text-red-900 text-sm">Low Resolution</p>
+                                    <p class="text-xs text-gray-600">Looks pixelated on modern screens (Retina, 4K)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-red-600 mt-1">✗</span>
+                                <div>
+                                    <p class="font-semibold text-red-900 text-sm">Inconsistent Lighting</p>
+                                    <p class="text-xs text-gray-600">Lacks professional light balance</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-red-600 mt-1">✗</span>
+                                <div>
+                                    <p class="font-semibold text-red-900 text-sm">Generic Composition</p>
+                                    <p class="text-xs text-gray-600">Does not convey executive authority</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-red-600 mt-1">✗</span>
+                                <div>
+                                    <p class="font-semibold text-red-900 text-sm">Outdated Perception</p>
+                                    <p class="text-xs text-gray-600">Outdated image compared to contemporary competitors</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-red-200 bg-red-50 -mx-8 -mb-8 px-8 py-4">
+                            <p class="text-sm text-red-800">
+                                <strong>Impact:</strong> The first visual impression does not reflect the professional caliber of 25+ years in aviation litigation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AFTER: Corrected -->
+                <div class="fade-in bg-white rounded-lg shadow-lg overflow-hidden border-2 border-green-200">
+                    <div class="bg-green-50 border-b-2 border-green-200 px-6 py-4">
+                        <div class="flex items-center justify-between">
+                            <h3 class="font-serif text-xl font-bold text-green-800">With Correction</h3>
+                            <span class="text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full font-semibold uppercase tracking-wide">Solution</span>
+                        </div>
+                    </div>
+                    
+                    <div class="p-8">
+                        <!-- New Image (high quality) -->
+                        <div class="mb-6 rounded-lg overflow-hidden bg-gray-100 ring-2 ring-green-200">
+                            <img src="../IMAGES/attorney/jmfinal.png" alt="John M. Murray - Professional Version" class="w-full h-auto">
+                        </div>
+                        
+                        <!-- Improvements List -->
+                        <div class="space-y-3">
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">✓</span>
+                                <div>
+                                    <p class="font-semibold text-green-900 text-sm">Retina-Ready Resolution</p>
+                                    <p class="text-xs text-gray-600">Sharp on any device (iPhone, iPad, 4K)</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">✓</span>
+                                <div>
+                                    <p class="font-semibold text-green-900 text-sm">Professional Studio Lighting</p>
+                                    <p class="text-xs text-gray-600">Corporate light balance, no harsh shadows</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">✓</span>
+                                <div>
+                                    <p class="font-semibold text-green-900 text-sm">Executive Composition</p>
+                                    <p class="text-xs text-gray-600">Authoritative presence, direct gaze, confident posture</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <span class="text-green-600 mt-1">✓</span>
+                                <div>
+                                    <p class="font-semibold text-green-900 text-sm">Contemporary Standard</p>
+                                    <p class="text-xs text-gray-600">Visually aligned with top-tier firms in 2026</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 pt-4 border-t border-green-200 bg-green-50 -mx-8 -mb-8 px-8 py-4">
+                            <p class="text-sm text-green-800">
+                                <strong>Result:</strong> A professional image that communicates authority, experience, and executive presence in milliseconds.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-oxford-blue text-white py-12">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <span class="footer-logo-box">
+                        <img src="../IMAGES/mmlaw logo.jpg" alt="MMH Law" class="h-14 w-auto">
+                    </span>
+                </div>
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400 text-sm mb-2">
+                        &copy; 2026 Murray, Morin & Herman, P.A. All Rights Reserved.
+                    </p>
+                    <div class="flex gap-6 justify-center md:justify-end text-xs text-gray-500">
+                        <a href="#" class="hover:text-mate-gold transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-mate-gold transition-colors">Terms of Service</a>
+                        <a href="#" class="hover:text-mate-gold transition-colors">Disclaimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="attorney-photo-modal" id="attorneyPhotoModal" aria-hidden="true">
+        <div class="attorney-photo-frame">
+            <button type="button" class="attorney-photo-close" id="closeAttorneyPhoto" aria-label="Close enlarged attorney portrait">&times;</button>
+            <img src="../IMAGES/attorney/jmfinal.jpg" alt="John M. Murray portrait enlarged" class="attorney-photo-expanded">
+        </div>
+    </div>
+
+    <!-- Scroll Animation Script -->
+    <script>
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        fadeElements.forEach(el => observer.observe(el));
+
+        const attorneyPhotoModal = document.getElementById('attorneyPhotoModal');
+        const openAttorneyPhoto = document.getElementById('openAttorneyPhoto');
+        const closeAttorneyPhoto = document.getElementById('closeAttorneyPhoto');
+
+        function setAttorneyPhotoModal(open) {
+            if (!attorneyPhotoModal) return;
+            attorneyPhotoModal.classList.toggle('open', open);
+            attorneyPhotoModal.setAttribute('aria-hidden', open ? 'false' : 'true');
+            document.body.style.overflow = open ? 'hidden' : '';
+        }
+
+        if (attorneyPhotoModal && openAttorneyPhoto && closeAttorneyPhoto) {
+            openAttorneyPhoto.addEventListener('click', () => setAttorneyPhotoModal(true));
+            closeAttorneyPhoto.addEventListener('click', () => setAttorneyPhotoModal(false));
+
+            attorneyPhotoModal.addEventListener('click', (event) => {
+                if (event.target === attorneyPhotoModal) {
+                    setAttorneyPhotoModal(false);
+                }
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && attorneyPhotoModal.classList.contains('open')) {
+                    setAttorneyPhotoModal(false);
+                }
+            });
+        }
+
+        // Shared satellite language dependency (same preference used in proposal pages)
+        const satelliteLangButtons = document.querySelectorAll('.satellite-lang-btn');
+
+        const satelliteTranslations = {
+            en: {
+                'nav.home': 'Home',
+                'nav.attorneys': 'Attorneys',
+                'nav.contact': 'Contact',
+                'hero.role': 'Partner',
+                'hero.subtitle': 'Aviation Law • Insurance Defense • Complex Civil Litigation',
+                'sidebar.contact': 'Contact',
+                'quick.badge': 'Quick Contact',
+                'quick.heading': 'Send a Message',
+                'quick.description': 'Use this quick form to contact John directly about aviation, insurance defense, or litigation matters.',
+                'quick.name': 'Name',
+                'quick.email': 'Email',
+                'quick.message': 'Message',
+                'quick.submit': 'Send Message',
+                'quick.namePlaceholder': 'Your name',
+                'quick.emailPlaceholder': 'you@example.com',
+                'quick.messagePlaceholder': 'Briefly describe your matter',
+                'sidebar.education': 'Education',
+                'sidebar.barAdmissions': 'Bar Admissions',
+                'main.heading': 'Experience & Practice',
+                'main.paragraph1': 'John M. Murray is a founding partner of Murray Morin & Herman, P.A., with over 25 years of experience in complex civil litigation, aviation law, and insurance defense. He represents major corporations, insurance carriers, and aviation entities in high-stakes litigation throughout Florida and federal courts.',
+                'main.paragraph2': 'Mr. Murray\'s practice focuses on aviation accidents, products liability, construction defects, insurance coverage disputes, and appellate advocacy. He has successfully defended clients in multi-million dollar cases involving catastrophic injuries and has argued before state and federal appellate courts, including the Florida Supreme Court and the Eleventh Circuit Court of Appeals.',
+                'practice.heading': 'Practice Areas',
+                'practice.aviation': 'Aviation Law',
+                'practice.products': 'Products Liability',
+                'practice.insurance': 'Insurance Defense',
+                'practice.construction': 'Construction Litigation',
+                'practice.appellate': 'Appellate Practice',
+                'practice.commercial': 'Commercial Litigation',
+                'recognition.heading': 'Professional Recognition',
+                'main.admissionsNote': 'Mr. Murray is admitted to practice in all Florida state courts, the U.S. District Courts for the Southern, Middle, and Northern Districts of Florida, and the U.S. Court of Appeals for the Eleventh Circuit.'
+            },
+            es: {
+                'nav.home': 'Inicio',
+                'nav.attorneys': 'Abogados',
+                'nav.contact': 'Contacto',
+                'hero.role': 'Socio',
+                'hero.subtitle': 'Derecho Aeronautico • Defensa de Seguros • Litigio Civil Complejo',
+                'sidebar.contact': 'Contacto',
+                'quick.badge': 'Contacto Rapido',
+                'quick.heading': 'Enviar Mensaje',
+                'quick.description': 'Use este formulario rapido para contactar a John directamente sobre aviacion, defensa de seguros o asuntos de litigio.',
+                'quick.name': 'Nombre',
+                'quick.email': 'Correo',
+                'quick.message': 'Mensaje',
+                'quick.submit': 'Enviar Mensaje',
+                'quick.namePlaceholder': 'Su nombre',
+                'quick.emailPlaceholder': 'correo@ejemplo.com',
+                'quick.messagePlaceholder': 'Describa brevemente su asunto',
+                'sidebar.education': 'Educacion',
+                'sidebar.barAdmissions': 'Admisiones al Colegio',
+                'main.heading': 'Experiencia y Practica',
+                'main.paragraph1': 'John M. Murray es socio fundador de Murray Morin & Herman, P.A., con mas de 25 anos de experiencia en litigio civil complejo, derecho aeronautico y defensa de seguros. Representa a grandes corporaciones, aseguradoras y entidades de aviacion en litigios de alto riesgo en Florida y tribunales federales.',
+                'main.paragraph2': 'La practica del Sr. Murray se enfoca en accidentes de aviacion, responsabilidad por productos, defectos de construccion, disputas de cobertura de seguros y practica de apelaciones. Ha defendido con exito a clientes en casos multimillonarios con lesiones catastroficas y ha argumentado ante cortes estatales y federales de apelacion, incluyendo la Corte Suprema de Florida y la Corte de Apelaciones del Undecimo Circuito.',
+                'practice.heading': 'Areas de Practica',
+                'practice.aviation': 'Derecho Aeronautico',
+                'practice.products': 'Responsabilidad por Productos',
+                'practice.insurance': 'Defensa de Seguros',
+                'practice.construction': 'Litigio de Construccion',
+                'practice.appellate': 'Practica de Apelaciones',
+                'practice.commercial': 'Litigio Comercial',
+                'recognition.heading': 'Reconocimiento Profesional',
+                'main.admissionsNote': 'El Sr. Murray esta admitido para ejercer en todos los tribunales estatales de Florida, los Tribunales de Distrito de EE. UU. para el Sur, Medio y Norte de Florida, y la Corte de Apelaciones de EE. UU. del Undecimo Circuito.'
+            }
+        };
+
+        function setSatelliteLanguage(lang) {
+            const normalized = lang === 'es' ? 'es' : 'en';
+            document.documentElement.lang = normalized;
+            localStorage.setItem('preferred-language', normalized);
+
+            const dictionary = satelliteTranslations[normalized];
+
+            document.querySelectorAll('[data-i18n]').forEach((element) => {
+                const key = element.getAttribute('data-i18n');
+                if (dictionary[key]) {
+                    element.textContent = dictionary[key];
+                }
+            });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach((element) => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (dictionary[key]) {
+                    element.setAttribute('placeholder', dictionary[key]);
+                }
+            });
+
+            satelliteLangButtons.forEach((btn) => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === normalized);
+            });
+        }
+
+        satelliteLangButtons.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                setSatelliteLanguage(btn.getAttribute('data-lang'));
+            });
+        });
+
+        setSatelliteLanguage(localStorage.getItem('preferred-language') || 'en');
+    </script>
+</body>
+</html>
